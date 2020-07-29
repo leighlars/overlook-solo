@@ -1,7 +1,45 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
-;
+@import 'variables';
+@import 'login';
+@import 'mobileQueries';
+@import 'reset';
+@import 'guestView';
+@import 'managerView';
+@import 'headers';
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+// @mixin 
+
+html, body {
+  height: 100%;
+}
 
 body {
-  background: $primary-background;
+  background: $primary;
+  display: flex;
+  font-family: 'Raleway', sans-serif;
 }
+
+h1 {
+  font-family: 'Satisfy', cursive;
+  font-size: 40px;
+  text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+}
+
+h2 {
+  font-family: 'Satisfy', cursive;
+  text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+  font-size: 35px;
+}
+
+main {
+  @include generalDisplay();
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  margin-top: 100px;
+  width: 100%;
+}
+
+
+
+

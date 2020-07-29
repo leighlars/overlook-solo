@@ -1,0 +1,14 @@
+$primary: #00B4D8; 
+$seaFoam: #CE5374;
+
+@mixin generalDisplay() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin borders() {
+  border: 2px solid $seaFoam;
+  border-radius: 4px;
+  background: transparent;
+}

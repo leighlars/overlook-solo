@@ -1,0 +1,30 @@
+
+
+.login-modal {
+  @include generalDisplay();
+  border: 3px solid $seaFoam;
+  border-radius: 4px;
+  box-shadow: 1px 1px 115px black;
+  width: 60%;
+  height: 40%;
+}
+
+.inputs {
+ @include borders();
+  height: 30px;
+  margin: 10px;
+  color: #FFFFFF;
+  padding: 4px;
+}
+
+.login-btn {
+  @include borders();
+  background-color: $seaFoam;
+  color: #FFFFFF;
+  height: 30px;
+  width: 50px;
+}
+
+::placeholder {
+  color: white;
+}
