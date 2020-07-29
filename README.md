@@ -16,12 +16,12 @@ Add a room booking for that user
 Delete any upcoming room bookings for that user (they cannot delete a booking from the past)
 
 The guest can:
-I should be able to select a date for which I’d like to book a room for myself
-Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
-I should be able to filter the list of available rooms by their roomType property
-I should be able to select a room for booking
-In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search
-Any room books (past or present)
+Select date to book a room
+Upon selecting a date, user should be shown a list of room details for only rooms that are available on that date
+Filter the list of available rooms by their roomType property
+Select a room for booking
+View an apology notice and prompt to select new date in the event rooms are unavailable on chosen date
+View any room bookings (past or present)
 The total amount I have spent on rooms
 
 ## Technologies / Systems
