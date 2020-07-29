@@ -7,7 +7,22 @@ Mod 2 Final Solo Project
 - [Project Spec](https://frontend.turing.io/projects/overlook.html)
 
 ## Abstract 
-In this project, we will refactor an existing code base for a fitness / health tracker. We will implement new features of our own, namely SCSS, Accessibility, Fetch API, and testing with Spies. We considered our MVP to fulfill all requirements on the original FitLit spec, score a 95% or higher on Accessibility in Lighthouse, utilize SCSS/SASS in styling, implement Spies and fetching / posting data from/to API server, all of which we fulfilled.   
+The project asks the developer to design a functionally effective and sensible and aesthetically pleasing UX/UI hotel management tool. The user can log in as a manager or as a guest.
+
+The manager can: 
+View percentage and number of rooms available, today's total revenue.
+View guests' names, a list of all of their bookings, and the total amount they’ve spent
+Add a room booking for that user
+Delete any upcoming room bookings for that user (they cannot delete a booking from the past)
+
+The guest can:
+Select date to book a room
+Upon selecting a date, user should be shown a list of room details for only rooms that are available on that date
+Filter the list of available rooms by their roomType property
+Select a room for booking
+View an apology notice and prompt to select new date in the event rooms are unavailable on chosen date
+View any room bookings (past or present)
+The total amount I have spent on rooms
 
 ## Technologies / Systems
 - Javascript
