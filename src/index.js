@@ -1,9 +1,22 @@
 import domUpdates from './domUpdates';
-import APIData from './api-data';
+import apiData from './api-data';
 
 import './css/base.scss';
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-// import './images/heart.png'
 
-console.log('This is the JavaScript entry file - your code begins here.');
+let currentUser;
+let todaysDate;
+
+function getData() {
+  return apiData.fetchData().then((data) => {
+    // todaysDate = moment().format('YYYY/MM/DD');
+    // let userRepository = new UserRepository(data, todaysDate);
+    // currentUser = userRepository.users[Math.floor(Math.random() * userRepository.users.length)]
+    // domUpdates.defineData(currentUser, todaysDate userRepository);
+  }).then(() => {
+    // domUpdates.displayPage();
+  })
+    .catch((err) => console.log(err.message));
+}
+
+// window.addEventListener('load', getData);
