@@ -1,15 +1,15 @@
 .guest-view {
   @include userViews();
-  // display: none;
+  display: none;
 }
 
 .guest-quick-view {
   @include generalDisplay();
-  justify-content: space-around;
   @include borders();
+  @include modalSizes();
+  // display: none;
+  justify-content: space-around;
   padding: 1%;
-  height: 60vh;
-  width: 40vw;
 }
 
 .guest-bookings-btns {

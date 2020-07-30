@@ -33,11 +33,24 @@ $modalColor: hsla(297, 13%, 31%, 0.83);
 
 @mixin userViews {
   @include generalDisplay();
-  // display: none;
   justify-content: flex-start;
   font: lighter 20px 'Josefin Sans', serif;
   color: white;
   margin-top: 40px;
   height: 100%;
   width: 100%;
+}
+
+@mixin modalSizes {
+  height: 60vh;
+  width: 40vw;
+}
+
+@mixin inputs {
+   font: bolder 18px 'Josefin Sans', serif;
+  color: #FFFFFF;
+  margin: 15px;
+  padding: 6px;
+  height: 3vw;
+  text-align: center;
 }

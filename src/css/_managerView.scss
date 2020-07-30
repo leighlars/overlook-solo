@@ -1,31 +1,32 @@
 .manager-view {
   @include userViews();
-  display: none;
+  // display: none;
 
 }
 
 .mgr-quick-view {
   @include generalDisplay();
   @include borders();
-  height: 28vh;
+  height: 20vh;
   width: 70vh;
   .mgr-stats {
     flex-direction: row;
     flex-wrap: wrap;
+    margin-right: 5px;
   }
 }
 
 .search-bar {
-  height: 3vw;
   flex-direction: row;
   text-align: center;
+  height: 2.5vh;
+  margin-bottom: 20px;
     #search-guest-input {
-      background-color: $modalColor;
+      height: 5vh;
     }
       ::placeholder {
         color: #FFFFFF;
         font-weight: bolder;
-        padding: 0;
       }
       .clear-text-btn,
       .mgr-search-btn {
@@ -54,5 +55,6 @@
   height: 22vh;
     .expand-found-guest-btn {
       @include buttons();
+      width: 10vw;
     }
 }
