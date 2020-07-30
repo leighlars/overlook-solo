@@ -11,7 +11,6 @@ let domUpdates = {
 
   displayPage() {},
 
-
   displayGuestDashboard() {},
 
   displayManagerDashboard() {},
