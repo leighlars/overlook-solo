@@ -17,14 +17,20 @@
   padding: 4px;
 }
 
-.login-btn {
-  @include borders();
-  background-color: $seaFoam;
-  color: #FFFFFF;
-  height: 30px;
-  width: 50px;
+#pw-input {
+  margin: 15px;
 }
 
 ::placeholder {
   color: white;
+  font-weight: bolder;
+}
+
+.login-btn {
+  @include borders();
+  background-color: $seaFoam;
+  color: #FFFFFF;
+  margin-left: 100px;
+  height: 30px;
+  width: 75px;
 }
