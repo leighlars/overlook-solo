@@ -44,6 +44,8 @@ $modalColor: hsla(297, 13%, 31%, 0.83);
 @mixin modalSizes {
   height: 60vh;
   width: 40vw;
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
 
 @mixin inputs {

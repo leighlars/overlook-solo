@@ -9,11 +9,12 @@ let domUpdates = {
     this.userRepository = userRepository;
   },
 
-  displayPage() {},
-
   displayGuestDashboard() {},
 
-  displayManagerDashboard() {},
+  displayManagerDashboard() {
+
+
+  },
 }
 
 export default domUpdates;

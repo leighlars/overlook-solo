@@ -2,8 +2,9 @@ class Guest {
   constructor(guestDetails) {
     this.id = guestDetails.id;
     this.name = guestDetails.name;
+    this.allBookings;
     this.pastBookings = [];
-    this.currentBooking = "";
+    this.currentBooking = {};
     this.futureBookings = [];
   }
 

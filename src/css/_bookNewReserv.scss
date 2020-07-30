@@ -3,4 +3,5 @@
   @include borders();
   @include modalSizes();
   background-color: $modalColor;
+  display: none;
 }
