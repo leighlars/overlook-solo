@@ -1,7 +1,6 @@
 .manager-view {
   @include userViews();
-  // display: none;
-
+  display: none;
 }
 
 .mgr-quick-view {
@@ -31,7 +30,7 @@
       .clear-text-btn,
       .mgr-search-btn {
         @include buttons();
-        margin: 0px
+        margin: 0px;
       }
 }
 
@@ -57,4 +56,11 @@
       @include buttons();
       width: 10vw;
     }
+}
+
+.guest-modal {
+  @include generalDisplay();
+  @include borders();
+  @include modalSizes();
+  display: none;
 }

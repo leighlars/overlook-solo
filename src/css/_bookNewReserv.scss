@@ -1,0 +1,6 @@
+.make-new-reservation {
+  @include generalDisplay();
+  @include borders();
+  @include modalSizes();
+  background-color: $modalColor;
+}
