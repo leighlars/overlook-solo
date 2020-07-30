@@ -21,13 +21,12 @@ $modalColor: hsla(297, 13%, 31%, 0.83);
 
 @mixin buttons {
   @include borders();
-  font: bolder 20px 'Josefin Sans', serif;
+  font: bolder 18px 'Josefin Sans', serif;
   color: #FFFFFF;
-  margin-top: 20px;
-  height: 2.75vw;
+  margin: 20px;
+  height: 5vh;
   width: 95px;
-  &:hover {
-    background-color: $grey;
-  }
-  
+      &:hover {
+        background-color: $grey;
+      }
 }

@@ -3,7 +3,7 @@
   // display: none;
   flex-direction: column;
   justify-content: flex-start;
-  font: bolder 20px 'Josefin Sans', serif;
+  font: lighter 20px 'Josefin Sans', serif;
   color: white;
   height: 100%;
   width: 100%;
@@ -12,19 +12,21 @@
 .quick-view {
   @include generalDisplay();
   @include borders();
-  justify-content: space-around;
+  // justify-content: space-around;
   height: 28vh;
-  width: 60vh;
+  width: 70vh;
   .mgr-stats {
     flex-direction: row;
     flex-wrap: wrap;
+
   }
 }
 
 .search-bar {
   height: 3vw;
+  flex-direction: row;
   text-align: center;
-    #search-text {
+    #search-guest-input {
       background-color: $modalColor;
     }
       ::placeholder {
@@ -35,8 +37,7 @@
       .clear-text-btn,
       .mgr-search-btn {
         @include buttons();
-        margin-top: 20px;
-
+        margin: 0px
       }
 }
 
@@ -44,7 +45,7 @@
   @include generalDisplay();
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 30px;
+  margin-top: 20px;
   overflow-y: scroll;
   scroll-behavior: smooth;
   width: 100%;
@@ -54,8 +55,9 @@
   @include borders();
   @include generalDisplay();
   margin: 20px;
+  padding: 2%;
   width: 25vw;
-  height: 25vh;
+  height: 22vh;
     .expand-found-guest-btn {
       @include buttons();
     }

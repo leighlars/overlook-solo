@@ -1,0 +1,33 @@
+.login-modal {
+  @include generalDisplay();
+  @include borders();
+  background-color: $modalColor;
+  box-shadow: 1px 1px 35px black;
+  display: none;
+  width: 50vw;
+  height: 30vw;
+}
+
+.login {
+  @include generalDisplay();
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  .form-input {
+    @include generalDisplay();
+  }
+}
+
+.inputs {
+  @include borders();
+  font: bolder 20px 'Josefin Sans', serif;
+  color: #FFFFFF;
+  margin: 15px;
+  padding: 6px;
+  height: 3vw;
+  text-align: center;
+}
+
+.login-btn {
+  @include buttons();
+}
