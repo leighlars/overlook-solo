@@ -1,18 +1,18 @@
-
-
 .login-modal {
   @include generalDisplay();
-  border: 3px solid $seaFoam;
-  border-radius: 6px;
-  box-shadow: 1px 1px 115px black;
-  width: 60%;
-  height: 50%;
-  background-color:hsla(297, 13%, 31%, 0.83)
+  @include borders();
+  box-shadow: 1px 1px 95px black;
+  display: none;
+  width: 50vw;
+  height: 30vw;
+  background-color: $modalColor;
 }
 
 .login {
   @include generalDisplay();
   flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 
 .form-input {
@@ -21,18 +21,11 @@
 
 .inputs {
   @include borders();
+  font: bolder 20px 'Raleway', sans-serif;
   color: #FFFFFF;
-  margin: 10px;
+  margin: 15px;
   padding: 6px;
-  height: 35px;
-  text-align: center;
-  font-family: 'Raleway', sans-serif;
-  font-weight: bolder;
-  font-size: 20px;
-}
-
-::placeholder {
-  color: white;
+  height: 3vw;
   text-align: center;
 }
 
@@ -40,11 +33,10 @@
   @include borders();
   font-family: 'Raleway', serif;
   color: #FFFFFF;
-  margin-top: 10px;
-  height: 30px;
+  height: 2.5vw;
   width: 95px;
   &:hover {
-    background-color: $seaFoam;
+    background-color: $grey;
   }
 
 }

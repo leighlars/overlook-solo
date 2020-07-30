@@ -1,19 +1,21 @@
-// @import url('https://fonts.googleapis.com/css2?family=Lexend+Zetta&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
-// @import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
 
 h1 {
-  font-family: 'Homemade Apple', serif;
-  // text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+  @include headerFont();
+  margin-top: 100px;
   font-size: 6.55vw; 
 }
 
 h2 {
-  font-family: 'Homemade Apple', serif;
-  font-size: 5.75vh;
+  @include headerFont();
+  font-size: 3vw;
   text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+}
+
+h5 {
+  @include headerFont();
+  font-size: 3.2vh;
 }
 
 p {

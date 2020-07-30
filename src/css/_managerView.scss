@@ -1,0 +1,9 @@
+.quick-view {
+  @include generalDisplay();
+  flex-direction: column;
+  display: none;
+}
+
+.mgr-stats {
+  flex-direction: row;
+}
