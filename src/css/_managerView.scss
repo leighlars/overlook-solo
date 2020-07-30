@@ -1,9 +1,62 @@
-.quick-view {
+.manager-view {
   @include generalDisplay();
+  // display: none;
   flex-direction: column;
-  display: none;
+  justify-content: flex-start;
+  font: bolder 20px 'Josefin Sans', serif;
+  color: white;
+  height: 100%;
+  width: 100%;
 }
 
-.mgr-stats {
+.quick-view {
+  @include generalDisplay();
+  @include borders();
+  justify-content: space-around;
+  height: 28vh;
+  width: 60vh;
+  .mgr-stats {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}
+
+.search-bar {
+  height: 3vw;
+  text-align: center;
+    #search-text {
+      background-color: $modalColor;
+    }
+      ::placeholder {
+        color: #FFFFFF;
+        font-weight: bolder;
+        padding: 0;
+      }
+      .clear-text-btn,
+      .mgr-search-btn {
+        @include buttons();
+        margin-top: 20px;
+
+      }
+}
+
+.known-guests {
+  @include generalDisplay();
   flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 30px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.guest-card {
+  @include borders();
+  @include generalDisplay();
+  margin: 20px;
+  width: 25vw;
+  height: 25vh;
+    .expand-found-guest-btn {
+      @include buttons();
+    }
 }

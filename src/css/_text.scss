@@ -1,23 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 h1 {
-  @include headerFont();
-  margin-top: 100px;
-  font-size: 6.55vw; 
+  @include headerFont(6.55vw);
 }
 
 h2 {
-  @include headerFont();
-  font-size: 3vw;
+  @include headerFont(3vw);
   text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
 }
 
+h4 {
+  @include headerFont(4vh);
+}
+
 h5 {
-  @include headerFont();
-  font-size: 3.2vh;
+  @include headerFont(3.2vh);
 }
 
 p {
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Josefin Sans';
+  font-size: 20px;
 }

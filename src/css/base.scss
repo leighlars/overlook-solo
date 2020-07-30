@@ -4,9 +4,7 @@
 @import 'reset';
 @import 'guestView';
 @import 'managerView';
-@import 'headers';
 @import 'text';
-@import url('https://fonts.googleapis.com/css2?family=BioRhyme:wght@700&display=swap');
 
 
 html, body {
@@ -14,18 +12,23 @@ html, body {
 }
 
 body {
+  @include generalDisplay();
   background: url(../images/grey-mountain.jpg);
   background-size: cover;
-  display: flex;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Josefin Sans', serif;
+  padding: 2%;
 }
 
+header {
+  @include generalDisplay();
+  height: 16vh;
+  width: 100%;
+}
 
 main {
   @include generalDisplay();
-  overflow-y: scroll;
-  scroll-behavior: smooth;
-  margin-top: 100px;
+  padding: 2%;
+  height: 80%;
   width: 100%;
 }
 

@@ -1,11 +1,11 @@
 .login-modal {
   @include generalDisplay();
   @include borders();
-  box-shadow: 1px 1px 95px black;
+  background-color: $modalColor;
+  box-shadow: 1px 1px 35px black;
   display: none;
   width: 50vw;
   height: 30vw;
-  background-color: $modalColor;
 }
 
 .login {
@@ -13,15 +13,14 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-}
-
-.form-input {
-  @include generalDisplay();
+  .form-input {
+    @include generalDisplay();
+  }
 }
 
 .inputs {
   @include borders();
-  font: bolder 20px 'Raleway', sans-serif;
+  font: bolder 20px 'Josefin Sans', serif;
   color: #FFFFFF;
   margin: 15px;
   padding: 6px;
@@ -31,12 +30,6 @@
 
 .login-btn {
   @include borders();
-  font-family: 'Raleway', serif;
-  color: #FFFFFF;
-  height: 2.5vw;
-  width: 95px;
-  &:hover {
-    background-color: $grey;
-  }
+  @include buttons();
 
 }
