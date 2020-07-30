@@ -1,9 +1,9 @@
 class User {
-  constructor(userName, pwd, isAuthenticated = false, isManager = false) {
+  constructor(userName, pwd) {
     this.userName = userName;
     this.password = pwd;
-    this.isAuthenticated = isAuthenticated;
-    this.isManager = isManager;
+    this.isAuthenticated = false;
+    this.isManager = false;
   }
 
   authenticate() {
@@ -13,8 +13,8 @@ class User {
     if (this.userName === 'manager') {
       this.isManager = true;
     }
-    if (Number(this.userName.splice(-2)) > 50) {
-      this.isAuthenticated = false;
+    if (Number(this.userName.splice(-2)) <= 50) {
+      this.isAuthenticated = true;
     }
   }
 

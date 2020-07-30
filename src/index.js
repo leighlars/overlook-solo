@@ -1,6 +1,5 @@
-import domUpdates from './domUpdates';
-import User from './User';
-import apiData from './api-data';
+// import domUpdates from './domUpdates';
+import fetchData from './fetchData';
 
 import './css/base.scss';
 
@@ -8,17 +7,16 @@ import './css/base.scss';
 // let currentUser;
 // let todaysDate;
 
-// function getData() {
-//   return apiData.fetchData().then((data) => {
-//     // todaysDate = moment().format('YYYY/MM/DD');
-//     // let userRepository = new UserRepository(data, todaysDate);
-//     // currentUser = userRepository.users[Math.floor(Math.random() * userRepository.users.length)]
-//     // domUpdates.defineData(currentUser, todaysDate userRepository);
-//   }).then(() => {
-//     // domUpdates.displayPage();
-//   })
-//     .catch((err) => console.log(err.message));
-// }
+function getData() {
+  return fetchData().then((data) => {
+    // todaysDate = moment().format('YYYY/MM/DD');
+    // let userRepository = new UserRepository(data, todaysDate);
+    // currentUser = userRepository.users[Math.floor(Math.random() * userRepository.users.length)]
+    // domUpdates.defineData(currentUser, todaysDate userRepository);
+  }).then(() => {
+    // domUpdates.displayPage();
+  })
+    .catch((err) => console.log(err.message));
+}
 
-// window.addEventListener('load', getData);
-// document.querySelector(".login-btn").addEventListener('click', getUser);
+window.addEventListener('load', getData);
