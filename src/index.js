@@ -1,7 +1,7 @@
 // import domUpdates from './domUpdates';
 // import apiData from './api-data';
 
-import './images/overlook.jpg';
+import './images/grey-mountain.jpg';
 import './css/base.scss';
 
 

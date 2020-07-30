@@ -3,11 +3,11 @@
 .login-modal {
   @include generalDisplay();
   border: 3px solid $seaFoam;
-  border-radius: 4px;
+  border-radius: 6px;
   box-shadow: 1px 1px 115px black;
   width: 60%;
-  height: 40%;
-  background-color:hsla(230, 29%, 33%, 0.94);
+  height: 50%;
+  background-color:hsla(297, 13%, 31%, 0.83)
 }
 
 .login {
@@ -23,25 +23,26 @@
   @include borders();
   color: #FFFFFF;
   margin: 10px;
-  padding: 4px;
-  height: 30px;
-}
-
-#pw-input {
-  margin-left: 15px;
+  padding: 6px;
+  height: 35px;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bolder;
+  font-size: 20px;
 }
 
 ::placeholder {
   color: white;
-  font-weight: bolder;
+  text-align: center;
 }
 
 .login-btn {
   @include borders();
+  font-family: 'Raleway', serif;
   color: #FFFFFF;
   margin-top: 10px;
   height: 30px;
-  width: 75px;
+  width: 95px;
   &:hover {
     background-color: $seaFoam;
   }
