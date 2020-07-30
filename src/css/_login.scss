@@ -7,18 +7,28 @@
   box-shadow: 1px 1px 115px black;
   width: 60%;
   height: 40%;
+  background-color:hsla(230, 29%, 33%, 0.94);
+}
+
+.login {
+  @include generalDisplay();
+  flex-direction: column;
+}
+
+.form-input {
+  @include generalDisplay();
 }
 
 .inputs {
- @include borders();
-  height: 30px;
-  margin: 10px;
+  @include borders();
   color: #FFFFFF;
+  margin: 10px;
   padding: 4px;
+  height: 30px;
 }
 
 #pw-input {
-  margin: 15px;
+  margin-left: 15px;
 }
 
 ::placeholder {
@@ -28,9 +38,12 @@
 
 .login-btn {
   @include borders();
-  background-color: $seaFoam;
   color: #FFFFFF;
-  margin-left: 100px;
+  margin-top: 10px;
   height: 30px;
   width: 75px;
+  &:hover {
+    background-color: $seaFoam;
+  }
+
 }

@@ -13,7 +13,7 @@ class User {
     if (this.userName === 'manager') {
       this.isManager = true;
     }
-    if (Number(this.userName.splice(-2)) <= 50) {
+    if (Number(this.password.slice(-2)) <= 50) {
       this.isAuthenticated = true;
     }
   }
