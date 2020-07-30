@@ -1,0 +1,19 @@
+.guest-view {
+  @include userViews();
+  // display: none;
+}
+
+.guest-quick-view {
+  @include generalDisplay();
+  justify-content: space-around;
+  @include borders();
+  padding: 1%;
+  height: 60vh;
+  width: 40vw;
+}
+
+.guest-bookings-btns {
+  @include buttons();
+  width: 15vw;
+  height: 8vh;
+}

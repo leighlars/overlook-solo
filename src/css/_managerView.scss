@@ -1,24 +1,17 @@
 .manager-view {
-  @include generalDisplay();
-  // display: none;
-  flex-direction: column;
-  justify-content: flex-start;
-  font: lighter 20px 'Josefin Sans', serif;
-  color: white;
-  height: 100%;
-  width: 100%;
+  @include userViews();
+  display: none;
+
 }
 
-.quick-view {
+.mgr-quick-view {
   @include generalDisplay();
   @include borders();
-  // justify-content: space-around;
   height: 28vh;
   width: 70vh;
   .mgr-stats {
     flex-direction: row;
     flex-wrap: wrap;
-
   }
 }
 
@@ -45,9 +38,10 @@
   @include generalDisplay();
   flex-direction: row;
   flex-wrap: wrap;
-  margin-top: 20px;
+  margin-top: 40px;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  height: 40vh;
   width: 100%;
 }
 
