@@ -9,6 +9,13 @@ class Hotel {
     this.users = this.matchDataWithUsers(rawData, todaysDate);
   }
 
+  getUserID(userName) {
+    let checkUserID = userName.substring(userName.length - 2).split("");
+    let makeNums = checkUserID.map((char) => Number(char));
+    let idNum = makeNums.filter((char) => !isNaN(char)).join("");
+    return idNum - 1;
+  }
+
   authenticate(userName, password) {
     let idNum = this.getUserID(userName);
     if (password === 'overlook2020') {
@@ -74,13 +81,6 @@ class Hotel {
       totalRevenue += Number(booking.cost);
       return totalRevenue;
     }, 0);
-  }
-
-  getUserID(userName) {
-    let checkUserID = userName.substring(userName.length - 2).split("");
-    let makeNums = checkUserID.map((char) => Number(char));
-    let idNum = makeNums.filter((char) => !isNaN(char)).join("");
-    return idNum;
   }
 
 
