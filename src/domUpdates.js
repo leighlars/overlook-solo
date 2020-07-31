@@ -87,14 +87,15 @@ let domUpdates = {
   }
   
   displayCurrentBooking() {
-    // find user's current booking
-    // display info except for user id and booking id
+    // this.currentUser.getCurrentBooking(todaysDate);
+    // display info except for user id and booking id creating html for each property
     // display this info
     // add room service charges / options and add to current booking object
     // will need to update server if i go room service charge route
   }
   
   displayUpcomingBookings() {
+    // this.currentUser.getUpcomingBookings(todaysDate);
     // access user's upcoming bookings
     // view info about them except for user id and booking id
     // will need scroll 
@@ -103,7 +104,9 @@ let domUpdates = {
   }
 
   displayPastBookings() {
+    // this.currentUser.getPastBookings(todaysDate);
     // access user's past bookings and map over them to get info except for user id and booking id
+    // for each booking, create html and add it to dom
     // display this info in table?
     // will need scroll
   }

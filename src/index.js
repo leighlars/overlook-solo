@@ -66,9 +66,10 @@ function guestViewHandler() {
     // deleteBooking(deletedBooking);
   }
   if (event.target.id === "guest-current-booking") {
-    // displayCurrentBooking
+    // displayCurrentBooking();
   }
   if (event.target.id === "guest-upcoming-bookings") {
+    
   }
   if (event.target.id === "guest-past-bookings") {
   }
