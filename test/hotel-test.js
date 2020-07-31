@@ -2,7 +2,7 @@ import Hotel from '../src/Hotel'
 import { expect } from 'chai';
 
 
-describe('Hotel', function () {
+describe('Hotel', () => {
   let hotel, rawData, todaysDate;
   beforeEach(function() {
     todaysDate = "2020/04/22";
@@ -82,90 +82,93 @@ describe('Hotel', function () {
     hotel = new Hotel(rawData, todaysDate);
   });
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     expect(Hotel).to.be.a('function');
   });
   
-  it('should be an instance of Hotel', function() {
+  it('should be an instance of Hotel', () => {
     expect(hotel).to.be.an.instanceOf(Hotel);
   });
 
-  it("should have rooms", function () {
+  it("should have rooms", () => {
     expect(hotel.rooms).to.deep.equal(rawData.roomsData);
   });
 
-  it('should return array of bookings with cost of booking', function() {
+  it('should return array of bookings that include room info of the booking', () => {
     expect(hotel.bookings[0].cost).to.deep.equal(358.4);
   });
   
-  it('should return instantiated users with appropriate bookings and cost of each booking', function() {
-    expect(hotel.users[1]).to.deep.equal( 
+  it('should return instantiated users with appropriate bookings and matched room info', () => {
+    expect(hotel.users[1]).to.deep.equal(
       {
         id: 2,
-        name: "Rocio Schuster",
-        pastBookings: [],
-        currentBooking: {},
-        futureBookings: [],
+        name: 'Rocio Schuster',
         allBookings: [
           {
-            id: "5fwrgu4i7k55hl6t5",
+            id: '5fwrgu4i7k55hl6t5',
             userID: 2,
-            date: "2020/01/24",
+            date: '2020/01/24',
             room: 2,
-            roomServiceCharges: [],
+            bidet: false,
+            bedSize: 'full',
+            numBeds: 2,
             cost: 477.38,
+            roomServiceCharges: []
           }
-        ],
+        ]
       })
   });
 
-  it('should return an array of all bookings for today', function() {
+  it('should return an array of all bookings for today', () => {
     expect(hotel.getAllTodaysBookings(todaysDate).length).to.deep.equal(2);
   })
 
-  it('should return percentage of rooms booked for today', function() {
-    expect(hotel.getTodaysBookedPercentage(todaysDate)).to.deep.equal("50%");
+  it('should return percentage of rooms booked for today', () => {
+    expect(hotel.getTodaysBookedPercentage(todaysDate)).to.deep.equal("Occupied lodging: 50%");
   });
 
-  it("should return number of available rooms for today", function() {
-    expect(hotel.getNumTodaysAvailability(rawData, todaysDate)).to.equal(2);
+  it("should return number of available rooms for today", () => {
+    expect(hotel.getNumTodaysAvailability(rawData, todaysDate)).to.equal("Available lodging: 2 rooms");
   });
 
-  it('should return the total revenue for the day', function() {
-    expect(hotel.getTodaysRevenue(todaysDate)).to.equal(849.54);
+  it('should return the total revenue for the day', () => {
+    expect(hotel.getTodaysRevenue(todaysDate)).to.equal("Today's Revenue: $849.54");
   });
 
-  // it("should have a password", function () {
-  //   expect(hotel.password).to.equal('overlook2020');
-  // });
+  it("should have a username", () => {
+    expect(hotel.username).to.equal("manager");
+  });
 
-  // it('should be authenticated after log in', function () {
-  //   hotel.authenticate();
-  //   expect(hotel.isManager).to.equal(true);
-  // });
+  it("should have a password", () => {
+    expect(hotel.password).to.equal('overlook2020');
+  });
 
-  // it('should be authenticated after log in', function () {
-  //   hotel.authenticate();
-  //   expect(hotel.isAuthenticated).to.equal(true);
-  // });
+  it('should be authenticated as a manager after log in', () => {
+    hotel.authenticate('manager', 'overlook2020');
+    expect(hotel.isManager).to.equal(true);
+    expect(hotel.isAuthenticated).to.equal(true);
+  });
 
-  // it("should have a name", function () {
-  //   expect(hotel.userName).to.equal("manager");
-  // });
+  it("should be authenticated as a guest after log in", () => {
+    hotel.authenticate('customer49', 'overlook2020');
+    expect(hotel.isManager).to.deep.equal(false);
+    expect(hotel.isAuthenticated).to.equal(true);
+  });
 
-  // it("should have a password", function () {
-  //   expect(hotel.password).to.equal("overlook2020");
-  // });
+  it.skip("should throw an error if password is incorrect", () => {
+    hotel.authenticate('customer51, overlook');
+    expect(hotel.isAuthenticated).to.equal(false);
+    expect(hotel.isManager).to.deep.equal(false);
+  });
 
-  // it("should be authenticated after log in", function () {
-  //   hotel.authenticate();
-  //   expect(hotel.isManager).to.equal(true);
-  // });
+  it.skip("should throw an error if username is incorrect", () => {
+    hotel.authenticate('customer51, overlook2020');
+    expect(hotel.isAuthenticated).to.equal(false);
+    expect(hotel.isManager).to.deep.equal(false);
+  });
 
-  // it("should be authenticated after log in", function () {
-  //   hotel.authenticate();
-  //   expect(hotel.isAuthenticated).to.equal(true);
-  // });
+  // ^^ says 'alert is not defined', dunno how to test for alerts in npm. 
+  // this passes on dom though, as the alert occurs with incorrect inputs
   
 
 });

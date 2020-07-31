@@ -9,7 +9,6 @@ let domUpdates = {
     this.overlook = overlook;
   },
   
-
   /// MANAGER DASH
   displayManagerDashboard() {
     document.querySelector(".login-view").style.display = "none";

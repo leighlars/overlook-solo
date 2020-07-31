@@ -4,8 +4,10 @@ class Hotel {
   constructor(rawData, todaysDate) {
     this.isAuthenticated;
     this.isManager;
+    this.username = 'manager' || null;
+    this.password = 'overlook2020';
     this.rooms = rawData.roomsData;
-    this.bookings = this.getBookingsCost(rawData);
+    this.bookings = this.matchBookingsInfoFromRooms(rawData);
     this.users = this.matchDataWithUsers(rawData, todaysDate);
   }
 
@@ -29,15 +31,18 @@ class Hotel {
     }
   }
   
-  getBookingsCost(rawData) {
+  matchBookingsInfoFromRooms(rawData) {
     return rawData.bookingsData.reduce((bookingCost, booking) => {
       let obj = {};
       obj.id = booking.id;
       obj.userID = booking.userID;
       obj.date = booking.date;
       obj.room = booking.roomNumber;
-      obj.roomServiceCharges = booking.roomServiceCharges;
+      obj.bidet = rawData.roomsData.find(room => room.number === booking.roomNumber).bidet;
+      obj.bedSize = rawData.roomsData.find(room => room.number === booking.roomNumber).bedSize;
+      obj.numBeds = rawData.roomsData.find(room => room.number === booking.roomNumber).numBeds;
       obj.cost = rawData.roomsData.find(room => room.number === booking.roomNumber).costPerNight;
+      obj.roomServiceCharges = booking.roomServiceCharges;
       bookingCost.push(obj);
       return bookingCost;
     }, []);
@@ -51,7 +56,7 @@ class Hotel {
   
   matchBookingsWithUser(users, rawData) {
     users.forEach((user) => {
-      user.allBookings = this.getBookingsCost(rawData).filter(booking => booking.userID === user.id);
+      user.allBookings = this.matchBookingsInfoFromRooms(rawData).filter(booking => booking.userID === user.id);
     });
   }
 
@@ -70,7 +75,7 @@ class Hotel {
  
   getTodaysBookedPercentage(todaysDate) {
     let bookedRooms = this.getAllTodaysBookings(todaysDate);
-    if (bookedRooms > 0) {
+    if (bookedRooms.length > 0) {
       let difference = this.rooms.length - bookedRooms.length;
       let percentage = (difference / this.rooms.length) * 100;
       return `Occupied lodging: ${percentage}%`;
