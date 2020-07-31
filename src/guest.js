@@ -27,18 +27,11 @@ class Guest {
   }
 
   getPastBookings(todaysDate) {
-    // console.log(this.allBookings.sort((a, b) => Number(a.date) - Number(b.date)));
-    // i need to loop over bookings
-    // if any booking date is older than today
-    // make an arr of those dates
-    // doable w filter
+    return this.allBookings.filter(booking => booking.date  < todaysDate);
   }
 
   getUpcomingBookings(todaysDate) {
-     // i need to loop over bookings
-    // if any booking date is younger? than today
-    // make an arr of those dates
-    // doable w filter
+    return this.allBookings.filter(booking => booking.date > todaysDate);
   }
 
 

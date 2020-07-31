@@ -10,7 +10,7 @@ describe('Guest', function () {
       {
         id: "5fwrgu4i7k55hl6sz",
         userID: 1,
-        date: "2020/04/22",
+        date: "2020/04/25",
         roomNumber: 1,
         roomServiceCharges: [],
         roomType: "residential suite",
@@ -96,7 +96,47 @@ describe('Guest', function () {
   });
 
   it('should return an array of past bookings', () => {
-    expect(guest.getPastBookings(todaysDate)).to.equal();
+    expect(guest.getPastBookings(todaysDate)).to.deep.equal([
+      {
+        id: "5fwrgu4i7k55hl6t5",
+        userID: 1,
+        date: "2020/01/24",
+        roomNumber: 2,
+        roomServiceCharges: [],
+        roomType: "suite",
+        bidet: false,
+        bedSize: "full",
+        numBeds: 2,
+        cost: 477.38,
+      },
+      {
+        id: "5fwrgu4i7k55hl6t7",
+        userID: 1,
+        date: "2020/02/16",
+        roomNumber: 4,
+        roomServiceCharges: [],
+        roomType: "single room",
+        bidet: false,
+        bedSize: "queen",
+        numBeds: 1,
+        cost: 429.44,
+      },
+    ]);
+  });
+
+  it('should return an array of upcoming bookings', () => {
+    expect(guest.getUpcomingBookings(todaysDate)[0]).to.deep.equal({
+      id: "5fwrgu4i7k55hl6sz",
+      userID: 1,
+      date: "2020/04/25",
+      roomNumber: 1,
+      roomServiceCharges: [],
+      roomType: "residential suite",
+      bidet: true,
+      bedSize: "queen",
+      numBeds: 1,
+      cost: 358.4,
+    });
   });
 
 });
