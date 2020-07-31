@@ -26,7 +26,6 @@ function getData() {
         domUpdates.displayManagerDashboard(); //works
       }
       if (overlook.isAuthenticated && overlook.isManager === false) {
-        // debugger;
         currentUser = overlook.users[Number(overlook.getUserID(userName.value))]; 
         domUpdates.displayGuestDashboard();
       }

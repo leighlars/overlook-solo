@@ -18,15 +18,14 @@ class Hotel {
 
   authenticate(userName, password) {
     let idNum = this.getUserID(userName);
-    if (password === 'overlook2020') {
+    if (password === "overlook2020" && userName === "manager") {
       this.isAuthenticated = true;
-    }
-    if (userName === 'manager') {
       this.isManager = true;
-    }
-    if (userName.includes('customer') && idNum <= 50) {
+    } else if ((userName.includes('customer') &&  (idNum <= 50 && idNum > 0)) && (password === 'overlook2020')) {
       this.isAuthenticated = true;
       this.isManager = false;
+    } else {
+      alert("Incorrect username and/or password. Please try again.");
     }
   }
   
