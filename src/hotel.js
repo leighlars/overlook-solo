@@ -84,7 +84,8 @@ class Hotel {
   }
 
   getGuestsByName(input) {
-    return this.users.filter(user => user.name.includes(input));
+    let capFirstLtr = input.charAt(0).toUpperCase() + input.slice(1);
+    return this.users.filter(user => user.name.includes(capFirstLtr));
   }
 
 

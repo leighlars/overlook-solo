@@ -40,10 +40,11 @@ function mgrViewHandler() {
   event.preventDefault();
   if (event.target.className === 'mgr-search-btn') {
     let input = document.getElementById('search-guest-input');
-    domUpdates.displayKnownGuests(input.value)
+    domUpdates.displayKnownGuests(input.value);
   }
   if (event.target.className === 'clear-text-btn') {
     document.getElementById('search-guest-input').value = '';
+    document.querySelector(".known-guests").innerHTML = "";
   }
 
 }
