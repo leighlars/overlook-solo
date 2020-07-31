@@ -40,8 +40,7 @@ function mgrViewHandler() {
   event.preventDefault();
   if (event.target.className === 'mgr-search-btn') {
     let input = document.getElementById('search-guest-input');
-    // dom display known guests section 
-    // filter users by the users that names includes the input
+    domUpdates.displayKnownGuests(input.value)
   }
   if (event.target.className === 'clear-text-btn') {
     document.getElementById('search-guest-input').value = '';

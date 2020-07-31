@@ -1,13 +1,13 @@
 .guest-view {
   @include userViews();
-  // display: none;
+  display: none;
 }
 
 .guest-quick-view {
   @include generalDisplay();
   @include borders();
   @include modalSizes();
-  // display: none;
+  display: none;
   justify-content: space-around;
   padding: 1%;
 }

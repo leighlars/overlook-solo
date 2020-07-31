@@ -74,7 +74,6 @@ class Hotel {
     return `Occupied lodging: ${percentage}%`;
   }
 
-
   getTodaysRevenue(todaysDate) {
     let todaysBookings = this.getAllTodaysBookings(todaysDate);
     let revenue = todaysBookings.reduce((totalRevenue, booking) => {
@@ -84,6 +83,9 @@ class Hotel {
     return `Today's Revenue: $${revenue}`;
   }
 
+  getGuestsByName(input) {
+    return this.users.filter(user => user.name.includes(input));
+  }
 
 
 
