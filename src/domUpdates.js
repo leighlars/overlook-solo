@@ -69,34 +69,46 @@ let domUpdates = {
           document.querySelector('.guest-view').insertAdjacentHTML('beforeend', guestModal);
   },
         
-        // <button class='guest-bookings-btns' id='${guest.id}' id='guest-delete-bookings'>Delete Reservation</button> add to future bookings view?
-
+  
   closeModal() {
     document.querySelector(".guest-modal").style.display = "none";
     document.querySelector(".manager-view").style.opacity = 1;
   }
   // ^^ issue w closing modal on 
-
+  
   displayNewBookingForm() {
     // `<span id='exit-btn-style'><button class="exit-btn">X</button></span>` an exit button
     // it'll need a calendar
     // a button list of room types to choose from
+    // Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
     // a button to post the new booking / add to users bookings arr
     // an alert if they've chosen an unavail room
     // 
   }
-
+  
   displayCurrentBooking() {
     // find user's current booking
     // display info except for user id and booking id
+    // display this info
+    // add room service charges / options and add to current booking object
+    // will need to update server if i go room service charge route
+  }
+  
+  displayUpcomingBookings() {
+    // access user's upcoming bookings
+    // view info about them except for user id and booking id
+    // will need scroll 
+    // <button class='guest-bookings-btns' id='${guest.id}' id='guest-delete-bookings'>Delete Reservation</button> add to future bookings view?
+    // prompt before delete?
   }
 
   displayPastBookings() {
     // access user's past bookings and map over them to get info except for user id and booking id
     // display this info in table?
+    // will need scroll
   }
 
-  
+
 
 }
 
