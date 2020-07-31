@@ -57,6 +57,20 @@ function guestViewHandler() {
   if (event.target.className === 'exit-btn') {
     domUpdates.closeModal();
   }
+  if (event.target.id === 'guest-new-bookings' ) {
+  }
+  if (event.target.id === "guest-delete-bookings") {
+  }
+  if (event.target.id === "guest-current-booking") {
+  }
+  if (event.target.id === "guest-upcoming-bookings") {
+  }
+  if (event.target.id === "guest-past-bookings") {
+  }
+  if (event.target.className === "book-reservation") {
+  }
+  if (event.target.id === "delete-reservation") {
+  }
 }
 
 document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
