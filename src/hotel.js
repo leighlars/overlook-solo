@@ -62,24 +62,26 @@ class Hotel {
   // findTodaysAvailableRooms(todaysDate) {
   //   return this.rooms.filter(room => ! )
   // }
+  getNumTodaysAvailability (rawData, todaysDate) {
+    let numberAvailable = this.rooms.length - this.getAllTodaysBookings(todaysDate).length;
+    return `Available lodging: ${numberAvailable} rooms`
+  }
  
   getTodaysBookedPercentage(todaysDate) {
     let bookedRooms = this.getAllTodaysBookings(todaysDate);
     let difference = this.rooms.length - bookedRooms.length;
     let percentage = (difference / this.rooms.length) * 100;
-    return `${percentage}%`;
+    return `Occupied lodging: ${percentage}%`;
   }
 
-  getNumTodaysAvailability (rawData, todaysDate) {
-    return this.rooms.length - this.getAllTodaysBookings(todaysDate).length;
-  }
 
   getTodaysRevenue(todaysDate) {
     let todaysBookings = this.getAllTodaysBookings(todaysDate);
-    return todaysBookings.reduce((totalRevenue, booking) => {
+    let revenue = todaysBookings.reduce((totalRevenue, booking) => {
       totalRevenue += Number(booking.cost);
       return totalRevenue;
-    }, 0);
+    }, 0).toFixed(2);
+    return `Today's Revenue: $${revenue}`;
   }
 
 

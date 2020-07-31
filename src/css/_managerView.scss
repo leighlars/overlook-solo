@@ -6,7 +6,7 @@
 .mgr-quick-view {
   @include generalDisplay();
   @include borders();
-  height: 20vh;
+  height: 30vh;
   width: 70vh;
   .mgr-stats {
     flex-direction: row;

@@ -6,7 +6,6 @@ import './images/grey-mountain.jpg';
 import './css/base.scss';
 import moment from 'moment';
 
-
 let currentUser;
 let todaysDate;
 let overlook;
@@ -35,7 +34,22 @@ function getData() {
     .catch((err) => console.log(err.message));
 }
 
+// should i fetch on load or at the click of login?
+
+function mgrViewHandler() {
+  event.preventDefault();
+  if (event.target.className === 'mgr-search-btn') {
+    let input = document.getElementById('search-guest-input');
+    // dom display known guests section 
+    // filter users by the users that names includes the input
+  }
+  if (event.target.className === 'clear-text-btn') {
+    document.getElementById('search-guest-input').value = '';
+  }
+
+}
 
 
+document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
 document.querySelector('.login-btn').addEventListener('click', getData);
 // window.addEventListener('load', getData);
