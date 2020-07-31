@@ -1,4 +1,5 @@
 import Guest from './guest';
+// import User from './user';
 
 class Hotel {
   constructor(rawData, todaysDate) {
@@ -18,14 +19,21 @@ class Hotel {
     return idNum - 1;
   }
 
+  // filterRoomsByTags([roomType], [bedSize], [numBeds], [cost]) {
+  //   // loop over roomsData, if 
+  // }
+  // Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
+
   authenticate(userName, password) {
     let idNum = this.getUserID(userName);
     if (password === "overlook2020" && userName === "manager") {
       this.isAuthenticated = true;
       this.isManager = true;
+
     } else if ((userName.includes('customer') &&  (idNum <= 50 && idNum > -1)) && (password === 'overlook2020')) {
       this.isAuthenticated = true;
       this.isManager = false;
+
     } else {
       alert("Incorrect username and/or password. Please try again.");
     }
@@ -60,6 +68,8 @@ class Hotel {
       user.allBookings = this.matchBookingsInfoFromRooms(rawData).filter(booking => booking.userID === user.id);
     });
   }
+
+  // move methods below to manager
 
   getAllTodaysBookings(todaysDate) {
     return this.bookings.filter(booking => booking.date === todaysDate);

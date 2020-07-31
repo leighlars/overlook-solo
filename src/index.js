@@ -55,34 +55,34 @@ function mgrViewHandler() {
 
 function guestViewHandler() {
   if (event.target.className === 'exit-btn') {
-    domUpdates.closeModal();
+    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
+    domUpdates.closeModal(guest);
   }
-  if (event.target.id === 'guest-new-bookings' ) {
+  if (event.target.className === 'guest-bookings-btns new-booking-form') {
     // domUpdates.displayNewBookingForm();
-  }
-  if (event.target.className === 'guest-bookings-btns delete-booking') {
-    // get id of booking set to var deletedBooking
-    // let deletedBooking =
-    // deleteBooking(deletedBooking);
-  }
-  if (event.target.className === 'guest-bookings-btns current-booking') {
-    let guestCard = document.querySelector('.guest-bookings-btns current-booking').id;
-    let guest = overlook.users.find((user) => user.id === Number(guestCard));
-    domUpdates.displayCurrentBooking(guest);
-  }
-  if (event.target.className === "guest-bookings-btns future-bookings") {
-    domUpdates.displayUpcomingBookings();
-  }
-  if (event.target.className === 'guest-bookings-btns past-bookings') {
-    domUpdates.displayPastBookings();
   }
   if (event.target.className === "book-reservation") {
     // get inputs from cal and tags
     // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": Number(roomInput.value)};
     // postNewBooking(newBooking);
   }
-  if (event.target.id === "delete-reservation") {
 
+  if (event.target.className === 'guest-bookings-btns delete-booking') {
+    // get id of booking set to var deletedBooking
+    // let deletedBooking =
+    // deleteBooking(deletedBooking);
+  }
+  if (event.target.className === 'guest-bookings-btns current-booking') {
+    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
+    domUpdates.displayCurrentBooking(guest);
+  }
+  if (event.target.className === "guest-bookings-btns future-bookings") {
+    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
+    domUpdates.displayUpcomingBookings(guest);
+  }
+  if (event.target.className === 'guest-bookings-btns past-bookings') {
+    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
+    domUpdates.displayPastBookings(guest);
   }
   // how do i click on a calendar date?
   // 

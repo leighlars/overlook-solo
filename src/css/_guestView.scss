@@ -30,3 +30,9 @@
   width: 15vw;
   height: 10vh;
 }
+
+.booking-view {
+  @include generalDisplay();
+  text-align: center;
+  margin: 30px;
+}

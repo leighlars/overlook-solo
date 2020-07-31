@@ -3,8 +3,8 @@ import User from './hotel';
 class Manager extends User {
   constructor(username, pwd, bookings) {
     super(username, pwd, true, true);
-    this.id = 1;
-    this.userBookings = bookings;
+    // this.id = 1;
+    // this.userBookings = bookings;
   }
 }
 
