@@ -58,18 +58,27 @@ function guestViewHandler() {
     domUpdates.closeModal();
   }
   if (event.target.id === 'guest-new-bookings' ) {
+    // domUpdates.displayNewBookingForm();
   }
   if (event.target.id === "guest-delete-bookings") {
+    // get id of booking set to var deletedBooking
+    // let deletedBooking = 
+    // deleteBooking(deletedBooking);
   }
   if (event.target.id === "guest-current-booking") {
+    // displayCurrentBooking
   }
   if (event.target.id === "guest-upcoming-bookings") {
   }
   if (event.target.id === "guest-past-bookings") {
   }
   if (event.target.className === "book-reservation") {
+    // get inputs from cal and tags
+    // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": Number(roomInput.value)};
+    // postNewBooking(newBooking);
   }
   if (event.target.id === "delete-reservation") {
+
   }
   // how do i click on a calendar date?
   // 
@@ -79,6 +88,38 @@ function guestViewHandler() {
 // I should be able to select a room for booking
 // In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search
 }
+
+function postNewBooking(newBooking) {
+  fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings", {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(newBooking)
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log('Success:', data)
+    })
+    .catch((error) => {
+      console.log('Failed:', error)
+    })
+}
+
+function deleteBooking(deletedBooking) {
+  fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings", {
+    method: "DELETE",
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(deletedBooking),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log('Success', data);
+    })
+    .catch((err) => console.log(err));
+}
+
+
+
+
 
 document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
 document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
