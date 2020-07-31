@@ -49,7 +49,7 @@ function mgrViewHandler() {
   if (event.target.closest('.expand-found-guest-btn')) {
     let guestCard = document.querySelector(".expand-found-guest-btn").id;
     let guest = overlook.users.find(user => user.id === Number(guestCard));
-    domUpdates.viewGuestInfo(guest);
+    domUpdates.viewGuestModal(guest);
   }
 }
 
@@ -66,11 +66,15 @@ function guestViewHandler() {
     // deleteBooking(deletedBooking);
   }
   if (event.target.className === 'guest-bookings-btns current-booking') {
-    domUpdates.displayCurrentBooking(todaysDate);
+    let guestCard = document.querySelector('.guest-bookings-btns current-booking').id;
+    let guest = overlook.users.find((user) => user.id === Number(guestCard));
+    domUpdates.displayCurrentBooking(guest);
   }
   if (event.target.className === "guest-bookings-btns future-bookings") {
+    domUpdates.displayUpcomingBookings();
   }
   if (event.target.className === 'guest-bookings-btns past-bookings') {
+    domUpdates.displayPastBookings();
   }
   if (event.target.className === "book-reservation") {
     // get inputs from cal and tags

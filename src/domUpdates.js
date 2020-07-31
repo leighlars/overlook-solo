@@ -84,10 +84,11 @@ let domUpdates = {
     // 
   },
   
-  displayCurrentBooking() {
-    document.querySelector(".guest-view").innerHTML = "";
-    document.querySelector(".guest-view").style.display = "flex";
+  displayCurrentBooking(guest) {
+    console.log(guest);
+    document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".manager-view").style.opacity = 0.8;
+    // document.querySelector(".guest-view").style.display = "flex";
     let currentBooking = this.currentUser.getCurrentBooking(this.todaysDate);
     let currentHTML = `<section class='guest-modal'>
           <span id='exit-btn-style'><button class="exit-btn">X</button></span>
@@ -98,25 +99,41 @@ let domUpdates = {
           <p class='booking-bidet-info'>Bidet: ${currentBooking.bidet}</p>
           <p class='booking-room-cost'>Cost: $${currentBooking.cost}</p>
           </section>`;
-    document.querySelector(".guest-view").insertAdjacentHTML('beforeend', currentHTML);
+    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', currentHTML);
   },
   // ^^ need to tweak styling in scss
   
   displayUpcomingBookings() {
-    // this.currentUser.getUpcomingBookings(todaysDate);
-    // access user's upcoming bookings
-    // view info about them except for user id and booking id
-    // will need scroll 
-    // <button class='guest-bookings-btns' id='${guest.id}' id='guest-delete-bookings'>Delete Reservation</button> add to future bookings view?
+    document.querySelector(".guest-modal").innerHTML = "";
+    // document.querySelector(".guest-view").style.display = "flex";
+    document.querySelector(".manager-view").style.opacity = 0.8;
+    let upcomingBookings = this.currentUser.getUpcomingBookings(this.todaysDate);
+    upcomingBookings.forEach(booking => {
+      let futureHTML = `<section class='guest-modal'>
+            <span id='exit-btn-style'><button class="exit-btn">X</button></span>
+            <h4 class='booking-date'>${booking.date}</h4>
+            <p class='booking-room-num'>Room number: ${booking.roomNumber}</p>
+            <p class='booking-room-type'>Room type: ${booking.roomType}</p>
+            <p class='booking-bed-info'>Bed: ${booking.numBeds}, ${booking.bedSize}</p>
+            <p class='booking-bidet-info'>Bidet: ${booking.bidet}</p>
+            <p class='booking-room-cost'>Cost: $${booking.cost}</p>
+            // <button class='guest-bookings-btns' id='${booking.id}' id='guest-delete-bookings'>Delete Reservation</button> add to future bookings view?
+            </section>`;
+      document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', futureHTML);
+    })
     // prompt before delete?
   },
 
   displayPastBookings() {
-    // this.currentUser.getPastBookings(todaysDate);
+    document.querySelector(".guest-modal").innerHTML = "";
+    document.querySelector(".guest-view").style.display = "flex";
+    document.querySelector(".manager-view").style.opacity = 0.8;
+    let pastBookings = this.currentUser.getPastBookings(todaysDate);
     // access user's past bookings and map over them to get info except for user id and booking id
     // for each booking, create html and add it to dom
     // display this info in table?
     // will need scroll
+    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', pastHTML);
   }
 
 
