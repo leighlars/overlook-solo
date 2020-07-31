@@ -28,6 +28,17 @@ class Guest {
     // doable w filter
   }
 
+  getUpcomingBookings(todaysDate) {
+     // i need to loop over bookings
+    // if any booking date is younger? than today
+    // make an arr of those dates
+    // doable w filter
+  }
+
+  getCurrentBooking(todaysDate) {
+    return this.allBookings.find(booking => booking.date = todaysDate);
+  }
+
 
 // I should be able to select a date for which I’d like to book a room for myself
 // Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
