@@ -1,0 +1,16 @@
+.login-view {
+  @include generalDisplay();
+  @include borders();
+  @include modals();
+  background-color: $transparentMauve;
+  // display: none;
+}
+
+.inputs {
+  @include borders();
+  @include inputs();
+}
+
+.login-btn {
+  @include buttons();
+}

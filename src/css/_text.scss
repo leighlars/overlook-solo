@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+h1 {
+  @include headerFont(6.55vw);
+  margin-top: 40px;
+}
+
+h2 {
+  @include headerFont(3vw);
+  text-shadow: -1px 0 black, 0 2px black, 2px 0 black, 0 -1px black;
+}
+
+h4 {
+  @include bodyFont(4vh);
+  margin-bottom: 10px;
+}
+
+h5 {
+  @include headerFont(3.0vw);
+}
+
+p {
+  @include bodyFont(20px);
+  margin-bottom: 5px;
+}

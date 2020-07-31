@@ -1,0 +1,63 @@
+.manager-view {
+  @include userViews();
+  display: none;
+}
+
+.mgr-quick-view {
+  @include generalDisplay();
+  @include borders();
+  height: 30vh;
+  width: 70vh;
+  .mgr-stats {
+    text-align: center;
+  }
+}
+
+.search-bar {
+  flex-direction: row;
+  text-align: center;
+  height: 2.5vh;
+  margin-bottom: 20px;
+    #search-guest-input {
+      height: 5vh;
+    }
+      ::placeholder {
+        color: #FFFFFF;
+        font-weight: bolder;
+      }
+      .clear-text-btn,
+      .mgr-search-btn {
+        @include buttons();
+        margin: 0px;
+      }
+}
+
+.known-guests {
+  @include generalDisplay();
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  height: 40vh;
+  width: 100%;
+  display: none;
+}
+
+.guest-card {
+  @include generalDisplay();
+  @include borders();
+  justify-content: initial;
+  margin: 20px;
+  padding: 2%;
+  width: 25vw;
+  height: 22vh;
+    &:hover {
+        transform: scale(1.1);
+      }
+    .expand-found-guest-btn {
+      @include buttons();
+      width: 10vw;
+    }
+}
+
