@@ -17,8 +17,17 @@ class Guest {
     return `$${totalBookingsExpenditures}`;
   }
 
-  getPastBookings(todaysDate) {
+  getCurrentBooking(todaysDate) {
+    let currentBooking = this.allBookings.find(booking => booking.date = todaysDate);
+    if (currentBooking) {
+      return currentBooking;
+    } else {
+      return "You're not booked with us today. Add a new reservation to get started."
+    }
+  }
 
+  getPastBookings(todaysDate) {
+    // console.log(this.allBookings.sort((a, b) => Number(a.date) - Number(b.date)));
     // i need to loop over bookings
     // if any booking date is older than today
     // make an arr of those dates
@@ -32,15 +41,6 @@ class Guest {
     // doable w filter
   }
 
-  getCurrentBooking(todaysDate) {
-    let currentBooking = this.allBookings.find(booking => booking.date = todaysDate);
-    if (currentBooking) {
-      console.log(currentBooking);
-      return currentBooking;
-    } else {
-      return "You're not booked with us today. Add a new reservation to get started."
-    }
-  }
 
 
 // I should be able to select a date for which I’d like to book a room for myself

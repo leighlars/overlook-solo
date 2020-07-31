@@ -80,8 +80,8 @@ describe('Guest', function () {
     expect(guest.getTotalMoneySpent()).to.equal('$1756.36');
   });
 
-  it.only('should find booking by day', () => {
-    expect(guest.getCurrentBooking(todaysDate)).to.equal({
+  it('should find booking by day', () => {
+    expect(guest.getCurrentBooking(todaysDate)).to.deep.equal({
       id: "5fwrgu4i7k55hl6sz",
       userID: 1,
       date: "2020/04/22",
@@ -93,6 +93,10 @@ describe('Guest', function () {
       numBeds: 1,
       cost: 358.4,
     });
+  });
+
+  it('should return an array of past bookings', () => {
+    expect(guest.getPastBookings(todaysDate)).to.equal();
   });
 
 });
