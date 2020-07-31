@@ -9,18 +9,32 @@ import moment from 'moment';
 
 let currentUser;
 let todaysDate;
+let overlook;
+let userName;
 
 function getData() {
+  event.preventDefault();
   return fetchData().then((data) => {
     todaysDate = moment().format('YYYY/MM/DD');
-    let overlook = new Hotel(data, todaysDate);
-    currentUser = overlook.users[0];
-    console.log(currentUser);
-    domUpdates.defineData(currentUser, todaysDate, overlook);
-  }).then(() => {
-    // domUpdates.displayPage();
+    userName = document.getElementById('username-input');
+    let pwd = document.getElementById("pw-input");
+    overlook = new Hotel(data, todaysDate);
+    overlook.authenticate(userName.value, pwd.value);
   })
+    .then(() => {
+      if (overlook.isManager && overlook.isAuthenticated) {
+        domUpdates.displayManagerDashboard(); //works
+      }
+      if (overlook.isAuthenticated && !overlook.isManager) {
+        currentUser = overlook.users[Number(overlook.getUserID(userName.value))]; 
+        domUpdates.displayGuestDashboard();
+      }
+      domUpdates.defineData(currentUser, todaysDate, overlook);
+    })
     .catch((err) => console.log(err.message));
 }
 
-window.addEventListener('load', getData);
+
+
+document.querySelector('.login-btn').addEventListener('click', getData);
+// window.addEventListener('load', getData);

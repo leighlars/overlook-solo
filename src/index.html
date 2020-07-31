@@ -10,7 +10,7 @@
     <main>
         <form class='login-view'>
           <h2>Adventure Awaits</h2>
-            <input type='text' aria-label="username-input" class='inputs' placeholder='Enter Username' name='username' required>
+            <input type='text' aria-label="username-input" class='inputs' id='username-input' placeholder='Enter Username' name='username' required>
             <input type='password' aria-label="password-input" class='inputs' id="pw-input" placeholder='Enter Password' name='psw' required>
             <p class='login-error'></p>
             <button type="submit" aria-label="submit-login-form" class='login-btn'>Explore</button>
@@ -20,7 +20,7 @@
           <div class='mgr-stats'>
             <p id="open-rooms">Available Lodging:</p>
             <p id="booked-rooms">Occupied Lodging:</p>
-            <p id="revenue"> Revenue:</p> 
+            <p id="revenue">Revenue:</p> 
           </div>
         <div class="search-bar">
           <input type="text" class="inputs" id="search-guest-input" placeholder="Search Guest Name" maxlength="70" minlength="0">
@@ -30,7 +30,7 @@
       </article>
         <section class='known-guests'>
           <div class='guest-card'>
-            <h4>Sarah Watkins</h4>
+            <h4 class='mgr-guest-name'>Sarah Watkins</h4>
             <p>Total Spent:</p>
             <button class='expand-found-guest-btn'>Reservations</button>
           </div>
@@ -59,7 +59,7 @@
       </section>
       <section class='guest-view'>
         <article class='guest-quick-view'>
-          <h3>Sarah Watkins</h3>
+          <h3 class="guest-name">Sarah Watkins</h3>
           <p>Total Spent:</p>
           <button class='guest-bookings-btns' id='guest-new-bookings'>Make New Reservation</button>
           <!-- <form class='make-new-reservation'>
