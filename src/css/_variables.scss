@@ -1,5 +1,7 @@
 $grey: grey;
-$modalColor: hsla(297, 13%, 31%, 0.83);
+$transparentMauve: hsla(297, 13%, 31%, 0.83);
+$opaqueMauve: hsla(297, 13%, 31%, 1.0);
+
 
 @mixin generalDisplay() {
   display: flex;
@@ -9,9 +11,9 @@ $modalColor: hsla(297, 13%, 31%, 0.83);
 }
 
 @mixin borders() {
+  background: $transparentMauve;
   border: 2px solid $grey;
   border-radius: 6px;
-  background: $modalColor;
 }
 
 @mixin headerFont($font-size) {
@@ -19,11 +21,17 @@ $modalColor: hsla(297, 13%, 31%, 0.83);
   font-size: $font-size;
 }
 
+@mixin bodyFont($font-size) {
+  font-family: 'Josefin Sans', serif;
+  font-weight: bolder;
+  font-size: $font-size;
+}
+
 @mixin buttons {
   @include borders();
-  font: bolder 18px 'Josefin Sans', serif;
+  @include bodyFont(18px);
   color: #FFFFFF;
-  margin: 20px;
+  margin: 10px;
   height: 5vh;
   width: 95px;
       &:hover {
@@ -33,23 +41,26 @@ $modalColor: hsla(297, 13%, 31%, 0.83);
 
 @mixin userViews {
   @include generalDisplay();
+  @include bodyFont(20px);
   justify-content: flex-start;
-  font: lighter 20px 'Josefin Sans', serif;
   color: white;
   margin-top: 40px;
   height: 100%;
   width: 100%;
 }
 
-@mixin modalSizes {
+@mixin modals {
+  box-shadow: 1px 1px 35px black;
+  background-color: $opaqueMauve;
   height: 60vh;
   width: 40vw;
   overflow: scroll;
   scroll-behavior: smooth;
+  z-index: 1000;
 }
 
 @mixin inputs {
-  font: bolder 18px 'Josefin Sans', serif;
+  @include bodyFont(18px);
   color: #FFFFFF;
   margin: 15px;
   padding: 6px;

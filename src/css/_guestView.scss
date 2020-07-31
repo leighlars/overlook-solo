@@ -1,19 +1,31 @@
 .guest-view {
   @include userViews();
   display: none;
+  position: fixed;
+  height: 70%;
 }
 
 .guest-quick-view {
   @include generalDisplay();
   @include borders();
-  @include modalSizes();
-  display: none;
-  justify-content: space-around;
-  padding: 1%;
+  @include modals();
+  justify-content: initial;
+  padding: 2%;
+    #exit-btn-style {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
+    .exit-btn {
+      @include buttons();
+      height: 3.9vh;
+      width: 3.8vh;
+      padding-top: .5%;
+    }
 }
 
 .guest-bookings-btns {
   @include buttons();
   width: 15vw;
-  height: 8vh;
+  height: 10vh;
 }

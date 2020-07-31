@@ -45,22 +45,19 @@
 }
 
 .guest-card {
-  @include borders();
   @include generalDisplay();
+  @include borders();
   justify-content: initial;
   margin: 20px;
   padding: 2%;
   width: 25vw;
   height: 22vh;
+    &:hover {
+        transform: scale(1.1);
+      }
     .expand-found-guest-btn {
       @include buttons();
       width: 10vw;
     }
 }
 
-.guest-modal {
-  @include generalDisplay();
-  @include borders();
-  @include modalSizes();
-  // display: none;
-}

@@ -28,7 +28,7 @@ function getData() {
       if (overlook.isAuthenticated && overlook.isManager === false) {
         currentUser = overlook.users[Number(overlook.getUserID(userName.value))]; 
         domUpdates.defineData(currentUser, todaysDate, overlook);
-        domUpdates.displayGuestDashboard();
+        domUpdates.displayGuestDashboard(currentUser);
       }
     })
     .catch((err) => console.log(err.message));
@@ -46,10 +46,20 @@ function mgrViewHandler() {
     document.getElementById('search-guest-input').value = '';
     document.querySelector(".known-guests").innerHTML = "";
   }
-
+  if (event.target.closest('.expand-found-guest-btn')) {
+    let guestCard = document.querySelector(".expand-found-guest-btn").id;
+    let guest = overlook.users.find(user => user.id === Number(guestCard));
+    domUpdates.viewGuestInfo(guest);
+  }
 }
 
+function guestViewHandler() {
+  if (event.target.className === 'exit-btn') {
+    domUpdates.closeModal();
+  }
+}
 
+document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
 document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
 document.querySelector('.login-btn').addEventListener('click', getData);
-// window.addEventListener('load', getData);
+// window.addEventListener('load', getData); // fetch on load?

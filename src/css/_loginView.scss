@@ -1,9 +1,8 @@
 .login-view {
   @include generalDisplay();
   @include borders();
-  @include modalSizes();
-  background-color: $modalColor;
-  box-shadow: 1px 1px 35px black;
+  @include modals();
+  background-color: $transparentMauve;
   // display: none;
 }
 

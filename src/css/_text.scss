@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&display=swap');
 
 h1 {
   @include headerFont(6.55vw);
@@ -13,9 +12,7 @@ h2 {
 }
 
 h4 {
-  // @include headerFont(4vh);
-  font-family: 'Josefin Sans';
-  font-size: 4vh;
+  @include bodyFont(4vh);
   margin-bottom: 10px;
 }
 
@@ -24,6 +21,6 @@ h5 {
 }
 
 p {
-  font-family: 'Josefin Sans';
-  font-size: 20px;
+  @include bodyFont(20px);
+  margin-bottom: 5px;
 }
