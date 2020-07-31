@@ -43,7 +43,6 @@ let domUpdates = {
     })
   },
   
-
   //// GUEST DASH
 
   displayGuestDashboard(guest) {
@@ -54,45 +53,54 @@ let domUpdates = {
   },
 
   viewGuestModal(guest) {
-    document.querySelector('.guest-view').innerHTML = "";
-    document.querySelector('.guest-view').style.display = "flex";
+    document.querySelector('.guest-view').innerHTML = '';
+    document.querySelector('.guest-view').style.display = 'flex';
     document.querySelector('.manager-view').style.opacity = .8;
     let guestModal = `<section class='guest-modal'>
           <span id='exit-btn-style'><button class="exit-btn">X</button></span>
           <h4 class='guest-name'>${guest.name}</h4>
           <p class='guest-total-spent'>Total Spent: ${guest.getTotalMoneySpent()}</p>
-          <button class='guest-bookings-btns' id='${guest.id}' id='guest-new-bookings'>Make New Reservation</button>
-          <button class='guest-bookings-btns' id='${guest.id}' id='guest-current-bookings'>Current Reservation</button>
-          <button class='guest-bookings-btns' id='${guest.id}' id='guest-future-bookings'>Upcoming Reservations</button>
-          <button class='guest-bookings-btns' id='${guest.id}' id='guest-past-bookings'>Past Reservations</button>
+          <button class='guest-bookings-btns make-new' id='${guest.id}' id='guest-new-bookings'>Make New Reservation</button>
+          <button class='guest-bookings-btns current-booking' id='${guest.id}'>Current Reservation</button>
+          <button class='guest-bookings-btns future-bookings' id='${guest.id}'>Upcoming Reservations</button>
+          <button class='guest-bookings-btns past-bookings' id='${guest.id}'>Past Reservations</button>
           </section>`;
-          document.querySelector('.guest-view').insertAdjacentHTML('beforeend', guestModal);
+    document.querySelector('.guest-view').insertAdjacentHTML('beforeend', guestModal);
   },
-        
-  
+      
   closeModal() {
-    document.querySelector(".guest-modal").style.display = "none";
+    document.querySelector(".guest-modal").style.display = 'none';
     document.querySelector(".manager-view").style.opacity = 1;
-  }
-  // ^^ issue w closing modal on 
+  },
+  // ^^ issue w closing modal on log in view. do i want a close or not?
   
   displayNewBookingForm() {
-    // `<span id='exit-btn-style'><button class="exit-btn">X</button></span>` an exit button
+    // `<span id='exit-btn-style'><button class="exit-btn">X</button></span>`
     // it'll need a calendar
     // a button list of room types to choose from
     // Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
     // a button to post the new booking / add to users bookings arr
     // an alert if they've chosen an unavail room
     // 
-  }
+  },
   
   displayCurrentBooking() {
-    // this.currentUser.getCurrentBooking(todaysDate);
-    // display info except for user id and booking id creating html for each property
-    // display this info
-    // add room service charges / options and add to current booking object
-    // will need to update server if i go room service charge route
-  }
+    document.querySelector(".guest-view").innerHTML = "";
+    document.querySelector(".guest-view").style.display = "flex";
+    document.querySelector(".manager-view").style.opacity = 0.8;
+    let currentBooking = this.currentUser.getCurrentBooking(this.todaysDate);
+    let currentHTML = `<section class='guest-modal'>
+          <span id='exit-btn-style'><button class="exit-btn">X</button></span>
+          <h4 class='booking-date'>${currentBooking.date}</h4>
+          <p class='booking-room-num'>Room number: ${currentBooking.roomNumber}</p>
+          <p class='booking-room-type'>Room type: ${currentBooking.roomType}</p>
+          <p class='booking-bed-info'>Bed: ${currentBooking.numBeds}, ${currentBooking.bedSize}</p>
+          <p class='booking-bidet-info'>Bidet: ${currentBooking.bidet}</p>
+          <p class='booking-room-cost'>Cost: $${currentBooking.cost}</p>
+          </section>`;
+    document.querySelector(".guest-view").insertAdjacentHTML('beforeend', currentHTML);
+  },
+  // ^^ need to tweak styling in scss
   
   displayUpcomingBookings() {
     // this.currentUser.getUpcomingBookings(todaysDate);
@@ -101,7 +109,7 @@ let domUpdates = {
     // will need scroll 
     // <button class='guest-bookings-btns' id='${guest.id}' id='guest-delete-bookings'>Delete Reservation</button> add to future bookings view?
     // prompt before delete?
-  }
+  },
 
   displayPastBookings() {
     // this.currentUser.getPastBookings(todaysDate);

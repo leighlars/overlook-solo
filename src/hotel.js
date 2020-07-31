@@ -37,7 +37,8 @@ class Hotel {
       obj.id = booking.id;
       obj.userID = booking.userID;
       obj.date = booking.date;
-      obj.room = booking.roomNumber;
+      obj.roomNumber = booking.roomNumber;
+      obj.roomType = rawData.roomsData.find(room => room.number === booking.roomNumber).roomType;
       obj.bidet = rawData.roomsData.find(room => room.number === booking.roomNumber).bidet;
       obj.bedSize = rawData.roomsData.find(room => room.number === booking.roomNumber).bedSize;
       obj.numBeds = rawData.roomsData.find(room => room.number === booking.roomNumber).numBeds;

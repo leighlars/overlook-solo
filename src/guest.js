@@ -5,13 +5,10 @@ class Guest {
     this.name = guestDetails.name;
     this.allBookings;
     this.pastBookings;
-    this.currentBooking;
     this.futureBookings;
   }
   // Any room bookings I have made (past or present/upcoming)
 
-
-  // The total amount I have spent on rooms
   getTotalMoneySpent() {
     let totalBookingsExpenditures = this.allBookings.reduce((totalSpent, booking) => {
       totalSpent += booking.cost;
@@ -36,7 +33,13 @@ class Guest {
   }
 
   getCurrentBooking(todaysDate) {
-    return this.allBookings.find(booking => booking.date = todaysDate);
+    let currentBooking = this.allBookings.find(booking => booking.date = todaysDate);
+    if (currentBooking) {
+      console.log(currentBooking);
+      return currentBooking;
+    } else {
+      return "You're not booked with us today. Add a new reservation to get started."
+    }
   }
 
 

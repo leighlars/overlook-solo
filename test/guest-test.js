@@ -80,4 +80,19 @@ describe('Guest', function () {
     expect(guest.getTotalMoneySpent()).to.equal('$1756.36');
   });
 
+  it.only('should find booking by day', () => {
+    expect(guest.getCurrentBooking(todaysDate)).to.equal({
+      id: "5fwrgu4i7k55hl6sz",
+      userID: 1,
+      date: "2020/04/22",
+      roomNumber: 1,
+      roomServiceCharges: [],
+      roomType: "residential suite",
+      bidet: true,
+      bedSize: "queen",
+      numBeds: 1,
+      cost: 358.4,
+    });
+  });
+
 });

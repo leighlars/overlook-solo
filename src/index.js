@@ -60,18 +60,17 @@ function guestViewHandler() {
   if (event.target.id === 'guest-new-bookings' ) {
     // domUpdates.displayNewBookingForm();
   }
-  if (event.target.id === "guest-delete-bookings") {
+  if (event.target.className === 'guest-bookings-btns delete-booking') {
     // get id of booking set to var deletedBooking
-    // let deletedBooking = 
+    // let deletedBooking =
     // deleteBooking(deletedBooking);
   }
-  if (event.target.id === "guest-current-booking") {
-    // displayCurrentBooking();
+  if (event.target.className === 'guest-bookings-btns current-booking') {
+    domUpdates.displayCurrentBooking(todaysDate);
   }
-  if (event.target.id === "guest-upcoming-bookings") {
-    
+  if (event.target.className === "guest-bookings-btns future-bookings") {
   }
-  if (event.target.id === "guest-past-bookings") {
+  if (event.target.className === 'guest-bookings-btns past-bookings') {
   }
   if (event.target.className === "book-reservation") {
     // get inputs from cal and tags
