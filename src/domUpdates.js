@@ -4,16 +4,18 @@ let domUpdates = {
   overlook: null,
 
   defineData(user, todaysDate, overlook) {
+    console.log(user);
     this.currentUser = user;
     this.todaysDate = todaysDate;
     this.overlook = overlook;
-    console.log(this.currentUser)
+    console.log(this.currentUser);
   },
 
   displayGuestDashboard() {
     document.querySelector('.login-view').style.display = "none";
     document.querySelector('.guest-view').style.display = "flex";
-    // document.querySelector(.)
+    document.querySelector('.guest-name').innerText = this.currentUser.name;
+    document.querySelector('.guest-total-spent').innerText = `Total Spent: ${this.currentUser.getTotalMoneySpent()}`;
   },
 
   displayManagerDashboard() {

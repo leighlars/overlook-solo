@@ -21,7 +21,7 @@ class Hotel {
     if (password === "overlook2020" && userName === "manager") {
       this.isAuthenticated = true;
       this.isManager = true;
-    } else if ((userName.includes('customer') &&  (idNum <= 50 && idNum > 0)) && (password === 'overlook2020')) {
+    } else if ((userName.includes('customer') &&  (idNum <= 50 && idNum > -1)) && (password === 'overlook2020')) {
       this.isAuthenticated = true;
       this.isManager = false;
     } else {

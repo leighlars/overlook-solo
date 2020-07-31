@@ -10,26 +10,27 @@ import moment from 'moment';
 let currentUser;
 let todaysDate;
 let overlook;
-let userName;
 
 function getData() {
   event.preventDefault();
   return fetchData().then((data) => {
-    todaysDate = moment().format('YYYY/MM/DD');
-    userName = document.getElementById('username-input');
-    let pwd = document.getElementById("pw-input");
     overlook = new Hotel(data, todaysDate);
-    overlook.authenticate(userName.value, pwd.value);
   })
     .then(() => {
+      todaysDate = moment().format("YYYY/MM/DD");
+      let userName = document.getElementById("username-input");
+      let pwd = document.getElementById("pw-input");
+      overlook.authenticate(userName.value, pwd.value);
       if (overlook.isManager && overlook.isAuthenticated) {
-        domUpdates.displayManagerDashboard(); //works
+        domUpdates.defineData(currentUser, todaysDate, overlook);
+        domUpdates.displayManagerDashboard();
+
       }
       if (overlook.isAuthenticated && overlook.isManager === false) {
         currentUser = overlook.users[Number(overlook.getUserID(userName.value))]; 
+        domUpdates.defineData(currentUser, todaysDate, overlook);
         domUpdates.displayGuestDashboard();
       }
-      domUpdates.defineData(currentUser, todaysDate, overlook);
     })
     .catch((err) => console.log(err.message));
 }

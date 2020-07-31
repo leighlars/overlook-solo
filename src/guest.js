@@ -4,17 +4,18 @@ class Guest {
     this.name = guestDetails.name;
     this.allBookings;
     this.pastBookings = [];
-    this.currentBooking = {};
+    // this.currentBooking = this.allBookings.find(booking => booking.date === todaysDate);
     this.futureBookings = [];
   }
 
 
-
-  // getTotalMoneySpent() {
-  //   let allBookings = this.pastBookings.concat(this.futureBookings).push(this.currentBooking);
-  //   return allBookings.reduce((totalSpent, booking) => {
-  //   })
-  // }
+  getTotalMoneySpent() {
+    let totalBookingsExpenditures = this.allBookings.reduce((totalSpent, booking) => {
+      totalSpent += booking.cost;
+      return totalSpent;
+    }, 0).toFixed(2);
+    return `$${totalBookingsExpenditures}`;
+  }
 
 // Any room bookings I have made (past or present/upcoming)
 // The total amount I have spent on rooms
