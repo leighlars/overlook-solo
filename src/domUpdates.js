@@ -17,7 +17,7 @@ let domUpdates = {
           <div class='mgr-stats'>
             <p id="open-rooms">${this.overlook.getNumTodaysAvailability(this.todaysDate)}</p>
             <p id="booked-rooms">${this.overlook.getTodaysBookedPercentage(this.todaysDate)}</p>
-            <p id="revenue">Revenue:${this.overlook.getTodaysRevenue(this.todaysDate)}</p> 
+            <p id="revenue">${this.overlook.getTodaysRevenue(this.todaysDate)}</p> 
           </div>
         <div class="search-bar">
           <input type="text" class="inputs" id="search-guest-input" placeholder="Search Guest Name" maxlength="70" minlength="0">
@@ -42,37 +42,40 @@ let domUpdates = {
       document.querySelector(".known-guests").insertAdjacentHTML('beforeend', cardHTML);
     })
   },
+  
 
-  viewGuestInfo(guest) {
+  //// GUEST DASH
+
+  displayGuestDashboard(guest) {
+    document.querySelector('.login-view').style.display = "none";
+    this.viewGuestModal(guest);
+    // document.getElementById('guest-delete-bookings').style.display = "none"; // not working, need to delete for guest view so they can't delete 
+    // not sure why they can't delete their own booking tho. sounds silly. 
+  },
+
+  viewGuestModal(guest) {
     document.querySelector('.guest-view').innerHTML = "";
     document.querySelector('.guest-view').style.display = "flex";
     document.querySelector('.manager-view').style.opacity = .8;
-    let guestModal = `<div class='guest-quick-view'>
+    let guestModal = `<section class='guest-modal'>
           <span id='exit-btn-style'><button class="exit-btn">X</button></span>
           <h4 class='guest-name'>${guest.name}</h4>
           <p class='guest-total-spent'>Total Spent: ${guest.getTotalMoneySpent()}</p>
           <button class='guest-bookings-btns' id='${guest.id}' id='guest-new-bookings'>Make New Reservation</button>
-          <button class='guest-bookings-btns delete' id='${guest.id}' id='guest-delete-bookings'>Delete Reservation</button>
+          <button class='guest-bookings-btns' id='${guest.id}' id='guest-delete-bookings'>Delete Reservation</button>
           <button class='guest-bookings-btns' id='${guest.id}' id='guest-current-bookings'>Current Reservation</button>
           <button class='guest-bookings-btns' id='${guest.id}' id='guest-future-bookings'>Upcoming Reservations</button>
           <button class='guest-bookings-btns' id='${guest.id}' id='guest-past-bookings'>Past Reservations</button>
-        </div>`;
+        </section>`;
     document.querySelector('.guest-view').insertAdjacentHTML('beforeend', guestModal);
   },
   
-  displayGuestDashboard(guest) {
-    document.querySelector('.login-view').style.display = "none";
-    document.querySelector(".guest-view").style.display = "flex";
-    document.querySelector(".guest-view").innerHTML = "";
-    this.viewGuestInfo(guest);
-    document.getElementById('guest-delete-bookings').style.display = "none";
-  },
 
   closeModal() {
-    document.querySelector(".guest-view").style.display = "none";
+    document.querySelector(".guest-modal").style.display = "none";
     document.querySelector(".manager-view").style.opacity = 1;
   }
-
+  // ^^ issue w closing modal on 
 
 }
 

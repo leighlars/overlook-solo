@@ -5,7 +5,7 @@
   height: 70%;
 }
 
-.guest-quick-view {
+.guest-modal {
   @include generalDisplay();
   @include borders();
   @include modals();
