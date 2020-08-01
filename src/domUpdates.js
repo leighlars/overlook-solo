@@ -86,20 +86,19 @@ let domUpdates = {
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Back</button><button class="exit-btn">X</button></span> 
         <h4>Make New Reservation</h4>`);
     let formHTML = `<form class='booking-form'>
-                        <input type='date' class='date-input' min='2020/08/5' max="2021-08-30" required></input>
+                        <input type='date' class='date-input' min='2020/08/5' max="2021-08-30"></input>
                         <label for='price' class='cost-label'>Choose a maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
                         <output class="price-output" for="price"></output>
                         <div class='tag-list'></div>
                         <div class='available-rooms'></div>
-                        <button class='guest-bookings-btns book-reservation' id='${guest.id}'>Book Reservation</button>     
+                        <button class='guest-bookings-btns search-reservations' id='${guest.id}'>Search Rooms</button>     
                       </form>`;
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', formHTML);
-    // const price = document.querySelector("#price");
-    // const output = document.querySelector(".price-output");
-    // output.textContent = price.value;
-    // price.addEventListener("input", () => {
-    //  output.textContent = price.value;
+    const price = document.querySelector("#price");
+    const output = document.querySelector(".price-output");
+    output.textContent = price.value;
+    price.addEventListener("input", () => output.textContent = price.value);
     this.createTagHTML();
   },
 
