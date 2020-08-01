@@ -22,10 +22,11 @@ class Hotel {
  
   filterRoomsByTags(date, cost, [tags]) {
     // loop over rooms data
-    return this.rooms.filter(room => room.costPerNight <= cost);
+    let foundRooms = this.rooms.filter(room => room.costPerNight < cost);
+    return foundRooms.sort((a, b) => a.costPerNight - b.costPerNight);
     // if room.date !=== date
     // if room.costPerNight < cost
-    // if room.numBeds = 
+    // if room.numBeds = tags
   }
 
   authenticate(userName, password) {
@@ -79,11 +80,7 @@ class Hotel {
     return this.bookings.filter(booking => booking.date === todaysDate);
   }
 
-  // findTodaysAvailableRooms(todaysDate) {
-  //   return this.rooms.filter(room => ! )
-  // }
-
-  getNumTodaysAvailability (rawData, todaysDate) {
+  getNumTodaysAvailability (todaysDate) {
     let numberAvailable = this.rooms.length - this.getAllTodaysBookings(todaysDate).length;
     return `Available lodging: ${numberAvailable} rooms`
   }

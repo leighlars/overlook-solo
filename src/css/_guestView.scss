@@ -9,7 +9,7 @@
   @include generalDisplay();
   @include borders();
   @include modals();
-  justify-content: initial;
+  justify-content: space-evenly;
   height: 70vh;
   padding: 2%;
     #exit-btn-style {
@@ -28,8 +28,9 @@
 
 .guest-bookings-btns {
   @include buttons();
+  font-size: 18px;
   width: 15vw;
-  height: 10vh;
+  height: 7vh;
 }
 
 .booking-list {
@@ -39,11 +40,9 @@
   scroll-behavior: smooth;
   text-align: center;
   height: 80%;
-}
-
-
-.booking {
-  @include generalDisplay();
-  text-align: center;
-  margin: 30px;
+    .booking {
+      @include generalDisplay();
+      text-align: center;
+      margin: 30px;
+    }
 }

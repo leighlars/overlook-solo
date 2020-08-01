@@ -34,8 +34,7 @@ let domUpdates = {
           <button class='clear-text-btn'>Clear</button>
         </div>
       </article>
-        <section class='known-guests'>
-        </section>`;
+      <section class='known-guests'></section>`;
     document.querySelector(".manager-view").insertAdjacentHTML('beforeend', mgrQuickView); 
   },
 
@@ -89,12 +88,12 @@ let domUpdates = {
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Back</button><button class="exit-btn">X</button></span> 
         <h4>Make New Reservation</h4>`);
     let formHTML = `<form class='booking-form'>
-                        <input type='date' class='date-input' min='2020/08/5' max="2021-08-30"></input>
+                        <input type='date' class='date-input' min='2020/08/05' max="2021-08-30" required></input>
                         <label for='price' class='cost-label'>Choose a maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="500">
                         <output class="price-output" for="price"></output>
                         <div class='tag-list'></div>
-                        <button class='guest-bookings-btns search-reservations' id='${guest.id}'>Search Rooms</button>     
+                        <button type='submit' class='guest-bookings-btns search-reservations-btn' aria-label='submit-search-form' id='${guest.id}'>Search Rooms</button>     
                       </form>`;
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', formHTML);
     const price = document.querySelector("#price");
@@ -126,34 +125,53 @@ let domUpdates = {
 
   toggleTagButton() {
     let tag = event.target.id;
-    let tagButton = event.target.closest(".tag-btn");
-    if (!tagButton.classList.contains("active")) {
-      tagButton.classList.add("active");
+    let tagButton = event.target.closest('.tag-btn');
+    if (!tagButton.classList.contains('active')) {
+      tagButton.classList.add('active');
       this.tagsSelected.push(tag);
     } else {
-      tagButton.classList.remove("active");
+      tagButton.classList.remove('active');
       let i = this.tagsSelected.indexOf(tag);
       this.tagsSelected.splice(i, 1);
     }
   },
-
+  
   displayAvailableRooms(guest) {
+    let date; 
+    if (document.querySelector('.date-input').value !== null) {
+      date = document.querySelector('.date-input').value;
+    }
+    let maxCost = document.querySelector('#price').value;
+    console.log(maxCost);
+    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
-      <span id='exit-btn-style'><button class="return-btn" id=${guest.id}>Back</button><button class="exit-btn">X</button></span> 
-      <h4>Found Available Rooms</h4>
-      <section class='booking-list'></section>`);
-    let date = document.querySelector('.date-input').value;
-    let maxCost = document.querySelector('#price').value;
-    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
-    this.checkDataTypeForDisplay(foundRooms);
+      <span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Back</button><button class='exit-btn'>X</button></span> 
+      <h4>Search Results</h4>
+      <section class='available-rooms'></section>`);
+    if (foundRooms.length > 0) {
+      foundRooms.forEach(room => {
+        let roomHTML = 
+        `<div class='found-room'>
+          <h4 class='found-room-date'>${date}</h4>
+           <p class='found-room-room-num'>Room number: ${room.number}</p>
+           <p class='found-room-room-type'>Room type: ${this.capitalize(room.roomType)}</p>
+           <p class='found-room-bed-info'>Bed: ${room.numBeds}, ${this.capitalize(room.bedSize)}</p>
+           <p class='found-room-bidet-info'>Bidet: ${this.capitalize(String(room.bidet))}</p>
+           <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
+           </div>`;
+        document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
+      });
+    } else {
+      document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p>`);
+    }
   },
 
   ///// DISPLAYING RESERVATIONS
   
   displayBookingInfo(guest, type) {
-    document.querySelector('.guest-modal').innerHTML = "";
     document.querySelector('.manager-view').style.opacity = 0.8;
+    document.querySelector('.guest-modal').innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
         <span id='exit-btn-style'><button class="return-btn" id=${guest.id}>Back</button><button class="exit-btn">X</button></span> 
         <h4>${type} Reservations</h4>
@@ -187,7 +205,6 @@ let domUpdates = {
       </section>`;     
     document.querySelector(".booking-list").insertAdjacentHTML('beforeend', bookingHTML);
   },
-
 
   addDeleteButtonToHTML(bookingInfo) {
     document.querySelectorAll(".booking").forEach(element => {

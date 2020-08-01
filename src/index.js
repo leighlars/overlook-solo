@@ -90,7 +90,7 @@ function formHandler() {
     event.preventDefault();
     domUpdates.toggleTagButton();
   }
-  if (event.target.className === "guest-bookings-btns search-reservations") {
+  if (event.target.className === "guest-bookings-btns search-reservations-btn") {
     event.preventDefault();
     domUpdates.displayAvailableRooms(guest);
   }
@@ -103,8 +103,8 @@ function formHandler() {
 }
 
 
-document.querySelector('main').addEventListener('click', formHandler);
-document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
-document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
 document.querySelector('.login-btn').addEventListener('click', getData);
+document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
+document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
+document.querySelector('.guest-view').addEventListener("click", formHandler);
 // window.addEventListener('load', getData); // fetch on load?
