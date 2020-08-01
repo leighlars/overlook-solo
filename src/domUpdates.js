@@ -142,7 +142,6 @@ let domUpdates = {
       date = document.querySelector('.date-input').value;
     }
     let maxCost = document.querySelector('#price').value;
-    console.log(maxCost);
     let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
@@ -159,7 +158,7 @@ let domUpdates = {
           <p class='found-room-bed-info'>Bed: ${room.numBeds}, ${this.capitalize(room.bedSize)}</p>
           <p class='found-room-bidet-info'>Bidet: ${this.capitalize(String(room.bidet))}</p>
           <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
-          <button type='submit' class='book-room-btn' id=${room.number}>Book This Room</button>
+          <button type='submit' class='book-room-btn' id=${room.number}>Book</button>
         </div>`;
         document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
       });
@@ -170,15 +169,17 @@ let domUpdates = {
 
   displayConfirmationMessage(guest) {
     document.querySelector(".guest-modal").innerHTML = "";
-    let confirmHTML = `
-      <span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Back</button><button class='exit-btn'>X</button></span> 
+    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
+      `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Back</button><button class='exit-btn'>X</button></span> 
       <h4>Thank You!</h4>
-      <p>Thank you for booking with The Overlook. </br>
-      We look forward to your stay. </br>
+      <section class='confirm-msg-box'></section>`)
+    let confirmHTML = `
+      <p class='confirm-msg'>Thank you for booking with The Overlook.</br>
+      We look forward to your stay.</br>
       Would you like to: </br></p>
       <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>
-      <button class='return-btn confirm-back' id=${guest.id}>See Main Menu</button>`
-    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', confirmHTML);
+      <button class='return-btn id=${guest.id} id='confirm-back'>See Main Menu</button>`;
+    document.querySelector('.confirm-msg-box').insertAdjacentHTML('beforeend', confirmHTML);
   },
 
 

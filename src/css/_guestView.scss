@@ -24,14 +24,14 @@
       width: 9.8vh;
       padding-top: .5%;
     }
+    .guest-bookings-btns {
+      @include buttons();
+      font-size: 18px;
+      width: 15vw;
+      height: 7vh;
+    }
 }
 
-.guest-bookings-btns {
-  @include buttons();
-  font-size: 18px;
-  width: 15vw;
-  height: 7vh;
-}
 
 .booking-list {
   @include generalDisplay();

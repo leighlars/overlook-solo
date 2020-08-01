@@ -3,16 +3,15 @@
   @include borders();
   @include modals();
   background-color: $transparentMauve;
+    .inputs {
+      @include borders();
+      @include inputs();
+    }
+    .login-btn {
+      @include buttons();
+    }
 }
 
-.inputs {
-  @include borders();
-  @include inputs();
-}
-
-.login-btn {
-  @include buttons();
-}
 
 .booking-form {
   @include generalDisplay();
@@ -76,11 +75,31 @@
         .unavailable-msg {
           text-align: center;
         }
+        .search-reservations-btn {
+          @include borders();
+          height: 8vh;
+          width: 8vw;
+        }
+        .book-room-btn {
+          @include buttons();
+        }
 }
 
-.search-reservations-btn {
-  @include buttons();
-  width: 8vw;
-  height: 6vh;
+
+.confirm-msg-box {
+  @include generalDisplay();
+  justify-content: space-evenly;
+  height: 80%;
+    .confirm-msg {
+      text-align: center;
+    }
+      #confirm-back {
+        @include borders();
+        font-size: 18px;
+        height: 6.9vh;
+        width: 14.8vh;
+      }
 }
+
+
 
