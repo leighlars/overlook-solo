@@ -20,11 +20,13 @@ class Hotel {
   }
 
  
-
-  filterRoomsByTags([date, cost, [tags]]) {
-    // loop over roomsData, if 
+  filterRoomsByTags(date, cost, [tags]) {
+    // loop over rooms data
+    return this.rooms.filter(room => room.costPerNight <= cost);
+    // if room.date !=== date
+    // if room.costPerNight < cost
+    // if room.numBeds = 
   }
-  // Allow customers to filter available rooms bed size, and/or number of beds
 
   authenticate(userName, password) {
     let idNum = this.getUserID(userName);

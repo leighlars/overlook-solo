@@ -61,24 +61,6 @@ function guestViewHandler() {
   if (event.target.className === 'return-btn') {
     domUpdates.createGuestHomeHTML(guest);
   }
-  if (event.target.className === 'guest-bookings-btns new-booking-form') {
-    domUpdates.displayNewBookingForm(guest);
-    // domUpdates.createTagHTML();
-  }
-  if (event.target.closest('.tag-btn')) {
-    event.preventDefault();
-    domUpdates.toggleTagButton();
-  }
-  if (event.target.className === "guest-bookings-btns search-reservations") {
-    event.preventDefault();
-    domUpdates.displayAvailableRooms();
-  }
-  if (event.target.className === "guest-bookings-btns book-reservation") {
-    event.preventDefault();
-    // get inputs from cal and tags
-    // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": roomNumber};
-    // postNewBooking(newBooking);
-  }
   if (event.target.className === 'guest-bookings-btns current-booking') {
     domUpdates.displayBookingInfo(guest, 'Current');
   }
@@ -92,14 +74,30 @@ function guestViewHandler() {
     // deleteBooking(deletedBooking);
     // how do i click on a calendar date?
     // 
-  // I should be able to select a date for which I’d like to book a room for myself
-  // Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
-  // I should be able to filter the list of available rooms by their roomType property
-  // I should be able to select a room for booking
-  // In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search
   }
   if (event.target.className === 'guest-bookings-btns past-bookings') {
     domUpdates.displayBookingInfo(guest, 'Past');
+  }
+}
+
+function formHandler() {
+  let guest = overlook.users.find((user) => user.id === Number(event.target.id));
+  if (event.target.className === 'guest-bookings-btns new-booking-form') {
+    domUpdates.displayNewBookingForm(guest);
+  }
+  if (event.target.closest('.tag-btn')) {
+    event.preventDefault();
+    domUpdates.toggleTagButton();
+  }
+  if (event.target.className === "guest-bookings-btns search-reservations") {
+    event.preventDefault();
+    domUpdates.displayAvailableRooms(guest);
+  }
+  if (event.target.className === "guest-bookings-btns book-reservation") {
+    event.preventDefault();
+    // get inputs from cal and tags
+    // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": roomNumber};
+    // postNewBooking(newBooking);
   }
 }
 
@@ -134,7 +132,7 @@ function deleteBooking(deletedBooking) {
 
 
 
-
+document.querySelector('.guest-modal').addEventListener('click', formHandler);
 document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
 document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
 document.querySelector('.login-btn').addEventListener('click', getData);
