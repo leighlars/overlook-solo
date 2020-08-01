@@ -98,7 +98,7 @@ function formHandler() {
     event.preventDefault();
     let newBooking = {"userID": guest.id, "date": todaysDate, "roomNumber": Number(event.target.id)};
     fetchMethods.postNewBooking(newBooking);
-    domUpdates.displayConfirmationMessage();
+    domUpdates.displayConfirmationMessage(guest);
   }
 }
 

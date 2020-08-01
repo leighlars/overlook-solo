@@ -15,7 +15,7 @@ let domUpdates = {
   },
 
   // closeModal(guest) {
-  // i want to exit the whole modal in manager dashboard, but not in user dashboard
+  // i want to exit the whole modal in manager dashboard, but not in user dashboard i don't want the exit button in user mode
   // },
   
   /// MANAGER DASH
@@ -154,13 +154,13 @@ let domUpdates = {
         let roomHTML = 
         `<div class='found-room'>
           <h4 class='found-room-date'>${date}</h4>
-           <p class='found-room-room-num'>Room number: ${room.number}</p>
-           <p class='found-room-room-type'>Room type: ${this.capitalize(room.roomType)}</p>
-           <p class='found-room-bed-info'>Bed: ${room.numBeds}, ${this.capitalize(room.bedSize)}</p>
-           <p class='found-room-bidet-info'>Bidet: ${this.capitalize(String(room.bidet))}</p>
-           <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
-           <button type='submit' class='book-room-btn' id=${room.number}>Book This Room</button>
-           </div>`;
+          <p class='found-room-room-num'>Room number: ${room.number}</p>
+          <p class='found-room-room-type'>Room type: ${this.capitalize(room.roomType)}</p>
+          <p class='found-room-bed-info'>Bed: ${room.numBeds}, ${this.capitalize(room.bedSize)}</p>
+          <p class='found-room-bidet-info'>Bidet: ${this.capitalize(String(room.bidet))}</p>
+          <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
+          <button type='submit' class='book-room-btn' id=${room.number}>Book This Room</button>
+        </div>`;
         document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
       });
     } else {
@@ -168,7 +168,19 @@ let domUpdates = {
     }
   },
 
-  
+  displayConfirmationMessage(guest) {
+    document.querySelector(".guest-modal").innerHTML = "";
+    let confirmHTML = `
+      <span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Back</button><button class='exit-btn'>X</button></span> 
+      <h4>Thank You!</h4>
+      <p>Thank you for booking with The Overlook. </br>
+      We look forward to your stay. </br>
+      Would you like to: </br></p>
+      <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>
+      <button class='return-btn confirm-back' id=${guest.id}>See Main Menu</button>`
+    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', confirmHTML);
+  },
+
 
   ///// DISPLAYING RESERVATIONS
   
