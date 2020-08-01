@@ -19,18 +19,19 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 @mixin headerFont($font-size) {
   font-family: 'Homemade Apple', serif;
   font-size: $font-size;
+  color: #FFFFFF;
 }
 
 @mixin bodyFont($font-size) {
   font-family: 'Josefin Sans', serif;
   font-weight: bolder;
   font-size: $font-size;
+  color: #FFFFFF;
 }
 
 @mixin buttons {
   @include borders();
-  @include bodyFont(18px);
-  color: #FFFFFF;
+  @include bodyFont(16px);
   margin: 10px;
   height: 5vh;
   width: 95px;
@@ -43,7 +44,6 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
   @include generalDisplay();
   @include bodyFont(20px);
   justify-content: flex-start;
-  color: white;
   margin-top: 40px;
   height: 100%;
   width: 100%;
@@ -59,7 +59,6 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 
 @mixin inputs {
   @include bodyFont(18px);
-  color: #FFFFFF;
   margin: 15px;
   padding: 6px;
   height: 3vw;

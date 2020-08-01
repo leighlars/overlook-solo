@@ -62,11 +62,13 @@ function guestViewHandler() {
     domUpdates.createGuestHomeHTML(guest);
   }
   if (event.target.className === 'guest-bookings-btns new-booking-form') {
-    // domUpdates.displayNewBookingForm();
+    domUpdates.displayNewBookingForm(guest);
+    // domUpdates.createTagHTML();
   }
-  if (event.target.className === 'book-reservation') {
+  if (event.target.className === 'guest-bookings-btns book-reservation') {
+    event.preventDefault();
     // get inputs from cal and tags
-    // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": Number(roomInput.value)};
+    // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": roomNumber};
     // postNewBooking(newBooking);
   }
   if (event.target.className === 'guest-bookings-btns current-booking') {
@@ -75,9 +77,6 @@ function guestViewHandler() {
   if (event.target.className === "guest-bookings-btns future-bookings") {
     let guest = overlook.users.find((user) => user.id === Number(event.target.id));
     domUpdates.displayBookingInfo(guest, 'Upcoming');
-  }
-  if (event.target.className === 'guest-bookings-btns past-bookings') {
-    domUpdates.displayBookingInfo(guest, 'Past');
   }
   if (event.target.className === 'guest-bookings-btns delete-booking') {
     // get id of booking set to var deletedBooking
@@ -90,6 +89,9 @@ function guestViewHandler() {
   // I should be able to filter the list of available rooms by their roomType property
   // I should be able to select a room for booking
   // In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search
+  }
+  if (event.target.className === 'guest-bookings-btns past-bookings') {
+    domUpdates.displayBookingInfo(guest, 'Past');
   }
 }
 

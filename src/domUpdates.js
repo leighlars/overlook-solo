@@ -10,23 +10,23 @@ let domUpdates = {
   },
 
   capitalize(words) {
-    return words.split(" ").map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+    return words.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   },
   
   /// MANAGER DASH
   displayManagerDashboard() {
-    document.querySelector(".login-view").style.display = "none";
-    document.querySelector('.manager-view').style.display = "flex";
+    document.querySelector('.login-view').style.display = 'none';
+    document.querySelector('.manager-view').style.display = 'flex';
     let mgrQuickView = `<article class='mgr-quick-view'>
           <div class='mgr-stats'>
-            <p id="open-rooms">${this.overlook.getNumTodaysAvailability(this.todaysDate)}</p>
-            <p id="booked-rooms">${this.overlook.getTodaysBookedPercentage(this.todaysDate)}</p>
-            <p id="revenue">${this.overlook.getTodaysRevenue(this.todaysDate)}</p> 
+            <p id='open-rooms'>${this.overlook.getNumTodaysAvailability(this.todaysDate)}</p>
+            <p id='booked-rooms'>${this.overlook.getTodaysBookedPercentage(this.todaysDate)}</p>
+            <p id='revenue'>${this.overlook.getTodaysRevenue(this.todaysDate)}</p> 
           </div>
-        <div class="search-bar">
-          <input type="text" class="inputs" id="search-guest-input" placeholder="Search Guest Name" maxlength="70" minlength="0">
-          <button class="mgr-search-btn">Find</button>
-          <button class="clear-text-btn">Clear</button>
+        <div class='search-bar'>
+          <input type='text' class='inputs' id='search-guest-input' placeholder='Search Guest Name' maxlength='70' minlength='0'>
+          <button class='mgr-search-btn'>Find</button>
+          <button class='clear-text-btn'>Clear</button>
         </div>
       </article>
         <section class='known-guests'>
@@ -67,7 +67,7 @@ let domUpdates = {
     let guestHome = `
           <h4 class='guest-name'>${guest.name}</h4>
           <p class='guest-total-spent'>Total Spent: ${guest.getTotalMoneySpent()}</p>
-          <button class='guest-bookings-btns make-new' id='${guest.id}' id='guest-new-bookings'>Make New Reservation</button>
+          <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make New Reservation</button>
           <button class='guest-bookings-btns current-booking' id='${guest.id}'>Current Reservation</button>
           <button class='guest-bookings-btns future-bookings' id='${guest.id}'>Upcoming Reservations</button>
           <button class='guest-bookings-btns past-bookings' id='${guest.id}'>Past Reservations</button>
@@ -80,31 +80,66 @@ let domUpdates = {
   // i want to exit the whole modal in manager dashboard, but not in user dashboard
   // },
   
-  displayNewBookingForm() {
-    document.querySelector(".guest-modal").innerHTML = "";
-    document.querySelector(".manager-view").style.opacity = 0.8;
+  displayNewBookingForm(guest) {
+    document.querySelector(".guest-modal").innerHTML = '';
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn">Back</button><button class="exit-btn">X</button></span> 
-        <h4>Current Reservation</h4>`);
-    let formHTML = `
-    <input type="date"></input>
-
-    `;    
-    // it'll need a calendar
-    // a button list of room types to choose from
-    // Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
-    // a button to post the new booking / add to users bookings arr
-    // an alert if they've chosen an unavail room
-    // 
+        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Back</button><button class="exit-btn">X</button></span> 
+        <h4>Make New Reservation</h4>`);
+    let formHTML = `<form class='booking-form'>
+                        <input type='date' class='date-input' min='2020/08/5' max="2021-08-30" required></input>
+                        <label for='price' class='cost-label'>Choose a maximum room price:</label>
+                        <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
+                        <output class="price-output" for="price"></output>
+                        <div class='tag-list'></div>
+                        <div class='available-rooms'></div>
+                        <button class='guest-bookings-btns book-reservation' id='${guest.id}'>Book Reservation</button>     
+                      </form>`;
+    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', formHTML);
+    // const price = document.querySelector("#price");
+    // const output = document.querySelector(".price-output");
+    // output.textContent = price.value;
+    // price.addEventListener("input", () => {
+    //  output.textContent = price.value;
+    this.createTagHTML();
   },
+
+    
+  // it'll need a calendar
+  // a button list of room types to choose from
+  // Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
+  // a button to post the new booking / add to users bookings arr
+  // an alert if they've chosen an unavail room
+  // 
+  
+  createTagHTML() {
+    let tagHTML = `
+      <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
+        <button class='tag-btn' id='single room' id='type-tag'>Single Room</button>
+        <button class='tag-btn' id='junior suite' id='type-tag' >Junior Suite</button>
+        <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
+        <button class='tag-btn' id='residential-suite' id='type-tag'>Residential Suite</button>
+      </div>
+      <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
+        <button class='tag-btn' id='1'>1</button>
+        <button class='tag-btn' id='2'>2</button>
+      </div>
+      <div class='tag-box box-bedSize'><p class='tag-prompt'>Filter Tags By Bed Size:</p>
+        <button class='tag-btn' id='king'>King</button>
+        <button class='tag-btn' id='queen'>Queen</button>
+        <button class='tag-btn' id='full'>Full</button>
+        <button class='tag-btn' id='twin'>Twin</button>
+      </div>`;
+    document.querySelector('.tag-list').insertAdjacentHTML('beforeend', tagHTML);
+  },
+
   
   displayBookingInfo(guest, type) {
-    document.querySelector(".guest-modal").innerHTML = "";
-    document.querySelector(".manager-view").style.opacity = 0.8;
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
+    document.querySelector('.guest-modal').innerHTML = "";
+    document.querySelector('.manager-view').style.opacity = 0.8;
+    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
         <span id='exit-btn-style'><button class="return-btn" id=${guest.id}>Back</button><button class="exit-btn">X</button></span> 
         <h4>${type} Reservations</h4>`);
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `<section class='booking-list'></section>`);
+    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `<section class='booking-list'></section>`);
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
     if (Array.isArray(bookingInfo)) {
       bookingInfo.forEach(booking => {
@@ -114,7 +149,7 @@ let domUpdates = {
       this.createBookingHTML(bookingInfo);
     }
     if (type === 'Upcoming') {
-      this.addDeleteButtonToHTML(bookingInfo, type);
+      this.addDeleteButtonToHTML(bookingInfo);
     }
   },
 
@@ -131,7 +166,8 @@ let domUpdates = {
     document.querySelector(".booking-list").insertAdjacentHTML('beforeend', bookingHTML);
   },
 
-  addDeleteButtonToHTML(bookingInfo, type) {
+
+  addDeleteButtonToHTML(bookingInfo) {
     document.querySelectorAll(".booking").forEach(element => {
       element.insertAdjacentHTML('beforeend', 
         `<button class='guest-bookings-btns' id='${bookingInfo.id}' id='guest-delete-bookings'>Delete Reservation</button>`);
