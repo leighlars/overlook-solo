@@ -159,6 +159,7 @@ let domUpdates = {
            <p class='found-room-bed-info'>Bed: ${room.numBeds}, ${this.capitalize(room.bedSize)}</p>
            <p class='found-room-bidet-info'>Bidet: ${this.capitalize(String(room.bidet))}</p>
            <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
+           <button type='submit' class='book-room-btn' id=${room.number}>Book This Room</button>
            </div>`;
         document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
       });
@@ -166,6 +167,8 @@ let domUpdates = {
       document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p>`);
     }
   },
+
+  
 
   ///// DISPLAYING RESERVATIONS
   

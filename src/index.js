@@ -94,11 +94,11 @@ function formHandler() {
     event.preventDefault();
     domUpdates.displayAvailableRooms(guest);
   }
-  if (event.target.className === "guest-bookings-btns book-reservation") {
+  if (event.target.className === 'book-room-btn') {
     event.preventDefault();
-    // get inputs from cal and tags
-    // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": roomNumber};
-    // fetchMethods.postNewBooking(newBooking);
+    let newBooking = {"userID": guest.id, "date": todaysDate, "roomNumber": Number(event.target.id)};
+    fetchMethods.postNewBooking(newBooking);
+    domUpdates.displayConfirmationMessage();
   }
 }
 
