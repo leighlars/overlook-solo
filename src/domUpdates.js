@@ -13,6 +13,10 @@ let domUpdates = {
   capitalize(words) {
     return words.split(' ').map((word) => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   },
+
+  // closeModal(guest) {
+  // i want to exit the whole modal in manager dashboard, but not in user dashboard
+  // },
   
   /// MANAGER DASH
   displayManagerDashboard() {
@@ -76,11 +80,9 @@ let domUpdates = {
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', guestHome);
   },
 
-      
-  // closeModal(guest) {
-  // i want to exit the whole modal in manager dashboard, but not in user dashboard
-  // },
   
+  // ADD NEW BOOKING FORM
+
   displayNewBookingForm(guest) {
     document.querySelector(".guest-modal").innerHTML = '';
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
@@ -99,6 +101,27 @@ let domUpdates = {
     const output = document.querySelector(".price-output");
     price.addEventListener("input", () => output.textContent = price.value);
     this.createTagHTML();
+  },
+
+  createTagHTML() {
+    let tagHTML = `
+      <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
+        <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
+        <button class='tag-btn' id='junior' id='type-tag' >Junior Suite</button>
+        <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
+        <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
+      </div>
+      <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
+        <button class='tag-btn' id='1'>1</button>
+        <button class='tag-btn' id='2'>2</button>
+      </div>
+      <div class='tag-box box-bedSize'><p class='tag-prompt'>Filter Tags By Bed Size:</p>
+        <button class='tag-btn' id='king'>King</button>
+        <button class='tag-btn' id='queen'>Queen</button>
+        <button class='tag-btn' id='full'>Full</button>
+        <button class='tag-btn' id='twin'>Twin</button>
+      </div>`;
+    document.querySelector('.tag-list').insertAdjacentHTML('beforeend', tagHTML);
   },
 
   toggleTagButton() {
@@ -121,28 +144,7 @@ let domUpdates = {
     this.checkDataTypeForDisplay(foundRooms);
   },
 
-  
-  createTagHTML() {
-    let tagHTML = `
-      <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
-        <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
-        <button class='tag-btn' id='junior' id='type-tag' >Junior Suite</button>
-        <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
-        <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
-      </div>
-      <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
-        <button class='tag-btn' id='1'>1</button>
-        <button class='tag-btn' id='2'>2</button>
-      </div>
-      <div class='tag-box box-bedSize'><p class='tag-prompt'>Filter Tags By Bed Size:</p>
-        <button class='tag-btn' id='king'>King</button>
-        <button class='tag-btn' id='queen'>Queen</button>
-        <button class='tag-btn' id='full'>Full</button>
-        <button class='tag-btn' id='twin'>Twin</button>
-      </div>`;
-    document.querySelector('.tag-list').insertAdjacentHTML('beforeend', tagHTML);
-  },
-
+  ///// DISPLAYING RESERVATIONS
   
   displayBookingInfo(guest, type) {
     document.querySelector('.guest-modal').innerHTML = "";
