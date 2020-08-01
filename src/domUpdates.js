@@ -97,7 +97,6 @@ let domUpdates = {
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', formHTML);
     const price = document.querySelector("#price");
     const output = document.querySelector(".price-output");
-    output.textContent = price.value;
     price.addEventListener("input", () => output.textContent = price.value);
     this.createTagHTML();
   },
@@ -115,6 +114,12 @@ let domUpdates = {
     }
   },
 
+  displayAvailableRooms() {
+    let date = document.querySelector('.date-input').value;
+    let maxCost = document.querySelector('#price').value;
+    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
+    this.checkDataTypeForDisplay(foundRooms);
+  },
 
   
   createTagHTML() {
@@ -147,15 +152,19 @@ let domUpdates = {
         <h4>${type} Reservations</h4>`);
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `<section class='booking-list'></section>`);
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
+    this.checkDataTypeForDisplay(bookingInfo);
+    if (type === 'Upcoming') {
+      this.addDeleteButtonToHTML(bookingInfo);
+    }
+  },
+
+  checkDataTypeForDisplay(bookingInfo) {
     if (Array.isArray(bookingInfo)) {
       bookingInfo.forEach(booking => {
         this.createBookingHTML(booking);
       })
     } else {
       this.createBookingHTML(bookingInfo);
-    }
-    if (type === 'Upcoming') {
-      this.addDeleteButtonToHTML(bookingInfo);
     }
   },
 
