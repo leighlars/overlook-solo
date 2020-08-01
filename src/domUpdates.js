@@ -177,8 +177,7 @@ let domUpdates = {
       <p class='confirm-msg'>Thank you for booking with The Overlook.</br>
       We look forward to your stay.</br>
       Would you like to: </br></p>
-      <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>
-      <button class='return-btn id=${guest.id} id='confirm-back'>See Main Menu</button>`;
+      <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>`
     document.querySelector('.confirm-msg-box').insertAdjacentHTML('beforeend', confirmHTML);
   },
 
