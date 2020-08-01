@@ -106,7 +106,7 @@ let domUpdates = {
     let tagHTML = `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
         <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
-        <button class='tag-btn' id='junior' id='type-tag' >Junior Suite</button>
+        <button class='tag-btn' id='junior' id='type-tag'>Junior Suite</button>
         <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
         <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
       </div>
@@ -158,7 +158,7 @@ let domUpdates = {
           <p class='found-room-bed-info'>Bed: ${room.numBeds}, ${this.capitalize(room.bedSize)}</p>
           <p class='found-room-bidet-info'>Bidet: ${this.capitalize(String(room.bidet))}</p>
           <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
-          <button type='submit' class='book-room-btn' id=${room.number}>Book</button>
+          <button type='submit' class='book-room-btn' id=${room.number}>Book</button> // need to somehow get date to posting object
         </div>`;
         document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
       });
