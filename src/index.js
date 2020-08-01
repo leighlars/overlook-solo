@@ -44,10 +44,10 @@ function mgrViewHandler() {
   }
   if (event.target.className === 'clear-text-btn') {
     document.getElementById('search-guest-input').value = '';
-    document.querySelector(".known-guests").innerHTML = "";
+    document.querySelector(".known-guests").innerHTML = '';
   }
   if (event.target.closest('.expand-found-guest-btn')) {
-    let guestCard = document.querySelector(".expand-found-guest-btn").id;
+    let guestCard = document.querySelector('.expand-found-guest-btn').id;
     let guest = overlook.users.find(user => user.id === Number(guestCard));
     domUpdates.viewGuestModal(guest);
   }
@@ -58,40 +58,39 @@ function guestViewHandler() {
   if (event.target.className === 'exit-btn') {
     domUpdates.closeModal(guest);
   }
+  if (event.target.className === 'return-btn') {
+    domUpdates.createGuestHomeHTML(guest);
+  }
   if (event.target.className === 'guest-bookings-btns new-booking-form') {
     // domUpdates.displayNewBookingForm();
   }
-  if (event.target.className === "book-reservation") {
+  if (event.target.className === 'book-reservation') {
     // get inputs from cal and tags
     // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": Number(roomInput.value)};
     // postNewBooking(newBooking);
   }
-  if (event.target.className === 'return-btn') {
-    
+  if (event.target.className === 'guest-bookings-btns current-booking') {
+    domUpdates.displayBookingInfo(guest, 'Current');
   }
-
+  if (event.target.className === "guest-bookings-btns future-bookings") {
+    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
+    domUpdates.displayBookingInfo(guest, 'Upcoming');
+  }
+  if (event.target.className === 'guest-bookings-btns past-bookings') {
+    domUpdates.displayBookingInfo(guest, 'Past');
+  }
   if (event.target.className === 'guest-bookings-btns delete-booking') {
     // get id of booking set to var deletedBooking
     // let deletedBooking =
     // deleteBooking(deletedBooking);
+    // how do i click on a calendar date?
+    // 
+  // I should be able to select a date for which I’d like to book a room for myself
+  // Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
+  // I should be able to filter the list of available rooms by their roomType property
+  // I should be able to select a room for booking
+  // In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search
   }
-  if (event.target.className === 'guest-bookings-btns current-booking') {
-    domUpdates.displayBookingInfo(guest, "current");
-  }
-  if (event.target.className === "guest-bookings-btns future-bookings") {
-    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
-    domUpdates.displayUpcomingBookings(guest);
-  }
-  if (event.target.className === 'guest-bookings-btns past-bookings') {
-    domUpdates.displayBookingInfo(guest, "Past");
-  }
-  // how do i click on a calendar date?
-  // 
-// I should be able to select a date for which I’d like to book a room for myself
-// Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date
-// I should be able to filter the list of available rooms by their roomType property
-// I should be able to select a room for booking
-// In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search
 }
 
 function postNewBooking(newBooking) {

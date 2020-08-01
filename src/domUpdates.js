@@ -58,15 +58,21 @@ let domUpdates = {
     document.querySelector('.guest-view').innerHTML = '';
     document.querySelector('.guest-view').style.display = 'flex';
     document.querySelector('.manager-view').style.opacity = .8;
-    let guestModal = `<section class='guest-modal'>
+    document.querySelector(".guest-view").insertAdjacentHTML('beforeend', `<section class='guest-modal'></section>`);
+    this.createGuestHomeHTML(guest);
+  },
+
+  createGuestHomeHTML(guest) {
+    document.querySelector('.guest-modal').innerHTML = '';
+    let guestHome = `
           <h4 class='guest-name'>${guest.name}</h4>
           <p class='guest-total-spent'>Total Spent: ${guest.getTotalMoneySpent()}</p>
           <button class='guest-bookings-btns make-new' id='${guest.id}' id='guest-new-bookings'>Make New Reservation</button>
           <button class='guest-bookings-btns current-booking' id='${guest.id}'>Current Reservation</button>
           <button class='guest-bookings-btns future-bookings' id='${guest.id}'>Upcoming Reservations</button>
           <button class='guest-bookings-btns past-bookings' id='${guest.id}'>Past Reservations</button>
-          </section>`;
-    document.querySelector('.guest-view').insertAdjacentHTML('beforeend', guestModal);
+        `;
+    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', guestHome);
   },
 
       
@@ -96,7 +102,7 @@ let domUpdates = {
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".manager-view").style.opacity = 0.8;
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn">Back</button><button class="exit-btn">X</button></span> 
+        <span id='exit-btn-style'><button class="return-btn" id=${guest.id}>Back</button><button class="exit-btn">X</button></span> 
         <h4>${type} Reservations</h4>`);
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `<section class='booking-list'></section>`);
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
@@ -106,6 +112,9 @@ let domUpdates = {
       })
     } else {
       this.createBookingHTML(bookingInfo);
+    }
+    if (type === 'Upcoming') {
+      this.addDeleteButtonToHTML(bookingInfo, type);
     }
   },
 
@@ -122,30 +131,13 @@ let domUpdates = {
     document.querySelector(".booking-list").insertAdjacentHTML('beforeend', bookingHTML);
   },
 
-
-  displayUpcomingBookings(guest) {
-    document.querySelector(".guest-modal").innerHTML = "";
-    document.querySelector(".manager-view").style.opacity = 0.8;
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn">Back</button><button class="exit-btn">X</button></span> 
-        <h4>Upcoming Reservations</h4>`);
-    console.log(guest);   
-    let upcomingBookings = guest.getUpcomingBookings(this.todaysDate);
-    upcomingBookings.forEach(booking => {
-      let futureHTML = `<section class='booking-view'>
-            <h4 class='booking-date'>${booking.date}</h4>
-            <p class='booking-room-num'>Room Number: ${booking.roomNumber}</p>
-            <p class='booking-room-type'>Room Type: ${this.capitalize(booking.roomType)}</p>
-            <p class='booking-bed-info'>Bed: ${booking.numBeds}, ${this.capitalize(booking.bedSize)}</p>
-            <p class='booking-bidet-info'>Bidet: ${this.capitalize(booking.bidet)}</p>
-            <p class='booking-room-cost'>Cost: $${booking.cost}</p>
-            <button class='guest-bookings-btns' id='${booking.id}' id='guest-delete-bookings'>Delete Reservation</button>
-            </section>`;
-      document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', futureHTML);
+  addDeleteButtonToHTML(bookingInfo, type) {
+    document.querySelectorAll(".booking").forEach(element => {
+      element.insertAdjacentHTML('beforeend', 
+        `<button class='guest-bookings-btns' id='${bookingInfo.id}' id='guest-delete-bookings'>Delete Reservation</button>`);
     })
-    // prompt before delete?
-  },
-
+  }
+  
 }
 
 export default domUpdates;
