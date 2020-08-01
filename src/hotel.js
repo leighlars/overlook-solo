@@ -19,16 +19,6 @@ class Hotel {
     return idNum - 1;
   }
 
- 
-  filterRoomsByTags(date, cost, [tags]) {
-    // loop over rooms data
-    let foundRooms = this.rooms.filter(room => room.costPerNight < cost);
-    return foundRooms.sort((a, b) => a.costPerNight - b.costPerNight);
-    // if room.date !=== date
-    // if room.costPerNight < cost
-    // if room.numBeds = tags
-  }
-
   authenticate(userName, password) {
     let idNum = this.getUserID(userName);
     if (password === "overlook2020" && userName === "manager") {
@@ -74,6 +64,17 @@ class Hotel {
     });
   }
 
+  filterRoomsByTags(date, maxCost, [tags]) {
+    let bookingsOnToday = this.bookings.filter(booking => booking.date === date);
+    let bookedRoomsNumbers = bookingsOnToday.map(booking => booking.roomNumber); 
+    let expensiveRooms = this.rooms.filter(room => room.costPerNight > maxCost);
+    let expensiveRoomsNumbers = expensiveRooms.map(room => room.number);
+    let allUnavailable = bookedRoomsNumbers.concat(expensiveRoomsNumbers);
+    let availableRooms = this.rooms.filter(room => !allUnavailable.includes(room.number));
+    return availableRooms.sort((a, b) => a.costPerNight - b.costPerNight);
+    // need to refactor into a reduce
+  }
+
   // move methods below to manager
 
   getAllTodaysBookings(todaysDate) {
@@ -109,6 +110,7 @@ class Hotel {
     let capFirstLtr = input.charAt(0).toUpperCase() + input.slice(1);
     return this.users.filter(user => user.name.includes(capFirstLtr));
   }
+
 
 
 

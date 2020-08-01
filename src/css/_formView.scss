@@ -3,15 +3,15 @@
   @include borders();
   @include modals();
   background-color: $transparentMauve;
-    .inputs {
-      @include borders();
-      @include inputs();
-    }
-    .login-btn {
-      @include buttons();
-    }
+  .login-btn {
+    @include buttons();
+  }
 }
 
+.inputs {
+  @include borders();
+  @include inputs();
+}
 
 .booking-form {
   @include generalDisplay();

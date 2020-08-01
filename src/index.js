@@ -71,10 +71,8 @@ function guestViewHandler() {
     domUpdates.displayBookingInfo(guest, 'Upcoming');
   }
   if (event.target.className === 'guest-bookings-btns delete-booking') {
-    // get id of booking set to var deletedBooking
-    // let deletedBooking =
-    // fetchMethods.deleteBooking(deletedBooking);
-    // 
+    let deletedBooking = {id: Number(event.target.id)}
+    fetchMethods.deleteBooking(deletedBooking);
   }
   if (event.target.className === 'guest-bookings-btns past-bookings') {
     domUpdates.displayBookingInfo(guest, 'Past');
@@ -96,9 +94,10 @@ function formHandler() {
   }
   if (event.target.className === 'book-room-btn') {
     event.preventDefault();
-    let newBooking = {"userID": guest.id, "date": todaysDate, "roomNumber": Number(event.target.id)};
+    let bookingInfo = event.target.id.split(' ');
+    let newBooking = {"userID": Number(bookingInfo[0]), "date": bookingInfo[1], "roomNumber": Number(bookingInfo[2])};
     fetchMethods.postNewBooking(newBooking);
-    domUpdates.displayConfirmationMessage(guest);
+    domUpdates.displayConfirmationMessage(Number(bookingInfo[0]));
   }
 }
 

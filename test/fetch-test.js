@@ -1,10 +1,10 @@
-import fetchMethods from '../src/fetchMethods'
 import chai from 'chai';
 import { expect } from 'chai';
 const spies = require('chai-spies');
 chai.use(spies);
+import fetchMethods from '../src/fetchMethods'
 
-describe('FetchCall', function() {
+describe('fetchMethods', function() {
   let fetchMethods;
   
   beforeEach(function() {
