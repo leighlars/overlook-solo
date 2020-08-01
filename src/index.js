@@ -49,7 +49,7 @@ function mgrViewHandler() {
     document.querySelector(".known-guests").innerHTML = '';
   }
   if (event.target.closest('.expand-found-guest-btn')) {
-    let guestCard = document.querySelector('.expand-found-guest-btn').id;
+    let guestCard = event.target.id;
     let guest = overlook.users.find(user => user.id === Number(guestCard));
     domUpdates.viewGuestModal(guest);
   }
