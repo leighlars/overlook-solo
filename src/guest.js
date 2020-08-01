@@ -17,6 +17,19 @@ class Guest {
     return `$${totalBookingsExpenditures}`;
   }
 
+  getBookingInfo(todaysDate, type) {
+    if (type === 'Current') {
+      return this.getCurrentBooking(todaysDate);
+    }
+    if (type === 'Past') {
+      return this.getPastBookings(todaysDate);
+    }
+    if (type === 'Upcoming') {
+      return this.getUpcomingBookings(todaysDate);
+    }
+  }
+
+
   getCurrentBooking(todaysDate) {
     let currentBooking = this.allBookings.find(booking => booking.date = todaysDate);
     if (currentBooking) {
@@ -38,6 +51,8 @@ class Guest {
       return 0;
     })
   }
+
+
 
   getUpcomingBookings(todaysDate) {
     let futureBookings = this.allBookings.filter(booking => booking.date > todaysDate);

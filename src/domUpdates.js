@@ -59,7 +59,6 @@ let domUpdates = {
     document.querySelector('.guest-view').style.display = 'flex';
     document.querySelector('.manager-view').style.opacity = .8;
     let guestModal = `<section class='guest-modal'>
-          <span id='exit-btn-style'><button class="exit-btn" id${guest.id}>X</button></span>
           <h4 class='guest-name'>${guest.name}</h4>
           <p class='guest-total-spent'>Total Spent: ${guest.getTotalMoneySpent()}</p>
           <button class='guest-bookings-btns make-new' id='${guest.id}' id='guest-new-bookings'>Make New Reservation</button>
@@ -69,22 +68,17 @@ let domUpdates = {
           </section>`;
     document.querySelector('.guest-view').insertAdjacentHTML('beforeend', guestModal);
   },
+
       
-  closeModal(guest) {
-    if (this.overlook.isManager === true) {
-      document.querySelector(".guest-view").style.display = 'none';
-      document.querySelector(".manager-view").style.opacity = 'initial';
-    } else {
-      this.viewGuestModal(guest);
-    }
-  },
-  // ^^ issue w closing modal on log in view. do i want a close or not?
+  // closeModal(guest) {
+  // i want to exit the whole modal in manager dashboard, but not in user dashboard
+  // },
   
   displayNewBookingForm() {
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".manager-view").style.opacity = 0.8;
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="exit-btn">X</button></span> 
+        <span id='exit-btn-style'><button class="return-btn">Back</button><button class="exit-btn">X</button></span> 
         <h4>Current Reservation</h4>`);
     let formHTML = `
     <input type="date"></input>
@@ -98,31 +92,44 @@ let domUpdates = {
     // 
   },
   
-  displayCurrentBooking(guest) {
+  displayBookingInfo(guest, type) {
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".manager-view").style.opacity = 0.8;
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="exit-btn">X</button></span> 
-        <h4>Current Reservation</h4>`);
-    let currentBooking = guest.getCurrentBooking(this.todaysDate);
-    let currentHTML = `<section class='booking-view'>
-          <h4 class='booking-date'>${currentBooking.date}</h4>
-          <p class='booking-room-num'>Room number: ${currentBooking.roomNumber}</p>
-          <p class='booking-room-type'>Room type: ${this.capitalize(currentBooking.roomType)}</p>
-          <p class='booking-bed-info'>Bed: ${currentBooking.numBeds}, ${this.capitalize(currentBooking.bedSize)}</p>
-          <p class='booking-bidet-info'>Bidet: ${this.capitalize(currentBooking.bidet)}</p>
-          <p class='booking-room-cost'>Cost: $${currentBooking.cost}</p>
-          </section>`;
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', currentHTML);
+        <span id='exit-btn-style'><button class="return-btn">Back</button><button class="exit-btn">X</button></span> 
+        <h4>${type} Reservations</h4>`);
+    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `<section class='booking-list'></section>`);
+    let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
+    if (Array.isArray(bookingInfo)) {
+      bookingInfo.forEach(booking => {
+        this.createBookingHTML(booking);
+      })
+    } else {
+      this.createBookingHTML(bookingInfo);
+    }
   },
-  // ^^ need to tweak styling in scss
-  
+
+  createBookingHTML(bookingInfo) {
+    const bookingHTML = `
+      <section class='booking'>
+         <h4 class='booking-date'>${bookingInfo.date}</h4>
+         <p class='booking-room-num'>Room number: ${bookingInfo.roomNumber}</p>
+         <p class='booking-room-type'>Room type: ${this.capitalize(bookingInfo.roomType)}</p>
+         <p class='booking-bed-info'>Bed: ${bookingInfo.numBeds}, ${this.capitalize(bookingInfo.bedSize)}</p>
+         <p class='booking-bidet-info'>Bidet: ${this.capitalize(String(bookingInfo.bidet))}</p>
+         <p class='booking-room-cost'>Cost: $${bookingInfo.cost}</p>
+      </section>`;     
+    document.querySelector(".booking-list").insertAdjacentHTML('beforeend', bookingHTML);
+  },
+
+
   displayUpcomingBookings(guest) {
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".manager-view").style.opacity = 0.8;
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="exit-btn">X</button></span> 
+        <span id='exit-btn-style'><button class="return-btn">Back</button><button class="exit-btn">X</button></span> 
         <h4>Upcoming Reservations</h4>`);
+    console.log(guest);   
     let upcomingBookings = guest.getUpcomingBookings(this.todaysDate);
     upcomingBookings.forEach(booking => {
       let futureHTML = `<section class='booking-view'>
@@ -138,33 +145,6 @@ let domUpdates = {
     })
     // prompt before delete?
   },
-
-  displayPastBookings(guest) {
-    document.querySelector(".guest-modal").innerHTML = "";
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="exit-btn">X</button></span> 
-        <h4>Past Reservations</h4>`);
-    document.querySelector(".guest-view").style.display = "flex";
-    document.querySelector(".manager-view").style.opacity = 0.8;
-    let pastBookings = guest.getPastBookings(this.todaysDate);
-    pastBookings.forEach(booking => {
-      let pastHTML = `<section class='booking-view'>
-            <h4 class='booking-date'>${booking.date}</h4>
-            <p class='booking-room-num'>Room Number: ${booking.roomNumber}</p>
-            <p class='booking-room-type'>Room Type: ${this.capitalize(booking.roomType)}</p>
-            <p class='booking-bed-info'>Bed: ${booking.numBeds}, ${this.capitalize(booking.bedSize)}</p>
-            <p class='booking-bidet-info'>Bidet: ${this.capitalize(booking.bidet)}</p>
-            <p class='booking-room-cost'>Cost: $${booking.cost}</p>
-            </section>`;
-      document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', pastHTML);
-    });
-  }
-  // access user's past bookings and map over them to get info except for user id and booking id
-  // for each booking, create html and add it to dom
-  // display this info in table?
-  // will need scroll
-
-
 
 }
 

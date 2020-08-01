@@ -54,8 +54,8 @@ function mgrViewHandler() {
 }
 
 function guestViewHandler() {
+  let guest = overlook.users.find((user) => user.id === Number(event.target.id));
   if (event.target.className === 'exit-btn') {
-    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
     domUpdates.closeModal(guest);
   }
   if (event.target.className === 'guest-bookings-btns new-booking-form') {
@@ -66,6 +66,9 @@ function guestViewHandler() {
     // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": Number(roomInput.value)};
     // postNewBooking(newBooking);
   }
+  if (event.target.className === 'return-btn') {
+    
+  }
 
   if (event.target.className === 'guest-bookings-btns delete-booking') {
     // get id of booking set to var deletedBooking
@@ -73,16 +76,14 @@ function guestViewHandler() {
     // deleteBooking(deletedBooking);
   }
   if (event.target.className === 'guest-bookings-btns current-booking') {
-    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
-    domUpdates.displayCurrentBooking(guest);
+    domUpdates.displayBookingInfo(guest, "current");
   }
   if (event.target.className === "guest-bookings-btns future-bookings") {
     let guest = overlook.users.find((user) => user.id === Number(event.target.id));
     domUpdates.displayUpcomingBookings(guest);
   }
   if (event.target.className === 'guest-bookings-btns past-bookings') {
-    let guest = overlook.users.find((user) => user.id === Number(event.target.id));
-    domUpdates.displayPastBookings(guest);
+    domUpdates.displayBookingInfo(guest, "Past");
   }
   // how do i click on a calendar date?
   // 

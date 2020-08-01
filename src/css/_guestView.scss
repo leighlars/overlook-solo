@@ -1,8 +1,8 @@
 .guest-view {
   @include userViews();
-  display: none;
   position: fixed;
   height: 70%;
+  display: none;
 }
 
 .guest-modal {
@@ -14,13 +14,14 @@
   padding: 2%;
     #exit-btn-style {
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
       width: 100%;
     }
-    .exit-btn {
+    .exit-btn, 
+    .return-btn {
       @include buttons();
       height: 3.9vh;
-      width: 3.8vh;
+      width: 9.8vh;
       padding-top: .5%;
     }
 }
@@ -31,7 +32,17 @@
   height: 10vh;
 }
 
-.booking-view {
+.booking-list {
+  @include generalDisplay();
+  justify-content: initial;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  text-align: center;
+  height: 80%;
+}
+
+
+.booking {
   @include generalDisplay();
   text-align: center;
   margin: 30px;
