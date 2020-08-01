@@ -2,6 +2,7 @@ let domUpdates = {
   currentUser: null,
   todaysDate: null,
   overlook: null,
+  tagsSelected: [],
 
   defineData(user, todaysDate, overlook) {
     this.currentUser = user;
@@ -88,10 +89,9 @@ let domUpdates = {
     let formHTML = `<form class='booking-form'>
                         <input type='date' class='date-input' min='2020/08/5' max="2021-08-30"></input>
                         <label for='price' class='cost-label'>Choose a maximum room price:</label>
-                        <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
+                        <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="500">
                         <output class="price-output" for="price"></output>
                         <div class='tag-list'></div>
-                        <div class='available-rooms'></div>
                         <button class='guest-bookings-btns search-reservations' id='${guest.id}'>Search Rooms</button>     
                       </form>`;
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', formHTML);
@@ -102,21 +102,28 @@ let domUpdates = {
     this.createTagHTML();
   },
 
-    
-  // it'll need a calendar
-  // a button list of room types to choose from
-  // Allow customers to filter available rooms by cost (min/max), bed size, and/or number of beds
-  // a button to post the new booking / add to users bookings arr
-  // an alert if they've chosen an unavail room
-  // 
+  toggleTagButton() {
+    let tag = event.target.id;
+    let tagButton = event.target.closest(".tag-btn");
+    if (!tagButton.classList.contains("active")) {
+      tagButton.classList.add("active");
+      this.tagsSelected.push(tag);
+    } else {
+      tagButton.classList.remove("active");
+      let i = this.tagsSelected.indexOf(tag);
+      this.tagsSelected.splice(i, 1);
+    }
+  },
+
+
   
   createTagHTML() {
     let tagHTML = `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
-        <button class='tag-btn' id='single room' id='type-tag'>Single Room</button>
-        <button class='tag-btn' id='junior suite' id='type-tag' >Junior Suite</button>
+        <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
+        <button class='tag-btn' id='junior' id='type-tag' >Junior Suite</button>
         <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
-        <button class='tag-btn' id='residential-suite' id='type-tag'>Residential Suite</button>
+        <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
       </div>
       <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
         <button class='tag-btn' id='1'>1</button>

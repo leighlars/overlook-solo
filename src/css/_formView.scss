@@ -48,10 +48,14 @@
       font-size: 14px;
       width: 70px;
     }
+    .tag-btn.active {
+      background-color: $grey;
+      border: 2px solid $opaqueMauve;
+    }
       #type-tag {
         height: 25px;
       }
-      #residential-suite {
+      #residential {
         width: 100px;
       }
 }

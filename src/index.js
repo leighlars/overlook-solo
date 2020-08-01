@@ -65,7 +65,15 @@ function guestViewHandler() {
     domUpdates.displayNewBookingForm(guest);
     // domUpdates.createTagHTML();
   }
-  if (event.target.className === 'guest-bookings-btns book-reservation') {
+  if (event.target.closest('.tag-btn')) {
+    event.preventDefault();
+    domUpdates.toggleTagButton();
+  }
+  if (event.target.className === "guest-bookings-btns search-reservations") {
+    event.preventDefault();
+    domUpdates.displayAvailableRooms();
+  }
+  if (event.target.className === "guest-bookings-btns book-reservation") {
     event.preventDefault();
     // get inputs from cal and tags
     // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": roomNumber};

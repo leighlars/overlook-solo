@@ -19,24 +19,11 @@ class Hotel {
     return idNum - 1;
   }
 
-  getAllTags() {
-    return this.rooms.reduce((allTags, room) => {
-      if (!allTags[0].roomType.includes(room.roomType)) {
-        allTags[0].roomType.push(room.roomType);
-      }
-      if (!allTags[1].numBeds.includes(room.numBeds)) {
-        allTags[1].numBeds.push(room.numBeds);
-      }
-      if (!allTags[2].bedSize.includes(room.bedSize)) {
-        allTags[2].bedSize.push(room.bedSize);
-      }
-      return allTags;
-    }, [{roomType: []}, {numBeds: []}, {bedSize: []} ]);
-  }
+ 
 
-  // filterRoomsByTags([roomType], [bedSize], [numBeds]) {
-  //   // loop over roomsData, if 
-  // }
+  filterRoomsByTags([date, cost, [tags]]) {
+    // loop over roomsData, if 
+  }
   // Allow customers to filter available rooms bed size, and/or number of beds
 
   authenticate(userName, password) {
