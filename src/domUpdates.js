@@ -87,7 +87,7 @@ let domUpdates = {
     document.querySelector(".guest-modal").innerHTML = '';
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Back</button><button class="exit-btn">X</button></span> 
-        <h5>Make New Reservation</h5>`);
+        <h4>Make New Reservation</h4>`);
     let formHTML = `<form class='booking-form'>
                         <input type='date' class='date-input' min='2020/08/5' max="2021-08-30"></input>
                         <label for='price' class='cost-label'>Choose a maximum room price:</label>
@@ -141,7 +141,7 @@ let domUpdates = {
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
       <span id='exit-btn-style'><button class="return-btn" id=${guest.id}>Back</button><button class="exit-btn">X</button></span> 
-      <h5>Found Available Rooms</h5>
+      <h4>Found Available Rooms</h4>
       <section class='booking-list'></section>`);
     let date = document.querySelector('.date-input').value;
     let maxCost = document.querySelector('#price').value;
@@ -156,7 +156,7 @@ let domUpdates = {
     document.querySelector('.manager-view').style.opacity = 0.8;
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
         <span id='exit-btn-style'><button class="return-btn" id=${guest.id}>Back</button><button class="exit-btn">X</button></span> 
-        <h5>${type} Reservations</h5>
+        <h4>${type} Reservations</h4>
         <section class='booking-list'></section>`);
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
     this.checkDataTypeForDisplay(bookingInfo);
@@ -178,7 +178,7 @@ let domUpdates = {
   createBookingHTML(bookingInfo) {
     const bookingHTML = `
       <section class='booking'>
-         <h5 class='booking-date'>${bookingInfo.date}</h5>
+         <h4 class='booking-date'>${bookingInfo.date}</h4>
          <p class='booking-room-num'>Room number: ${bookingInfo.roomNumber}</p>
          <p class='booking-room-type'>Room type: ${this.capitalize(bookingInfo.roomType)}</p>
          <p class='booking-bed-info'>Bed: ${bookingInfo.numBeds}, ${this.capitalize(bookingInfo.bedSize)}</p>

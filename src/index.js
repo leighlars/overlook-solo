@@ -1,5 +1,5 @@
 import domUpdates from './domUpdates';
-import fetchData from './fetchData';
+import fetchMethods from './fetchMethods';
 import Hotel from './hotel';
 
 import './images/grey-mountain.jpg';
@@ -12,7 +12,7 @@ let overlook;
 
 function getData() {
   event.preventDefault();
-  return fetchData().then((data) => {
+  return fetchMethods.fetchData().then((data) => {
     overlook = new Hotel(data, todaysDate);
   })
     .then(() => {
@@ -20,7 +20,7 @@ function getData() {
       let userName = document.getElementById("username-input");
       let pwd = document.getElementById("pw-input");
       overlook.authenticate(userName.value, pwd.value);
-      if (overlook.isManager && overlook.isAuthenticated) {
+      if (overlook.isAuthenticated && overlook.isManager) {
         domUpdates.defineData(currentUser, todaysDate, overlook);
         domUpdates.displayManagerDashboard();
 
@@ -35,6 +35,8 @@ function getData() {
 }
 
 // should i fetch on load or at the click of login?
+
+/// HANDLERS
 
 function mgrViewHandler() {
   event.preventDefault();
@@ -71,8 +73,7 @@ function guestViewHandler() {
   if (event.target.className === 'guest-bookings-btns delete-booking') {
     // get id of booking set to var deletedBooking
     // let deletedBooking =
-    // deleteBooking(deletedBooking);
-    // how do i click on a calendar date?
+    // fetchMethods.deleteBooking(deletedBooking);
     // 
   }
   if (event.target.className === 'guest-bookings-btns past-bookings') {
@@ -97,42 +98,12 @@ function formHandler() {
     event.preventDefault();
     // get inputs from cal and tags
     // let newBooking = {"userID": currentUser.id, "date": todaysDate, "roomNumber": roomNumber};
-    // postNewBooking(newBooking);
+    // fetchMethods.postNewBooking(newBooking);
   }
 }
 
-function postNewBooking(newBooking) {
-  fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings", {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(newBooking)
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('Success:', data)
-    })
-    .catch((error) => {
-      console.log('Failed:', error)
-    })
-}
 
-function deleteBooking(deletedBooking) {
-  fetch("https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings", {
-    method: "DELETE",
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(deletedBooking),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log('Success', data);
-    })
-    .catch((err) => console.log(err));
-}
-
-
-
-
-document.querySelector('.guest-modal').addEventListener('click', formHandler);
+document.querySelector('main').addEventListener('click', formHandler);
 document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
 document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
 document.querySelector('.login-btn').addEventListener('click', getData);
