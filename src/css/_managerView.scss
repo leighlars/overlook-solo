@@ -47,7 +47,7 @@
 .guest-card {
   @include generalDisplay();
   @include borders();
-  justify-content: initial;
+  justify-content: flex-end;
   margin: 20px;
   padding: 2%;
   width: 25vw;

@@ -51,7 +51,6 @@ let domUpdates = {
     this.overlook.getGuestsByName(input).forEach(guest => {
       let cardHTML = `<div class='guest-card' id=${guest.id}>
             <h4 class='mgr-guest-name'>${guest.name}</h4>
-            <p>Total Spent: ${guest.getTotalMoneySpent()}</p>
             <button class='expand-found-guest-btn' id=${guest.id}>Reservations</button>
           </div>`;
       document.querySelector(".known-guests").insertAdjacentHTML('beforeend', cardHTML);
