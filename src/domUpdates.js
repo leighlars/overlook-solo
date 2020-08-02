@@ -1,6 +1,5 @@
 import moment from 'moment';
 
-
 let domUpdates = {
   currentUser: null,
   todaysDate: null,
@@ -174,7 +173,8 @@ let domUpdates = {
     }
   },
 
-  displayConfirmationMessage(guest) {
+  displayConfirmationMessage(bookingInfo) {
+    let guest = this.overlook.users.find((user) => user.id === Number(bookingInfo[0]));
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
       `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Back</button><button class='exit-btn'>X</button></span> 
@@ -182,9 +182,9 @@ let domUpdates = {
       <section class='confirm-msg-box'></section>`)
     let confirmHTML = `
       <p class='confirm-msg'>Thank you for booking with The Overlook.</br>
-      We look forward to your stay.</br>
+      We look forward to your stay on ${bookingInfo[1]}.</br>
       Would you like to: </br></p>
-      <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>`
+      <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>`;
     document.querySelector('.confirm-msg-box').insertAdjacentHTML('beforeend', confirmHTML);
   },
 
@@ -229,10 +229,11 @@ let domUpdates = {
   },
 
   addDeleteButtonToHTML(bookingInfo) {
+    console.log(bookingInfo)
     document.querySelectorAll(".booking").forEach(element => {
       element.insertAdjacentHTML('beforeend', 
-        `<button class='guest-bookings-btns guest-delete-booking' id=${bookingInfo.id}>Delete Reservation</button>`);
-    })
+        `<button class='guest-bookings-btns guest-delete-booking' id=${element.id}>Delete Reservation</button>`);
+    });
   }
   
 }

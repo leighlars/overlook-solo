@@ -65,14 +65,11 @@ class Hotel {
   }
 
   filterRoomsByTags(date, maxCost, [tags]) {
-    let bookingsOnToday = this.bookings.filter(booking => booking.date === date);
-    let bookedRoomsNumbers = bookingsOnToday.map(booking => booking.roomNumber); 
-    let expensiveRooms = this.rooms.filter(room => room.costPerNight > maxCost);
-    let expensiveRoomsNumbers = expensiveRooms.map(room => room.number);
-    let allUnavailable = bookedRoomsNumbers.concat(expensiveRoomsNumbers);
+    let bookingsOnDay = this.bookings.filter(booking => booking.date === date).map(booking => booking.roomNumber); 
+    let expensiveRooms = this.rooms.filter(room => room.costPerNight > maxCost).map(room => room.number);
+    let allUnavailable = bookingsOnDay.concat(expensiveRooms);
     let availableRooms = this.rooms.filter(room => !allUnavailable.includes(room.number));
     return availableRooms.sort((a, b) => a.costPerNight - b.costPerNight);
-    // need to refactor into a reduce
   }
 
   // move methods below to manager

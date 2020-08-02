@@ -70,7 +70,7 @@ function guestViewHandler() {
     let guest = overlook.users.find((user) => user.id === Number(event.target.id));
     domUpdates.displayBookingInfo(guest, 'Upcoming');
   }
-  if (event.target.className === 'guest-bookings-btns delete-booking') {
+  if (event.target.className === 'guest-bookings-btns guest-delete-booking') {
     let deletedBooking = {id: Number(event.target.id)}
     fetchMethods.deleteBooking(deletedBooking);
   }
@@ -97,7 +97,7 @@ function formHandler() {
     let bookingInfo = event.target.id.split(' ');
     let newBooking = {"userID": Number(bookingInfo[0]), "date": bookingInfo[1], "roomNumber": Number(bookingInfo[2])};
     fetchMethods.postNewBooking(newBooking);
-    domUpdates.displayConfirmationMessage(Number(bookingInfo[0]));
+    domUpdates.displayConfirmationMessage(bookingInfo);
   }
 }
 
