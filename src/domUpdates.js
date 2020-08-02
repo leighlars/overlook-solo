@@ -22,7 +22,8 @@ let domUpdates = {
   },
   
   addManagerButtons() {
-    this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">Exit</button>`) : null;
+    this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">Main Menu</button>`) : null;
+    // this.over.isManager ?  document.querySelector('.return-btn').innerText = "Guest Menu" : null; // not working
   },
 
   /// MANAGER DASH
@@ -96,7 +97,7 @@ let domUpdates = {
   displayNewBookingForm(guest) {
     document.querySelector(".guest-modal").innerHTML = '';
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Guest Menu</button></span> 
+        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Main Menu</button></span> 
         <h4>Make New Reservation</h4>`);
     this.addManagerButtons();
     let formHTML = `<form class='booking-form'>
@@ -185,7 +186,7 @@ let domUpdates = {
     let guest = this.overlook.users.find((user) => user.id === Number(bookingInfo[0]));
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
-      `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'>Guest Menu</button></span> 
+      `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'>Main Menu</button></span> 
       <h4>Thank You!</h4>
       <section class='confirm-msg-box'></section>`);
     this.addManagerButtons();  
@@ -221,7 +222,7 @@ let domUpdates = {
     document.querySelector('.manager-view').style.opacity = 0.8;
     document.querySelector('.guest-modal').innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Guest Menu</button></span> 
+        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Main Menu</button></span> 
         <h4>${type} Reservations</h4>
         <section class='booking-list'></section>`);
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
