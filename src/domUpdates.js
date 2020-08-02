@@ -32,7 +32,7 @@ let domUpdates = {
             <p id='revenue'>${this.overlook.getTodaysRevenue(this.todaysDate)}</p> 
           </div>
         <div class='search-bar'>
-          <input type='text' class='inputs' id='search-guest-input' placeholder='Search Guest Name' maxlength='70' minlength='0'>
+          <input type='text' class='input' id='search-guest-input' placeholder='Search Guest Name' maxlength='70' minlength='0'>
           <button class='mgr-search-btn'>Find</button>
           <button class='clear-text-btn'>Clear</button>
         </div>
@@ -177,15 +177,31 @@ let domUpdates = {
     let guest = this.overlook.users.find((user) => user.id === Number(bookingInfo[0]));
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
-      `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Back</button><button class='exit-btn'>X</button></span> 
+      `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'>Back</button><button class='exit-btn'>X</button></span> 
       <h4>Thank You!</h4>
       <section class='confirm-msg-box'></section>`)
     let confirmHTML = `
       <p class='confirm-msg'>Thank you for booking with The Overlook.</br>
       We look forward to your stay on ${bookingInfo[1]}.</br>
-      Would you like to: </br></p>
+      Would you like to: </p>
       <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>`;
     document.querySelector('.confirm-msg-box').insertAdjacentHTML('beforeend', confirmHTML);
+  },
+
+  displayDeleteMessage(idNum) {
+    let guest = this.overlook.users.find((user) => user.id === Number(idNum));
+    document.querySelector(".guest-modal").innerHTML = "";
+    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
+      `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Back</button><button class='exit-btn'>X</button></span> 
+      <h4>Cancellation Confirmed</h4>
+      <section class='delete-msg-box'></section>`);
+    let deleteHTML = `
+    <p class='confirm-msg'>Your booking has been canceled.</br>
+      Please refer to our cancellation policy</br> 
+      for information regarding your refund.</br>
+      Would you like to: </p>
+      <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>`;
+    document.querySelector('.delete-msg-box').insertAdjacentHTML('beforeend', deleteHTML);
   },
 
 
@@ -195,13 +211,13 @@ let domUpdates = {
     document.querySelector('.manager-view').style.opacity = 0.8;
     document.querySelector('.guest-modal').innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn" id=${guest.id}>Back</button><button class="exit-btn">X</button></span> 
+        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Back</button><button class="exit-btn">X</button></span> 
         <h4>${type} Reservations</h4>
         <section class='booking-list'></section>`);
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
     this.checkDataTypeForDisplay(bookingInfo);
     if (type === 'Upcoming') {
-      this.addDeleteButtonToHTML(bookingInfo);
+      this.addDeleteButtonToHTML(guest);
     }
   },
 
@@ -228,11 +244,10 @@ let domUpdates = {
     document.querySelector(".booking-list").insertAdjacentHTML('beforeend', bookingHTML);
   },
 
-  addDeleteButtonToHTML(bookingInfo) {
-    console.log(bookingInfo)
+  addDeleteButtonToHTML(guest) {
     document.querySelectorAll(".booking").forEach(element => {
       element.insertAdjacentHTML('beforeend', 
-        `<button class='guest-bookings-btns guest-delete-booking' id=${element.id}>Delete Reservation</button>`);
+        `<button class='guest-bookings-btns guest-delete-booking' id='${element.id} ${guest.id}'>Delete Reservation</button>`);
     });
   }
   

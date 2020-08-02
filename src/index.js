@@ -71,8 +71,10 @@ function guestViewHandler() {
     domUpdates.displayBookingInfo(guest, 'Upcoming');
   }
   if (event.target.className === 'guest-bookings-btns guest-delete-booking') {
-    let deletedBooking = {id: Number(event.target.id)}
+    let deletedBookingIDs = event.target.id.split(' ');
+    let deletedBooking = {id: Number(deletedBookingIDs[0])}
     fetchMethods.deleteBooking(deletedBooking);
+    domUpdates.displayDeleteMessage(deletedBookingIDs[1]);
   }
   if (event.target.className === 'guest-bookings-btns past-bookings') {
     domUpdates.displayBookingInfo(guest, 'Past');

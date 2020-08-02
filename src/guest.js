@@ -29,14 +29,8 @@ class Guest {
     }
   }
 
-
   getCurrentBooking(todaysDate) {
-    let currentBooking = this.allBookings.find(booking => booking.date = todaysDate);
-    if (currentBooking) {
-      return currentBooking;
-    } else {
-      return "You're not booked with us today. Add a new reservation to get started."
-    }
+    return this.allBookings.find(booking => booking.date = todaysDate);
   }
 
   getPastBookings(todaysDate) {

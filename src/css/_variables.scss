@@ -2,12 +2,13 @@ $grey: grey;
 $transparentMauve: hsla(297, 13%, 31%, 0.83);
 $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 
-
 @mixin generalDisplay() {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  color: white;
 }
 
 @mixin borders() {
@@ -19,14 +20,12 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 @mixin headerFont($font-size) {
   font-family: 'Homemade Apple', serif;
   font-size: $font-size;
-  color: #FFFFFF;
 }
 
 @mixin bodyFont($font-size) {
   font-family: 'Josefin Sans', serif;
   font-weight: bolder;
   font-size: $font-size;
-  color: #FFFFFF;
 }
 
 @mixin buttons {
@@ -58,9 +57,17 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 }
 
 @mixin inputs {
+  @include borders();
   @include bodyFont(18px);
   margin: 15px;
   padding: 6px;
   height: 3vw;
+  text-align: center;
+}
+
+@mixin listDisplay() {
+  justify-content: initial;
+  overflow: scroll;
+  scroll-behavior: smooth;
   text-align: center;
 }

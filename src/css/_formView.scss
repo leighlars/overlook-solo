@@ -3,26 +3,19 @@
   @include borders();
   @include modals();
   background-color: $transparentMauve;
-  .login-btn {
-    @include buttons();
-  }
 }
 
-.inputs {
-  @include borders();
+.input {
   @include inputs();
 }
 
 .booking-form {
   @include generalDisplay();
+  @include listDisplay();
   justify-content: space-between;
   height: 80%;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
     .date-input {
-      @include borders();
-      @include bodyFont(16px);
-      margin: 10px;
+      @include inputs();
       padding: 15px;
     }
     .cost-label, output {
@@ -38,10 +31,8 @@
     margin: 5px;
     .tag-prompt {
       font-size: 16px;
-      text-align: center;
     }
       .tag-btn {
-        @include buttons();
         font-size: 14px;
         width: 70px;
       }
@@ -60,39 +51,28 @@
 
 .available-rooms {
   @include generalDisplay();
-  justify-content: initial;
-  overflow: scroll;
-  scroll-behavior: smooth; 
+  @include listDisplay();
     .found-room {
       @include generalDisplay();
-      text-align: center;
       margin: 20px;
       height: 80%;
     }
       .found-room-date {
         margin-bottom: 5px;
       }
-        .unavailable-msg {
-          text-align: center;
-        }
         .search-reservations-btn {
           @include borders();
           height: 8vh;
           width: 8vw;
         }
-        .book-room-btn {
-          @include buttons();
-        }
 }
 
 
-.confirm-msg-box {
+.confirm-msg-box,
+.delete-msg-box {
   @include generalDisplay();
   justify-content: space-evenly;
   height: 80%;
-    .confirm-msg {
-      text-align: center;
-    }
 }
 
 

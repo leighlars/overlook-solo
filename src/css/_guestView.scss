@@ -35,14 +35,11 @@
 
 .booking-list {
   @include generalDisplay();
-  justify-content: initial;
-  overflow: scroll;
-  scroll-behavior: smooth;
-  text-align: center;
+  @include listDisplay();
   height: 80%;
     .booking {
       @include generalDisplay();
       text-align: center;
-      margin: 30px;
+      margin: 20px;
     }
 }
