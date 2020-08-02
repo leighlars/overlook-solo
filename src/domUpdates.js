@@ -23,7 +23,6 @@ let domUpdates = {
   
   addManagerButtons() {
     this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">Main Menu</button>`) : null;
-    // this.over.isManager ?  document.querySelector('.return-btn').innerText = "Guest Menu" : null; // not working
   },
 
   /// MANAGER DASH
@@ -99,11 +98,11 @@ let domUpdates = {
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Main Menu</button></span> 
         <h4>Make New Reservation</h4>`);
-    this.addManagerButtons();
+    // this.addManagerButtons();
     let formHTML = `<form class='booking-form'>
                         <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
-                        <label for='price' class='cost-label'>Choose a maximum room price:</label>
-                        <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="500">
+                        <label for='price' class='cost-label'>Slide to set maximum room price:</label>
+                        <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
                         <output class="price-output" for="price"></output>
                         <div class='tag-list'></div>
                         <button type='submit' class='guest-bookings-btns search-reservations-btn' aria-label='submit-search-form' id='${guest.id}'>Search Rooms</button>     
@@ -111,7 +110,7 @@ let domUpdates = {
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', formHTML);
     const price = document.querySelector("#price");
     const output = document.querySelector(".price-output");
-    price.addEventListener("input", () => output.textContent = price.value);
+    price.addEventListener("input", () => output.textContent = `$${price.value}`);
     this.createTagHTML();
   },
 
@@ -148,6 +147,18 @@ let domUpdates = {
       this.tagsSelected.splice(i, 1);
     }
   },
+
+  // organizeTags(tag) {
+  //   if (tag === 'single' || tag === 'junior' || tag === 'suite' || tag === 'residential') {
+  //     this.tagsSelected[0].type.push(tag);
+  //   }
+  //   if (tag === '1' || tag === '2') {
+  //     this.tagsSelected[1].numBeds.push(tag);
+  //   }
+  //   if (tag === 'king' || tag === 'queen' || tag === 'full' || tag === 'twin') {
+  //     this.tagsSelected[2].bedSize.push(tag);
+  //   }
+  // },
   
   displayAvailableRooms(guest) {
     let date; 
