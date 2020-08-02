@@ -139,4 +139,8 @@ describe('Guest', function () {
     });
   });
 
+  it.only('should return specified bookings based on button click', function() {
+    
+  })
+
 });
