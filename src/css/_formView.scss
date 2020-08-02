@@ -1,0 +1,79 @@
+.login-view {
+  @include generalDisplay();
+  @include borders();
+  @include modals();
+  background-color: $transparentMauve;
+}
+
+.input {
+  @include inputs();
+}
+
+.booking-form {
+  @include generalDisplay();
+  @include listDisplay();
+  justify-content: space-between;
+  height: 80%;
+    .date-input {
+      @include inputs();
+      padding: 15px;
+    }
+    .cost-label, output {
+      font-size: 16px;
+      margin: 10px;
+    }
+}
+
+.tag-list {
+  @include generalDisplay();
+  margin: 10px;
+  .tag-box {
+    margin: 5px;
+    .tag-prompt {
+      font-size: 16px;
+    }
+      .tag-btn {
+        font-size: 14px;
+        width: 70px;
+      }
+        .tag-btn.active {
+          background-color: $grey;
+          border: 2px solid $opaqueMauve;
+        }
+          #type-tag {
+            height: 25px;
+          }
+            #residential {
+              width: 100px;
+            }
+  }
+}
+
+.available-rooms {
+  @include generalDisplay();
+  @include listDisplay();
+    .found-room {
+      @include generalDisplay();
+      margin: 20px;
+      height: 80%;
+    }
+      .found-room-date {
+        margin-bottom: 5px;
+      }
+        .search-reservations-btn {
+          @include borders();
+          height: 8vh;
+          width: 8vw;
+        }
+}
+
+
+.confirm-msg-box,
+.delete-msg-box {
+  @include generalDisplay();
+  justify-content: space-evenly;
+  height: 80%;
+}
+
+
+

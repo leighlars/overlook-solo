@@ -2,12 +2,13 @@ $grey: grey;
 $transparentMauve: hsla(297, 13%, 31%, 0.83);
 $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 
-
 @mixin generalDisplay() {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  color: white;
 }
 
 @mixin borders() {
@@ -29,8 +30,7 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 
 @mixin buttons {
   @include borders();
-  @include bodyFont(18px);
-  color: #FFFFFF;
+  @include bodyFont(16px);
   margin: 10px;
   height: 5vh;
   width: 95px;
@@ -43,7 +43,6 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
   @include generalDisplay();
   @include bodyFont(20px);
   justify-content: flex-start;
-  color: white;
   margin-top: 40px;
   height: 100%;
   width: 100%;
@@ -54,16 +53,21 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
   background-color: $opaqueMauve;
   height: 60vh;
   width: 40vw;
-  overflow: scroll;
-  scroll-behavior: smooth;
   z-index: 1000;
 }
 
 @mixin inputs {
+  @include borders();
   @include bodyFont(18px);
-  color: #FFFFFF;
   margin: 15px;
   padding: 6px;
   height: 3vw;
+  text-align: center;
+}
+
+@mixin listDisplay() {
+  justify-content: initial;
+  overflow: scroll;
+  scroll-behavior: smooth;
   text-align: center;
 }

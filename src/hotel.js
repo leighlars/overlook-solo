@@ -1,4 +1,5 @@
 import Guest from './guest';
+// import User from './user';
 
 class Hotel {
   constructor(rawData, todaysDate) {
@@ -23,9 +24,11 @@ class Hotel {
     if (password === "overlook2020" && userName === "manager") {
       this.isAuthenticated = true;
       this.isManager = true;
+
     } else if ((userName.includes('customer') &&  (idNum <= 50 && idNum > -1)) && (password === 'overlook2020')) {
       this.isAuthenticated = true;
       this.isManager = false;
+
     } else {
       alert("Incorrect username and/or password. Please try again.");
     }
@@ -61,15 +64,21 @@ class Hotel {
     });
   }
 
+  filterRoomsByTags(date, maxCost, [tags]) {
+    let bookingsOnDay = this.bookings.filter(booking => booking.date === date).map(booking => booking.roomNumber); 
+    let expensiveRooms = this.rooms.filter(room => room.costPerNight > maxCost).map(room => room.number);
+    let allUnavailable = bookingsOnDay.concat(expensiveRooms);
+    let availableRooms = this.rooms.filter(room => !allUnavailable.includes(room.number));
+    return availableRooms.sort((a, b) => a.costPerNight - b.costPerNight);
+  }
+
+  // move methods below to manager
+
   getAllTodaysBookings(todaysDate) {
     return this.bookings.filter(booking => booking.date === todaysDate);
   }
 
-  // findTodaysAvailableRooms(todaysDate) {
-  //   return this.rooms.filter(room => ! )
-  // }
-
-  getNumTodaysAvailability (rawData, todaysDate) {
+  getNumTodaysAvailability (todaysDate) {
     let numberAvailable = this.rooms.length - this.getAllTodaysBookings(todaysDate).length;
     return `Available lodging: ${numberAvailable} rooms`
   }
@@ -98,6 +107,7 @@ class Hotel {
     let capFirstLtr = input.charAt(0).toUpperCase() + input.slice(1);
     return this.users.filter(user => user.name.includes(capFirstLtr));
   }
+
 
 
 
