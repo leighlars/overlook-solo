@@ -7,7 +7,7 @@ h1 {
 }
 
 h2 {
-  @include headerFont(3vw);
+  @include bodyFont(3vw);
 }
 
 h4 {
@@ -19,6 +19,6 @@ h5 {
 }
 
 p {
-  @include bodyFont(16px);
+  @include bodyFont(20px);
   margin-bottom: 5px;
 }

@@ -22,7 +22,7 @@ Filter the list of available rooms by their roomType property </br>
 Select a room for booking </br>
 View an apology notice and prompt to select new date in the event rooms are unavailable on chosen date </br>
 View any room bookings (past or present) </br>
-The total amount I have spent on rooms </br>
+The total amount they have spent on rooms </br>
 
 ## Technologies / Systems
 - Javascript
@@ -42,7 +42,7 @@ The total amount I have spent on rooms </br>
 4. Copy the address that you would use to clone down this repo - something like git@github.com:...
 5. Add this remote to your cloned down repo: git remote add origin [address you copied in the previous step] - do not include the brackets
 6. Now try to commit something and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
-7. Once you have cloned the repo, change into the directory and install the project dependencies by running npm install.
+7. Once you have cloned the repo, change into the directory and install the project dependencies by running `npm install`.
 8. To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` to interact with the application. 
 9. To log in as manager, the username is 'manager'. To login as a customer, enter the username 'customer1', or any ending number up to 50. Both passwords are 'overlook2020'.
 10. Enter `control + c` in your terminal to stop the server at any time.
@@ -50,3 +50,7 @@ The total amount I have spent on rooms </br>
 ## Gif Showcase
 
 ## Reflections
+I am excited that I was able to accomplish so much with this project. From the beautiful and sensible design using SCSS, to the 100% Accessibility score, to fetching, posting, and deleting data to the API, to the utilization of spies/testing, I am proud of this project. I used friends to test my app for changes and recommendations. This project felt good most of the way, with tiny speed bumps at the start. 
+I would have liked to dove deeper into fetch. I loaded all my data when the log in button was clicked, but did not update bookings throughout the interaction on a user's login. I had to refresh to fetch more data, thus logging me out. 
+I would have liked to dove deeper into spies testing for fetch and DOM Updates.
+I also did not use inheritance and would have liked to have done so.

@@ -18,6 +18,9 @@
       @include inputs();
       padding: 15px;
     }
+    .price-input {
+      margin: 5px;
+    }
     .cost-label, output {
       font-size: 16px;
       margin: 10px;
