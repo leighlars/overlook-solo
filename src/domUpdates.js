@@ -22,7 +22,7 @@ let domUpdates = {
   },
   
   addManagerButtons() {
-    this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">Main Menu</button>`) : null;
+    this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">X</button>`) : null;
   },
 
   /// MANAGER DASH
@@ -97,7 +97,7 @@ let domUpdates = {
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Main Menu</button></span> 
         <h4>Make New Reservation</h4>`);
-    // this.addManagerButtons();
+    this.addManagerButtons();
     let formHTML = `<form class='booking-form'>
                         <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
                         <label for='price' class='cost-label'>Slide to set maximum room price:</label>

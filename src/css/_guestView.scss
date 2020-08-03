@@ -16,11 +16,11 @@
       display: flex;
       justify-content: flex-end;
       width: 100%;
+      margin-bottom: 15px;
     }
     .exit-btn, 
     .return-btn {
       @include buttons();
-      font-size: .5em;
       text-align: center;
     }
     .guest-bookings-btns {
