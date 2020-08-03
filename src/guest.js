@@ -1,9 +1,7 @@
-// import User from '../src/user';
-class Guest {
-  constructor(guestDetails, todaysDate) {
-    // super(id, name)
-    this.id = guestDetails.id;
-    this.name = guestDetails.name;
+import User from '../src/user';
+class Guest extends User {
+  constructor(guestDetails) {
+    super(guestDetails);
     this.allBookings;
     this.pastBookings;
     this.futureBookings;

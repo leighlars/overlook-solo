@@ -1,10 +1,8 @@
 import User from '../src/user'
 
 class Manager extends User {
-  constructor(userName, password) {
-    super(userName, password);
-    this.userName = 'manager';
-    this.password = 'overlook2020';
+  constructor() {
+    super(guestDetails);
   }
 
   getAllTodaysBookings(todaysDate) {
