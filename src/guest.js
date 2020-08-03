@@ -47,10 +47,10 @@ class Guest extends User {
   getUpcomingBookings(todaysDate) {
     let futureBookings = this.allBookings.filter(booking => booking.date > todaysDate);
     return futureBookings.sort((a, b) => {
-      if (a.date < b.date) {
+      if (a.date > b.date) {
         return 1;
       }
-      if (a.date > b.date) {
+      if (a.date < b.date) {
         return -1;
       }
       return 0;

@@ -66,7 +66,11 @@ function guestViewHandler() {
   }
   if (event.target.className === "guest-bookings-btns future-bookings") {
     let guest = overlook.users.find((user) => user.id === Number(event.target.id));
-    domUpdates.displayBookingInfo(guest, 'Upcoming');
+    fetchMethods.fetchData().then((data) => {
+      overlook.bookings = overlook.matchBookingsInfoFromRooms(data);
+      overlook.matchBookingsWithUser([guest], data);
+      domUpdates.displayBookingInfo(guest, 'Upcoming');
+    });
   }
   if (event.target.className === 'guest-bookings-btns guest-delete-booking') {
     let deletedBookingIDs = event.target.id.split(' ');
