@@ -20,17 +20,15 @@
     .exit-btn, 
     .return-btn {
       @include buttons();
-      height: 3.9vh;
-      padding-top: .5%;
+      font-size: .5em;
+      text-align: center;
     }
     .guest-bookings-btns {
       @include buttons();
       font-size: 18px;
-      width: 15vw;
-      height: 7vh;
+      width: 30vh;
     }
 }
-
 
 .booking-list {
   @include generalDisplay();

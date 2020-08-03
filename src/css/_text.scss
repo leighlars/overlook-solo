@@ -2,12 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 h1 {
-  @include headerFont(6.55vw);
+  @include headerFont(9vh);
   margin-top: 40px;
 }
 
 h2 {
-  @include bodyFont(3vw);
+  @include bodyFont(4.5vh);
+  margin-bottom: 10px;
 }
 
 h4 {
@@ -19,6 +20,6 @@ h5 {
 }
 
 p {
-  @include bodyFont(20px);
+  @include bodyFont(3vh);
   margin-bottom: 5px;
 }

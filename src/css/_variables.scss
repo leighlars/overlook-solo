@@ -31,9 +31,8 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 @mixin buttons {
   @include borders();
   @include bodyFont(16px);
-  margin: 10px;
-  height: 5vh;
-  width: 95px;
+  margin: 7px;
+  padding: 2%;
       &:hover {
         background-color: $grey;
       }
@@ -51,16 +50,16 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 @mixin modals {
   box-shadow: 1px 1px 35px black;
   background-color: $opaqueMauve;
-  height: 60vh;
-  width: 40vw;
+  height: 65vh;
+  width: 80vh;
   z-index: 1000;
 }
 
 @mixin inputs {
   @include borders();
   @include bodyFont(18px);
-  margin: 15px;
-  padding: 6px;
+  margin: 10px;
+  padding: 1%;
   height: 3vw;
   text-align: center;
 }
