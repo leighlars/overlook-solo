@@ -16,21 +16,19 @@
       display: flex;
       justify-content: flex-end;
       width: 100%;
+      margin-bottom: 15px;
     }
     .exit-btn, 
     .return-btn {
       @include buttons();
-      height: 3.9vh;
-      padding-top: .5%;
+      text-align: center;
     }
     .guest-bookings-btns {
       @include buttons();
       font-size: 18px;
-      width: 15vw;
-      height: 7vh;
+      width: 30vh;
     }
 }
-
 
 .booking-list {
   @include generalDisplay();

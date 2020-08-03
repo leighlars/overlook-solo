@@ -1,0 +1,27 @@
+@media only screen and (max-width: 700px) {
+  .login-view {
+    width: 60vh;
+  }
+
+  .inputs {
+    height: 6vw;
+  }
+
+  .guest-card {
+    padding: 4%;
+    width: 45vw;
+    height: 18vh
+  }
+
+  .guest-modal {
+   width: 60vh;
+ }
+
+  .exit-btn, 
+    .return-btn {
+      width: 75px;
+    }
+
+
+
+}

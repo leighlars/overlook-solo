@@ -34,8 +34,6 @@ function getData() {
     .catch((err) => console.log(err.message));
 }
 
-// should i fetch on load or at the click of login?
-
 /// HANDLERS
 
 function mgrViewHandler() {
@@ -108,4 +106,3 @@ document.querySelector('.login-btn').addEventListener('click', getData);
 document.querySelector('.manager-view').addEventListener('click', mgrViewHandler);
 document.querySelector('.guest-view').addEventListener('click', guestViewHandler);
 document.querySelector('.guest-view').addEventListener("click", formHandler);
-// window.addEventListener('load', getData); // fetch on load?
