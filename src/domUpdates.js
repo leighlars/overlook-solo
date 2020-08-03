@@ -23,6 +23,7 @@ let domUpdates = {
   
   addManagerButtons() {
     this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">X</button>`) : null;
+    this.overlook.isManager ? document.querySelector('.return-btn').innerText = 'Guest Menu' : null;
   },
 
   /// MANAGER DASH
