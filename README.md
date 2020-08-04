@@ -39,6 +39,8 @@ The total amount they have spent on rooms </br>
 
 ## Set Up 
 
+To interact with the app without cloning / downloading the file, click [here](https://leighlars.github.io/overlook-solo/).
+
 1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run git clone (you replace the [...] with the terminal command arguments): git clone [remote-address] [what you want to name the repo]
 2. Remove the default remote: git remote rm origin (notice that git remote -v not gives you back nothing)
 3. Create a new repo on GitHub with the name of [what you want to name the repo] to be consistent with naming
