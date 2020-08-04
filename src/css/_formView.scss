@@ -38,7 +38,8 @@
       .tag-btn {
         font-size: 14px;
         height: 50px;
-        width: 70px;
+        width: 80px;
+        padding: 1%;
       }
       .type-tag-btns {
         display: flex;
@@ -47,12 +48,7 @@
           background-color: $grey;
           border: 2px solid $opaqueMauve;
         }
-          #type-tag {
-            height: 25px;
-          }
-            #residential {
-              width: 100px;
-            }
+          
   }
 }
 
