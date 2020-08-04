@@ -92,6 +92,7 @@ let domUpdates = {
   // ADD NEW BOOKING FORM
 
   displayNewBookingForm(guest) {
+    this.tagsSelected = [];
     document.querySelector(".guest-modal").innerHTML = '';
     document.querySelector(".guest-modal").innerHTML += `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
@@ -99,7 +100,7 @@ let domUpdates = {
     this.displayUserHeaderButtons();
     document.querySelector('.guest-modal').innerHTML += `<form class='booking-form'>
                         <label for='price' class='cost-label'>Type or select calendar date:</label>
-                        <input type='date' class='date-input' min='2020-08-05' max="2021-08-30" required></input>
+                        <input type='date' class='date-input' min='2020-08-04' max="2021-08-30" required></input>
                         <label for='price' class='cost-label'>Slide to select maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
                         <output class="price-output" for="price">$300</output>
@@ -115,12 +116,12 @@ let domUpdates = {
   createTagHTML() {
     document.querySelector(".tag-list").innerHTML += `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
-        <div class='type-tag-btns'>
-          <button class='tag-btn' value='single' id='type-tag'>Single Room</button>
-          <button class='tag-btn' value='junior' id='type-tag'>Junior Suite</button>
-          <button class='tag-btn' value='suite' id='type-tag'>Suite</button>
-          <button class='tag-btn' value='residential' id='type-tag'>Residential Suite</button>
-        </div>
+      <div class='type-tag-btns'>
+        <button class='tag-btn' value='single room' id='type-tag'>Single Room</button>
+        <button class='tag-btn' value='junior suite' id='type-tag'>Junior Suite</button>
+        <button class='tag-btn' value='suite' id='type-tag'>Suite</button>
+        <button class='tag-btn' value='residential suite' id='type-tag'>Residential Suite</button>
+      </div>
       </div>`;
   },
 
