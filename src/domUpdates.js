@@ -98,10 +98,11 @@ let domUpdates = {
         <h4>Make New Reservation</h4>`;
     this.displayUserHeaderButtons();
     document.querySelector('.guest-modal').innerHTML += `<form class='booking-form'>
+                        <label for='price' class='cost-label'>Type or select calendar date:</label>
                         <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
-                        <label for='price' class='cost-label'>Slide to set maximum room price:</label>
+                        <label for='price' class='cost-label'>Slide to select maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
-                        <output class="price-output" for="price"></output>
+                        <output class="price-output" for="price">$300</output>
                         <div class='tag-list'></div>
                         <button type='submit' class='guest-bookings-btns search-reservations-btn' aria-label='submit-search-form' id='${guest.id}'>Search Rooms</button>     
                       </form>`;
@@ -143,28 +144,15 @@ let domUpdates = {
       this.tagsSelected.splice(i, 1);
     }
   },
-
-  // organizeTags(tag) {
-  //   if (tag === 'single' || tag === 'junior' || tag === 'suite' || tag === 'residential') {
-  //     this.tagsSelected[0].type.push(tag);
-  //   }
-  //   if (tag === '1' || tag === '2') {
-  //     this.tagsSelected[1].numBeds.push(tag);
-  //   }
-  //   if (tag === 'king' || tag === 'queen' || tag === 'full' || tag === 'twin') {
-  //     this.tagsSelected[2].bedSize.push(tag);
-  //   }
-  // },
-  // ^^ tag logic not working
   
   displayAvailableRooms(guest) {
-    let date; 
+    let date;
     if (document.querySelector('.date-input').value !== null) {
       date = document.querySelector(".date-input").value;
       date = moment(date).format("YYYY/MM/DD");
     }
     let maxCost = document.querySelector('#price').value;
-    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
+    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost);
     document.querySelector(".guest-modal").innerHTML = `
       <span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Search Results</h4>
@@ -175,7 +163,8 @@ let domUpdates = {
         this.createRoomsHTML(guest, date, room);
       });
     } else {
-      document.querySelector('.available-rooms').innerHTML += `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p>`;
+      document.querySelector('.available-rooms').innerHTML += `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p> 
+        <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Reservation</button>`;
     }
   },
 

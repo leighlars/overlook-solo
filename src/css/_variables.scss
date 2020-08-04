@@ -65,6 +65,7 @@ $opaqueMauve: hsla(297, 13%, 31%, 1.0);
 }
 
 @mixin listDisplay() {
+  @include generalDisplay();
   justify-content: initial;
   overflow: scroll;
   scroll-behavior: smooth;

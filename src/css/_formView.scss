@@ -10,10 +10,10 @@
 }
 
 .booking-form {
-  @include generalDisplay();
   @include listDisplay();
   justify-content: space-between;
   height: 80%;
+  margin: 10px;
     .date-input {
       @include inputs();
       padding: 15px;
@@ -23,7 +23,7 @@
     }
     .cost-label, output {
       font-size: 16px;
-      margin: 10px;
+      margin: 5px;
     }
 }
 
@@ -54,8 +54,10 @@
 }
 
 .available-rooms {
-  @include generalDisplay();
   @include listDisplay();
+  justify-content: flex-start;
+  height: 80%;
+  margin: 10px;
     .found-room {
       @include generalDisplay();
       margin: 20px;
@@ -78,8 +80,9 @@
 .confirm-msg-box,
 .delete-msg-box {
   @include generalDisplay();
-  justify-content: space-evenly;
+  justify-content: flex-start;
   height: 80%;
+  margin: 10px;
 }
 
 

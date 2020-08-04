@@ -64,6 +64,9 @@ The total amount they have spent on rooms </br>
 ![gif of searching, adding, deleting reservations](/images/overlook-add-delete-reserv.gif)</br>
 *Searching, adding, and deleting reservations*
 
+![gif of error message search results not found](/images/overlook-error.gif)</br>
+*Viewing error message when rooms are unavailable*
+
 ![gif of viewing alert when username is incorrect](/images/overlook-wrong-login.gif)</br>
 *Alert when username is incorrect*
 
