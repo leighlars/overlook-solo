@@ -149,11 +149,15 @@ describe('Hotel', () => {
     expect(hotel.isManager).to.equal(true);
     expect(hotel.isAuthenticated).to.equal(true);
   });
-
+  
   it("should be authenticated as a guest after log in", () => {
     hotel.authenticate('customer49', 'overlook2020');
     expect(hotel.isManager).to.deep.equal(false);
     expect(hotel.isAuthenticated).to.equal(true);
+  });
+  
+  it('should filter rooms by user selections', () => {
+    expect(hotel.filterRoomsByTags(todaysDate, 375, ['residential suite'])).to.deep.equal([]);
   });
 
   it.skip("should throw an error if password is incorrect", () => {
@@ -169,7 +173,6 @@ describe('Hotel', () => {
   });
 
   // ^^ says 'alert is not defined', dunno how to test for alerts in npm. 
-  // this passes on dom though, as the alert occurs with incorrect inputs
-  
-
-});
+  // this passes on dom though, as the alert occurs with incorrect inputs}
+ 
+})
