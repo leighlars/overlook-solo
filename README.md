@@ -49,6 +49,27 @@ The total amount they have spent on rooms </br>
 
 ## Gif Showcase
 
+![gif of viewing manager dashboard](/images/overlook-mgr-dash.gif)</br>
+*Viewing manager login and dashboard, including daily metrics and search functionality*
+
+![gif of manager view all guests info](/images/overlook-mgr-view-guests.gif)</br>
+*Viewing manager dashboard, reviewing guest information*
+
+![gif of logging in and viewing as guest](/images/overlook-guestview.gif)</br>
+*Logging in and viewing as guest*
+
+![gif of searching, adding, deleting reservations](/images/overlook-add-delete-reserv.gif)</br>
+*Searching, adding, and deleting reservations*
+
+![gif of viewing alert when username is incorrect](/images/overlook-wrong-login.gif)</br>
+*Alert when username is incorrect*
+
+![gif of accessibility score](/images/overlook-accessibility.gif)</br>
+*Tabbing through elements on page, 100% Lighthouse score*
+
+![gif of mobile view login](/images/overlook-mobile.gif)</br>
+*Mobile view*
+
 ## Reflections
 I am excited that I was able to accomplish so much with this project. From the beautiful, responsive, and sensible design using SCSS, to the 100% Accessibility score, to fetching, posting, and deleting data to the API, fetching data throughout the use of the app for UX friendliness, to the utilization of spies/testing, I am proud of this project. I used friends to test my app for changes and recommendations. This project felt good most of the way, with tiny speed bumps at the start. 
 I would have liked to dove deeper into spies testing for fetch and DOM Updates. Additionally, I left the HTML / CSS code logic in for the tags, but I left them in for styling purposes. The tags do not actually filter any rooms (non-functional). 

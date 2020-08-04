@@ -78,7 +78,7 @@ let domUpdates = {
     if (this.overlook.isManager) {
       document.querySelector(".guest-modal").innerHTML = `<span id='exit-btn-style'><button class="exit-btn">Exit</button></span>`; 
     }
-    let guestHome = `
+    document.querySelector('.guest-modal').innerHTML += `
           <h4 class='guest-name'>${guest.name}</h4>
           <p class='guest-total-spent'>Total Spent: ${guest.getTotalMoneySpent()}</p>
           <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make New Reservation</button>
@@ -86,7 +86,6 @@ let domUpdates = {
           <button class='guest-bookings-btns future-bookings' id='${guest.id}'>Upcoming Reservations</button>
           <button class='guest-bookings-btns past-bookings' id='${guest.id}'>Past Reservations</button>
         `;
-    document.querySelector('.guest-modal').innerHTML += guestHome;
   },
 
   
@@ -98,7 +97,7 @@ let domUpdates = {
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>Make New Reservation</h4>`;
     this.displayUserHeaderButtons();
-    let formHTML = `<form class='booking-form'>
+    document.querySelector('.guest-modal').innerHTML += `<form class='booking-form'>
                         <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
                         <label for='price' class='cost-label'>Slide to set maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
@@ -106,7 +105,6 @@ let domUpdates = {
                         <div class='tag-list'></div>
                         <button type='submit' class='guest-bookings-btns search-reservations-btn' aria-label='submit-search-form' id='${guest.id}'>Search Rooms</button>     
                       </form>`;
-    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', formHTML);
     const price = document.querySelector("#price");
     const output = document.querySelector(".price-output");
     price.addEventListener("input", () => output.textContent = `$${price.value}`);
@@ -114,7 +112,7 @@ let domUpdates = {
   },
 
   createTagHTML() {
-    let tagHTML = `
+    document.querySelector('.tag-list').innerHTML += `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
         <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
         <button class='tag-btn' id='junior' id='type-tag'>Junior Suite</button>
@@ -131,7 +129,6 @@ let domUpdates = {
         <button class='tag-btn' id='full'>Full</button>
         <button class='tag-btn' id='twin'>Twin</button>
       </div>`;
-    document.querySelector('.tag-list').insertAdjacentHTML('beforeend', tagHTML);
   },
 
   toggleTagButton() {
@@ -212,7 +209,7 @@ let domUpdates = {
   displayDeleteMessage(idNum) {
     document.querySelector(".guest-modal").innerHTML = "";
     let guest = this.overlook.users.find((user) => user.id === Number(idNum));
-    document.querySelector(".guest-modal").innerHTML += `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
+    document.querySelector(".guest-modal").innerHTML = `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Cancellation Confirmed</h4>
       <section class='delete-msg-box'></section>`;
     this.displayUserHeaderButtons();  
