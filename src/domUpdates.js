@@ -147,17 +147,18 @@ let domUpdates = {
     }
   },
 
-  organizeTags(tag) {
-    if (tag === 'single' || tag === 'junior' || tag === 'suite' || tag === 'residential') {
-      this.tagsSelected[0].type.push(tag);
-    }
-    if (tag === '1' || tag === '2') {
-      this.tagsSelected[1].numBeds.push(tag);
-    }
-    if (tag === 'king' || tag === 'queen' || tag === 'full' || tag === 'twin') {
-      this.tagsSelected[2].bedSize.push(tag);
-    }
-  },
+  // organizeTags(tag) {
+  //   if (tag === 'single' || tag === 'junior' || tag === 'suite' || tag === 'residential') {
+  //     this.tagsSelected[0].type.push(tag);
+  //   }
+  //   if (tag === '1' || tag === '2') {
+  //     this.tagsSelected[1].numBeds.push(tag);
+  //   }
+  //   if (tag === 'king' || tag === 'queen' || tag === 'full' || tag === 'twin') {
+  //     this.tagsSelected[2].bedSize.push(tag);
+  //   }
+  // },
+  // ^^ tag logic not working
   
   displayAvailableRooms(guest) {
     let date; 
@@ -177,13 +178,12 @@ let domUpdates = {
         this.createRoomsHTML(guest, date, room);
       });
     } else {
-      document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p>`);
+      document.querySelector('.available-rooms').innerHTML += `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p>`;
     }
   },
 
   createRoomsHTML(guest, date, room) {
-    let roomHTML = 
-        `<div class='found-room'>
+    document.querySelector('.available-rooms').innerHTML += `<div class='found-room'>
           <h4 class='found-room-date'>${date}</h4>
           <p class='found-room-room-num'>Room number: ${room.number}</p>
           <p class='found-room-room-type'>Room type: ${this.capitalize(room.roomType)}</p>
@@ -192,8 +192,6 @@ let domUpdates = {
           <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
           <button type='submit' class='book-room-btn' id='${guest.id} ${date} ${room.number}'>Book</button>
         </div>`;
-    document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
-
   },
 
   displayConfirmationMessage(bookingInfo) {
@@ -204,29 +202,26 @@ let domUpdates = {
       <h4>Thank You!</h4>
       <section class='confirm-msg-box'></section>`;
     this.displayUserHeaderButtons();  
-    let confirmHTML = `
+    document.querySelector(".confirm-msg-box").innerHTML += `
       <p class='confirm-msg'>Thank you for booking with The Overlook.</br>
       We look forward to your stay on ${bookingInfo[1]}.</br>
       Would you like to: </p>
       <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>`;
-    document.querySelector('.confirm-msg-box').insertAdjacentHTML('beforeend', confirmHTML);
   },
 
   displayDeleteMessage(idNum) {
     document.querySelector(".guest-modal").innerHTML = "";
     let guest = this.overlook.users.find((user) => user.id === Number(idNum));
-    document.querySelector(".guest-modal").innerHTML +=
-      `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
+    document.querySelector(".guest-modal").innerHTML += `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Cancellation Confirmed</h4>
       <section class='delete-msg-box'></section>`;
     this.displayUserHeaderButtons();  
-    let deleteHTML = `
+    document.querySelector(".delete-msg-box").innerHTML += `
     <p class='confirm-msg'>Your booking has been canceled.</br>
       Please refer to our cancellation policy</br> 
       for information regarding your refund.</br>
       Would you like to: </p>
       <button class='guest-bookings-btns new-booking-form' id='${guest.id}'>Make Another Reservation</button>`;
-    document.querySelector('.delete-msg-box').insertAdjacentHTML('beforeend', deleteHTML);
   },
 
   ///// DISPLAYING RESERVATIONS
@@ -257,7 +252,7 @@ let domUpdates = {
   },
 
   createBookingHTML(bookingInfo) {
-    const bookingHTML = `
+    document.querySelector(".booking-list").innerHTML += `
       <section class='booking' id=${bookingInfo.id}>
          <h4 class='booking-date'>${bookingInfo.date}</h4>
          <p class='booking-room-num'>Room number: ${bookingInfo.roomNumber}</p>
@@ -266,13 +261,11 @@ let domUpdates = {
          <p class='booking-bidet-info'>Bidet: ${this.capitalize(String(bookingInfo.bidet))}</p>
          <p class='booking-room-cost'>Cost: $${bookingInfo.cost}</p>
       </section>`;     
-    document.querySelector(".booking-list").insertAdjacentHTML('beforeend', bookingHTML);
   },
 
   addDeleteButtonToHTML(guest) {
     document.querySelectorAll(".booking").forEach(element => {
-      element.insertAdjacentHTML('beforeend', 
-        `<button class='guest-bookings-btns guest-delete-booking' id='${element.id} ${guest.id}'>Delete Reservation</button>`);
+      element.innerHTML += `<button class='guest-bookings-btns guest-delete-booking' id='${element.id} ${guest.id}'>Delete Reservation</button>`;
     });
   }
   
