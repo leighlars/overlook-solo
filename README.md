@@ -67,7 +67,7 @@ The total amount they have spent on rooms </br>
 ![gif of error message search results not found](./src/images/overlook-error.gif)</br>
 *Viewing error message when rooms are unavailable*
 
-![gif of viewing alert when username is incorrect](./src/images/overlook-wrong-login.gif)</br>
+![gif of viewing alert when username is incorrect](./src/images/overlook-wronglogin.gif)</br>
 *Alert when username is incorrect*
 
 ![gif of accessibility score](./src/images/overlook-accessibility.gif)</br>
