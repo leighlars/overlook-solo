@@ -99,7 +99,7 @@ let domUpdates = {
     this.displayUserHeaderButtons();
     document.querySelector('.guest-modal').innerHTML += `<form class='booking-form'>
                         <label for='price' class='cost-label'>Type or select calendar date:</label>
-                        <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
+                        <input type='date' class='date-input' min='2020-08-05' max="2021-08-30" required></input>
                         <label for='price' class='cost-label'>Slide to select maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
                         <output class="price-output" for="price">$300</output>
