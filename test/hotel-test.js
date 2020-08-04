@@ -157,7 +157,16 @@ describe('Hotel', () => {
   });
   
   it('should filter rooms by user selections', () => {
-    expect(hotel.filterRoomsByTags(todaysDate, 375, ['residential suite'])).to.deep.equal([]);
+    expect(hotel.filterRoomsByTags("2020/08/22", 375, ["residential suite"])).to.deep.equal([
+      {
+        number: 1,
+        roomType: "residential suite",
+        bidet: true,
+        bedSize: "queen",
+        numBeds: 1,
+        costPerNight: 358.4,
+      },
+    ]);
   });
 
   it.skip("should throw an error if password is incorrect", () => {
