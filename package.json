@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Project starter kit using webpack, mocha, chai, and SCSS/SASS enabled",
   "main": "src/index.js",
+  "homepage": 
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
@@ -11,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turingschool-examples/webpack-starter-kit.git"
+    "url": "git+https://github.com/leighlars/overlook-solo.git"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
