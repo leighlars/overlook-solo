@@ -96,6 +96,7 @@ describe('Hotel', () => {
 
   it('should return array of bookings that include room info of the booking', () => {
     expect(hotel.bookings[0].cost).to.deep.equal(358.4);
+    expect(hotel.bookings[0].roomType).to.deep.equal("residential suite");
   });
   
   it('should return instantiated users with appropriate bookings and matched room info', () => {
@@ -121,15 +122,18 @@ describe('Hotel', () => {
   });
 
   it('should return an array of all bookings for today', () => {
-    expect(hotel.getAllTodaysBookings(todaysDate).length).to.deep.equal(2);
+    expect(hotel.getAllTodaysBookings("2020/04/22").length).to.deep.equal(2);
+    expect(hotel.getAllTodaysBookings("2020/08/15").length).to.deep.equal(0);
   })
 
   it('should return percentage of rooms booked for today', () => {
     expect(hotel.getTodaysBookedPercentage(todaysDate)).to.deep.equal("Occupied lodging: 50%");
+    expect(hotel.getTodaysBookedPercentage("2020/08/15")).to.deep.equal("Occupied lodging: 0%");
   });
 
   it("should return number of available rooms for today", () => {
-    expect(hotel.getNumTodaysAvailability(rawData, todaysDate)).to.equal("Available lodging: 4 rooms");
+    expect(hotel.getNumTodaysAvailability(rawData, "2020/04/22")).to.equal("Available lodging: 4 rooms");
+    expect(hotel.getNumTodaysAvailability(rawData, "2020/08/15")).to.equal("Available lodging: 4 rooms");
   });
 
   it('should return the total revenue for the day', () => {
@@ -167,16 +171,25 @@ describe('Hotel', () => {
         costPerNight: 358.4,
       },
     ]);
+    expect(hotel.filterRoomsByTags("2020/08/22", 170, ["residential suite"])).to.deep.equal([]);
   });
 
-  it.skip("should throw an error if password is incorrect", () => {
-    hotel.authenticate('customer51, overlook');
+  it.skip("should throw an error if password is incorrect or empty", () => {
+    hotel.authenticate("customer51", "overlook");
+    expect(hotel.isAuthenticated).to.equal(false);
+    expect(hotel.isManager).to.deep.equal(false);
+
+    hotel.authenticate("customer51", "");
     expect(hotel.isAuthenticated).to.equal(false);
     expect(hotel.isManager).to.deep.equal(false);
   });
 
-  it.skip("should throw an error if username is incorrect", () => {
-    hotel.authenticate('customer51, overlook2020');
+  it.skip("should throw an error if username is incorrect or empty", () => {
+    hotel.authenticate('customer51', 'overlook2020');
+    expect(hotel.isAuthenticated).to.equal(false);
+    expect(hotel.isManager).to.deep.equal(false);
+
+    hotel.authenticate("", "overlook2020");
     expect(hotel.isAuthenticated).to.equal(false);
     expect(hotel.isManager).to.deep.equal(false);
   });
