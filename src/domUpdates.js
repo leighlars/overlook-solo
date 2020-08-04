@@ -114,12 +114,14 @@ let domUpdates = {
   },
 
   createTagHTML() {
-    document.querySelector('.tag-list').innerHTML += `
+    document.querySelector(".tag-list").innerHTML += `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
+      <div class='type-tag-btns'>
         <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
         <button class='tag-btn' id='junior' id='type-tag'>Junior Suite</button>
         <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
         <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
+      </div>
       </div>
       <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
         <button class='tag-btn' id='1'>1</button>

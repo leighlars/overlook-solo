@@ -40,6 +40,9 @@
         height: 50px;
         width: 70px;
       }
+      .type-tag-btns {
+        display: flex;
+      }
         .tag-btn.active {
           background-color: $grey;
           border: 2px solid $opaqueMauve;
