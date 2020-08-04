@@ -92,6 +92,7 @@ let domUpdates = {
   // ADD NEW BOOKING FORM
 
   displayNewBookingForm(guest) {
+    this.tagsSelected = [];
     document.querySelector(".guest-modal").innerHTML = '';
     document.querySelector(".guest-modal").innerHTML += `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
@@ -99,7 +100,7 @@ let domUpdates = {
     this.displayUserHeaderButtons();
     document.querySelector('.guest-modal').innerHTML += `<form class='booking-form'>
                         <label for='price' class='cost-label'>Type or select calendar date:</label>
-                        <input type='date' class='date-input' min='2020-08-05' max="2021-08-30" required></input>
+                        <input type='date' class='date-input' min='2020-08-04' max="2021-08-30" required></input>
                         <label for='price' class='cost-label'>Slide to select maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
                         <output class="price-output" for="price">$300</output>
@@ -108,35 +109,24 @@ let domUpdates = {
                       </form>`;
     const price = document.querySelector("#price");
     const output = document.querySelector(".price-output");
-    // document.querySelector(".date-input").defaultValue = '2020-01-01';
     price.addEventListener("input", () => output.textContent = `$${price.value}`);
     this.createTagHTML();
   },
 
   createTagHTML() {
     document.querySelector(".tag-list").innerHTML += `
-      <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
+      <div class='tag-box box-type'><p class='tag-prompt'>Select Room Type:</p>
       <div class='type-tag-btns'>
-        <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
-        <button class='tag-btn' id='junior' id='type-tag'>Junior Suite</button>
-        <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
-        <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
+        <button class='tag-btn' value='single room' id='type-tag'>Single Room</button>
+        <button class='tag-btn' value='junior suite' id='type-tag'>Junior Suite</button>
+        <button class='tag-btn' value='suite' id='type-tag'>Suite</button>
+        <button class='tag-btn' value='residential suite' id='type-tag'>Residential Suite</button>
       </div>
-      </div>
-      <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
-        <button class='tag-btn' id='1'>1</button>
-        <button class='tag-btn' id='2'>2</button>
-      </div>
-      <div class='tag-box box-bedSize'><p class='tag-prompt'>Filter Tags By Bed Size:</p>
-        <button class='tag-btn' id='king'>King</button>
-        <button class='tag-btn' id='queen'>Queen</button>
-        <button class='tag-btn' id='full'>Full</button>
-        <button class='tag-btn' id='twin'>Twin</button>
       </div>`;
   },
 
   toggleTagButton() {
-    let tag = event.target.id;
+    let tag = event.target.value;
     let tagButton = event.target.closest('.tag-btn');
     if (!tagButton.classList.contains('active')) {
       tagButton.classList.add('active');
@@ -147,7 +137,6 @@ let domUpdates = {
       this.tagsSelected.splice(i, 1);
     }
   },
-  
 
   getDateFromForm() {
     const datePicker = document.querySelector('.date-input');
@@ -163,7 +152,7 @@ let domUpdates = {
   displayAvailableRooms(guest) {
     let date = this.getDateFromForm();
     let maxCost = document.querySelector('#price').value;
-    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost);
+    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
     document.querySelector(".guest-modal").innerHTML = `
       <span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Search Results</h4>
