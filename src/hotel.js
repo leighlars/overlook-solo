@@ -64,12 +64,32 @@ class Hotel {
     });
   }
 
-  filterRoomsByTags(date, maxCost) {
+  filterRoomsByTags(date, maxCost, tags) {
     let bookingsOnDay = this.bookings.filter(booking => booking.date === date).map(booking => booking.roomNumber); 
     let expensiveRooms = this.rooms.filter(room => room.costPerNight > maxCost).map(room => room.number);
     let allUnavailable = bookingsOnDay.concat(expensiveRooms);
     let availableRooms = this.rooms.filter(room => !allUnavailable.includes(room.number));
+    availableRooms = this.filterByTags(availableRooms, tags);
+    console.log(availableRooms);
     return availableRooms.sort((a, b) => a.costPerNight - b.costPerNight);
+  }
+
+  filterByTags(availableRooms, tags) {
+    console.log(tags);
+    return availableRooms.filter((room) => {
+      let matchesATag = tags.some((tag) => {
+        return tag === room.roomType;
+      });
+      return matchesATag;
+    });
+    // return availableRooms.reduce((availableRoomList, room) => {
+    //   tags.forEach(tag => {
+    //     if (room.roomType === tag) {
+    //       availableRoomList.push(room)
+    //     }
+    //   })
+    //   return availableRoomList
+    // }, []);
   }
 
   // move methods below to manager

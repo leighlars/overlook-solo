@@ -108,7 +108,6 @@ let domUpdates = {
                       </form>`;
     const price = document.querySelector("#price");
     const output = document.querySelector(".price-output");
-    // document.querySelector(".date-input").defaultValue = '2020-01-01';
     price.addEventListener("input", () => output.textContent = `$${price.value}`);
     this.createTagHTML();
   },
@@ -117,10 +116,10 @@ let domUpdates = {
     document.querySelector(".tag-list").innerHTML += `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
       <div class='type-tag-btns'>
-        <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
-        <button class='tag-btn' id='junior' id='type-tag'>Junior Suite</button>
-        <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
-        <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
+        <button class='tag-btn' value='single' id='type-tag'>Single Room</button>
+        <button class='tag-btn' value='junior' id='type-tag'>Junior Suite</button>
+        <button class='tag-btn' value='suite' id='type-tag'>Suite</button>
+        <button class='tag-btn' value='residential' id='type-tag'>Residential Suite</button>
       </div>
       </div>
       <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
@@ -136,18 +135,19 @@ let domUpdates = {
   },
 
   toggleTagButton() {
-    let tag = event.target.id;
+    let tag = event.target.value;
     let tagButton = event.target.closest('.tag-btn');
     if (!tagButton.classList.contains('active')) {
       tagButton.classList.add('active');
-      this.tagsSelected.push(tag);
+      if (tagButton.id === 'type-tag') {
+        this.tagsSelected.push(tag);
+      }
     } else {
       tagButton.classList.remove('active');
       let i = this.tagsSelected.indexOf(tag);
       this.tagsSelected.splice(i, 1);
     }
   },
-  
 
   getDateFromForm() {
     const datePicker = document.querySelector('.date-input');
@@ -163,7 +163,7 @@ let domUpdates = {
   displayAvailableRooms(guest) {
     let date = this.getDateFromForm();
     let maxCost = document.querySelector('#price').value;
-    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost);
+    let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
     document.querySelector(".guest-modal").innerHTML = `
       <span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Search Results</h4>
