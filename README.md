@@ -5,8 +5,10 @@ Mod 2 Final Solo Project
 - [Repo](https://github.com/leighlars/overlook-solo)
 - [Project Board](https://github.com/leighlars/overlook-solo/projects)
 - [Project Spec](https://frontend.turing.io/projects/overlook.html)
+- [Deployed Pages]()
 
 ## Abstract 
+
 The project asks the developer to design a functionally effective, sensible, and aesthetically pleasing UX/UI hotel management tool. The user can log in as a manager or as a guest. 
 
 The manager can: </br>
@@ -25,6 +27,7 @@ View any room bookings (past or present) </br>
 The total amount they have spent on rooms </br>
 
 ## Technologies / Systems
+
 - Javascript
 - TDD with Mocha/Chai & Spies
 - VSCode 
