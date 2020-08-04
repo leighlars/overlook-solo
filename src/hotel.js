@@ -69,7 +69,9 @@ class Hotel {
     let expensiveRooms = this.rooms.filter(room => room.costPerNight > maxCost).map(room => room.number);
     let allUnavailable = bookingsOnDay.concat(expensiveRooms);
     let availableRooms = this.rooms.filter(room => !allUnavailable.includes(room.number));
-    availableRooms = this.filterByTags(availableRooms, tags);
+    if (tags.length > 0) {
+      availableRooms = this.filterByTags(availableRooms, tags);
+    }
     return availableRooms.sort((a, b) => a.costPerNight - b.costPerNight);
   }
 

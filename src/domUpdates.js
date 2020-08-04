@@ -115,7 +115,7 @@ let domUpdates = {
 
   createTagHTML() {
     document.querySelector(".tag-list").innerHTML += `
-      <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
+      <div class='tag-box box-type'><p class='tag-prompt'>Select Room Type:</p>
       <div class='type-tag-btns'>
         <button class='tag-btn' value='single room' id='type-tag'>Single Room</button>
         <button class='tag-btn' value='junior suite' id='type-tag'>Junior Suite</button>
