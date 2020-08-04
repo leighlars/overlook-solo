@@ -50,7 +50,6 @@ The total amount they have spent on rooms </br>
 ## Gif Showcase
 
 ## Reflections
-I am excited that I was able to accomplish so much with this project. From the beautiful and sensible design using SCSS, to the 100% Accessibility score, to fetching, posting, and deleting data to the API, to the utilization of spies/testing, I am proud of this project. I used friends to test my app for changes and recommendations. This project felt good most of the way, with tiny speed bumps at the start. 
-I would have liked to dove deeper into fetch. I loaded all my data when the log in button was clicked, but did not update bookings throughout the interaction on a user's login. I had to refresh to fetch more data, thus logging me out. 
+I am excited that I was able to accomplish so much with this project. From the beautiful, responsive, and sensible design using SCSS, to the 100% Accessibility score, to fetching, posting, and deleting data to the API, fetching data throughout the use of the app for UX friendliness, to the utilization of spies/testing, I am proud of this project. I used friends to test my app for changes and recommendations. This project felt good most of the way, with tiny speed bumps at the start. 
 I would have liked to dove deeper into spies testing for fetch and DOM Updates.
-I also did not use inheritance and would have liked to have done so.
+Inheritance clicked with me the night before, and while I was able to implement it with my Guest class from the User class, I would have had to change significant code to make it work for Manager class, and that was too close to the finish line for me to do so. I left a commented out file with notes in Manager to demonstrate my understanding and how I would do it moving forward. 

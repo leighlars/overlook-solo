@@ -21,7 +21,7 @@ let domUpdates = {
     document.querySelector(".manager-view").style.opacity = 1;
   },
   
-  addManagerButtons() {
+  displayUserHeaderButtons() {
     this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">X</button>`) : null;
     this.overlook.isManager ? document.querySelector('.return-btn').innerText = 'Guest Menu' : document.querySelector('.return-btn').innerText = 'Main Menu';
   },
@@ -98,7 +98,7 @@ let domUpdates = {
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>Make New Reservation</h4>`);
-    this.addManagerButtons();
+    this.displayUserHeaderButtons();
     let formHTML = `<form class='booking-form'>
                         <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
                         <label for='price' class='cost-label'>Slide to set maximum room price:</label>
@@ -173,7 +173,7 @@ let domUpdates = {
       <span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Search Results</h4>
       <section class='available-rooms'></section>`);
-    this.addManagerButtons();  
+    this.displayUserHeaderButtons();  
     if (foundRooms.length > 0) {
       foundRooms.forEach(room => {
         let roomHTML = 
@@ -200,7 +200,7 @@ let domUpdates = {
       `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'></button></span> 
       <h4>Thank You!</h4>
       <section class='confirm-msg-box'></section>`);
-    this.addManagerButtons();  
+    this.displayUserHeaderButtons();  
     let confirmHTML = `
       <p class='confirm-msg'>Thank you for booking with The Overlook.</br>
       We look forward to your stay on ${bookingInfo[1]}.</br>
@@ -216,7 +216,7 @@ let domUpdates = {
       `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Cancellation Confirmed</h4>
       <section class='delete-msg-box'></section>`);
-    this.addManagerButtons();  
+    this.displayUserHeaderButtons();  
     let deleteHTML = `
     <p class='confirm-msg'>Your booking has been canceled.</br>
       Please refer to our cancellation policy</br> 
@@ -235,7 +235,7 @@ let domUpdates = {
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>${type} Reservations</h4>
         <section class='booking-list'></section>`);
-    this.addManagerButtons();    
+    this.displayUserHeaderButtons();    
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
     this.checkDataTypeForDisplay(bookingInfo);
     if (type === 'Upcoming') {
