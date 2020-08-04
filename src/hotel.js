@@ -98,7 +98,7 @@ class Hotel {
   getTodaysBookedPercentage(todaysDate) {
     let bookedRooms = this.getAllTodaysBookings(todaysDate);
     if (bookedRooms.length > 0) {
-      let percentage = (bookedRooms.length / this.rooms.length) * 100;
+      let percentage = ((bookedRooms.length / this.rooms.length) * 100).toFixed(0);
       return `Occupied lodging: ${percentage}%`;
     } else {
       return `Occupied lodging: 0%`;
