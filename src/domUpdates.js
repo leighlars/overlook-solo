@@ -22,7 +22,7 @@ let domUpdates = {
   },
   
   displayUserHeaderButtons() {
-    this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">X</button>`) : null;
+    this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">Exit</button>`) : null;
     this.overlook.isManager ? document.querySelector('.return-btn').innerText = 'Guest Menu' : document.querySelector('.return-btn').innerText = 'Main Menu';
   },
 
@@ -77,7 +77,7 @@ let domUpdates = {
     document.querySelector('.guest-modal').innerHTML = '';
     if (this.overlook.isManager) {
       document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-          <span id='exit-btn-style'><button class="exit-btn">X</button></span>`); 
+          <span id='exit-btn-style'><button class="exit-btn">Exit</button></span>`); 
     }
     let guestHome = `
           <h4 class='guest-name'>${guest.name}</h4>
