@@ -99,7 +99,7 @@ let domUpdates = {
     this.displayUserHeaderButtons();
     document.querySelector('.guest-modal').innerHTML += `<form class='booking-form'>
                         <label for='price' class='cost-label'>Type or select calendar date:</label>
-                        <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
+                        <input type='date' class='date-input' min='2020-08-05' max="2021-08-30" required></input>
                         <label for='price' class='cost-label'>Slide to select maximum room price:</label>
                         <input type="range" class='price-input' name="price" id="price" min="170" max="500" step="25" value="300">
                         <output class="price-output" for="price">$300</output>
@@ -108,17 +108,20 @@ let domUpdates = {
                       </form>`;
     const price = document.querySelector("#price");
     const output = document.querySelector(".price-output");
+    // document.querySelector(".date-input").defaultValue = '2020-01-01';
     price.addEventListener("input", () => output.textContent = `$${price.value}`);
     this.createTagHTML();
   },
 
   createTagHTML() {
-    document.querySelector('.tag-list').innerHTML += `
+    document.querySelector(".tag-list").innerHTML += `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
+      <div class='type-tag-btns'>
         <button class='tag-btn' id='single' id='type-tag'>Single Room</button>
         <button class='tag-btn' id='junior' id='type-tag'>Junior Suite</button>
         <button class='tag-btn' id='suite' id='type-tag'>Suite</button>
         <button class='tag-btn' id='residential' id='type-tag'>Residential Suite</button>
+      </div>
       </div>
       <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
         <button class='tag-btn' id='1'>1</button>
@@ -145,12 +148,20 @@ let domUpdates = {
     }
   },
   
-  displayAvailableRooms(guest) {
+
+  getDateFromForm() {
+    const datePicker = document.querySelector('.date-input');
     let date;
-    if (document.querySelector('.date-input').value !== null) {
-      date = document.querySelector(".date-input").value;
-      date = moment(date).format("YYYY/MM/DD");
+    if (datePicker.value) {
+      date = moment(datePicker.value).format('YYYY/MM/DD');
+    } else {
+      date = moment().format('YYYY/MM/DD');
     }
+    return date;
+  },
+
+  displayAvailableRooms(guest) {
+    let date = this.getDateFromForm();
     let maxCost = document.querySelector('#price').value;
     let foundRooms = this.overlook.filterRoomsByTags(date, maxCost);
     document.querySelector(".guest-modal").innerHTML = `
