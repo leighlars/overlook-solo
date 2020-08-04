@@ -52,28 +52,28 @@ The total amount they have spent on rooms </br>
 
 ## Gif Showcase
 
-![gif of viewing manager dashboard](/images/overlook-mgr-dash.gif)</br>
+![gif of viewing manager dashboard](./src/images/overlook-mgr-dash.gif)</br>
 *Viewing manager login and dashboard, including daily metrics and search functionality*
 
-![gif of manager view all guests info](/images/overlook-mgr-view-guests.gif)</br>
+![gif of manager view all guests info](./src/images/overlook-mgr-view-guests.gif)</br>
 *Viewing manager dashboard, reviewing guest information*
 
-![gif of logging in and viewing as guest](/images/overlook-guestview.gif)</br>
+![gif of logging in and viewing as guest](./src/images/overlook-guestview.gif)</br>
 *Logging in and viewing as guest*
 
-![gif of searching, adding, deleting reservations](/images/overlook-add-delete-reserv.gif)</br>
+![gif of searching, adding, deleting reservations](./src/images/overlook-add-delete-reserv.gif)</br>
 *Searching, adding, and deleting reservations*
 
-![gif of error message search results not found](/images/overlook-error.gif)</br>
+![gif of error message search results not found](./src/images/overlook-error.gif)</br>
 *Viewing error message when rooms are unavailable*
 
-![gif of viewing alert when username is incorrect](/images/overlook-wrong-login.gif)</br>
+![gif of viewing alert when username is incorrect](./src/images/overlook-wrong-login.gif)</br>
 *Alert when username is incorrect*
 
-![gif of accessibility score](/images/overlook-accessibility.gif)</br>
+![gif of accessibility score](./src/images/overlook-accessibility.gif)</br>
 *Tabbing through elements on page, 100% Lighthouse score*
 
-![gif of mobile view login](/images/overlook-mobile.gif)</br>
+![gif of mobile view login](./src/images/overlook-mobile.gif)</br>
 *Mobile view*
 
 ## Reflections
