@@ -115,22 +115,12 @@ let domUpdates = {
   createTagHTML() {
     document.querySelector(".tag-list").innerHTML += `
       <div class='tag-box box-type'><p class='tag-prompt'>Filter Tags By Type:</p>
-      <div class='type-tag-btns'>
-        <button class='tag-btn' value='single' id='type-tag'>Single Room</button>
-        <button class='tag-btn' value='junior' id='type-tag'>Junior Suite</button>
-        <button class='tag-btn' value='suite' id='type-tag'>Suite</button>
-        <button class='tag-btn' value='residential' id='type-tag'>Residential Suite</button>
-      </div>
-      </div>
-      <div class='tag-box box-numBeds'><p class='tag-prompt'>Filter Tags By Number of Beds:</p>
-        <button class='tag-btn' id='1'>1</button>
-        <button class='tag-btn' id='2'>2</button>
-      </div>
-      <div class='tag-box box-bedSize'><p class='tag-prompt'>Filter Tags By Bed Size:</p>
-        <button class='tag-btn' id='king'>King</button>
-        <button class='tag-btn' id='queen'>Queen</button>
-        <button class='tag-btn' id='full'>Full</button>
-        <button class='tag-btn' id='twin'>Twin</button>
+        <div class='type-tag-btns'>
+          <button class='tag-btn' value='single' id='type-tag'>Single Room</button>
+          <button class='tag-btn' value='junior' id='type-tag'>Junior Suite</button>
+          <button class='tag-btn' value='suite' id='type-tag'>Suite</button>
+          <button class='tag-btn' value='residential' id='type-tag'>Residential Suite</button>
+        </div>
       </div>`;
   },
 
@@ -139,9 +129,7 @@ let domUpdates = {
     let tagButton = event.target.closest('.tag-btn');
     if (!tagButton.classList.contains('active')) {
       tagButton.classList.add('active');
-      if (tagButton.id === 'type-tag') {
-        this.tagsSelected.push(tag);
-      }
+      this.tagsSelected.push(tag);
     } else {
       tagButton.classList.remove('active');
       let i = this.tagsSelected.indexOf(tag);

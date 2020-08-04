@@ -70,26 +70,16 @@ class Hotel {
     let allUnavailable = bookingsOnDay.concat(expensiveRooms);
     let availableRooms = this.rooms.filter(room => !allUnavailable.includes(room.number));
     availableRooms = this.filterByTags(availableRooms, tags);
-    console.log(availableRooms);
     return availableRooms.sort((a, b) => a.costPerNight - b.costPerNight);
   }
 
   filterByTags(availableRooms, tags) {
-    console.log(tags);
     return availableRooms.filter((room) => {
-      let matchesATag = tags.some((tag) => {
+      let matchesRoomType = tags.some((tag) => {
         return tag === room.roomType;
       });
-      return matchesATag;
+      return matchesRoomType;
     });
-    // return availableRooms.reduce((availableRoomList, room) => {
-    //   tags.forEach(tag => {
-    //     if (room.roomType === tag) {
-    //       availableRoomList.push(room)
-    //     }
-    //   })
-    //   return availableRoomList
-    // }, []);
   }
 
   // move methods below to manager
