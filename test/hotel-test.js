@@ -170,9 +170,6 @@ describe('Hotel', () => {
 
   // ^^ says 'alert is not defined', dunno how to test for alerts in npm. 
   // this passes on dom though, as the alert occurs with incorrect inputs
-  it.skip('should return an array of all room types', () => {
-    expect(hotel.getAllTags()[1].numBeds).to.deep.equal([1, 2]);
-  })
-  // ^^ for later iteration, if have time
+  
 
 });

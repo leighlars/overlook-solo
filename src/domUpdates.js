@@ -66,13 +66,15 @@ let domUpdates = {
   },
 
   viewGuestModal(guest) {
+    document.querySelector(".guest-view").innerHTML = '';
     document.querySelector('.guest-view').style.display = 'flex';
     document.querySelector('.manager-view').style.opacity = .8;
-    document.querySelector(".guest-view").innerHTML = `<section class='guest-modal'></section>`;
+    document.querySelector(".guest-view").innerHTML += `<section class='guest-modal'></section>`;
     this.createGuestHomeHTML(guest);
   },
 
   createGuestHomeHTML(guest) {
+    document.querySelector(".guest-modal").innerHTML = '';
     if (this.overlook.isManager) {
       document.querySelector(".guest-modal").innerHTML = `<span id='exit-btn-style'><button class="exit-btn">Exit</button></span>`; 
     }
@@ -84,14 +86,15 @@ let domUpdates = {
           <button class='guest-bookings-btns future-bookings' id='${guest.id}'>Upcoming Reservations</button>
           <button class='guest-bookings-btns past-bookings' id='${guest.id}'>Past Reservations</button>
         `;
-    document.querySelector('.guest-modal').innerHTML = guestHome;
+    document.querySelector('.guest-modal').innerHTML += guestHome;
   },
 
   
   // ADD NEW BOOKING FORM
 
   displayNewBookingForm(guest) {
-    document.querySelector(".guest-modal").innerHTML = `
+    document.querySelector(".guest-modal").innerHTML = '';
+    document.querySelector(".guest-modal").innerHTML += `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>Make New Reservation</h4>`;
     this.displayUserHeaderButtons();
@@ -194,6 +197,7 @@ let domUpdates = {
   },
 
   displayConfirmationMessage(bookingInfo) {
+    document.querySelector(".guest-modal").innerHTML = "";
     let guest = this.overlook.users.find((user) => user.id === Number(bookingInfo[0]));
     document.querySelector(".guest-modal").innerHTML =
       `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'></button></span> 
@@ -209,8 +213,9 @@ let domUpdates = {
   },
 
   displayDeleteMessage(idNum) {
+    document.querySelector(".guest-modal").innerHTML = "";
     let guest = this.overlook.users.find((user) => user.id === Number(idNum));
-    document.querySelector(".guest-modal").innerHTML =
+    document.querySelector(".guest-modal").innerHTML +=
       `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Cancellation Confirmed</h4>
       <section class='delete-msg-box'></section>`;
@@ -227,8 +232,9 @@ let domUpdates = {
   ///// DISPLAYING RESERVATIONS
   
   displayBookingInfo(guest, type) {
+    document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector('.manager-view').style.opacity = 0.8;
-    document.querySelector('.guest-modal').innerHTML = `
+    document.querySelector('.guest-modal').innerHTML += `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>${type} Reservations</h4>
         <section class='booking-list'></section>`;
