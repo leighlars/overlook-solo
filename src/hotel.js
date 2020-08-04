@@ -64,7 +64,7 @@ class Hotel {
     });
   }
 
-  filterRoomsByTags(date, maxCost, [tags]) {
+  filterRoomsByTags(date, maxCost) {
     let bookingsOnDay = this.bookings.filter(booking => booking.date === date).map(booking => booking.roomNumber); 
     let expensiveRooms = this.rooms.filter(room => room.costPerNight > maxCost).map(room => room.number);
     let allUnavailable = bookingsOnDay.concat(expensiveRooms);

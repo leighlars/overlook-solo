@@ -5,9 +5,11 @@ Mod 2 Final Solo Project
 - [Repo](https://github.com/leighlars/overlook-solo)
 - [Project Board](https://github.com/leighlars/overlook-solo/projects)
 - [Project Spec](https://frontend.turing.io/projects/overlook.html)
+- [Deployed Pages]()
 
 ## Abstract 
-The project asks the developer to design a functionally effective and sensible and aesthetically pleasing UX/UI hotel management tool. The user can log in as a manager or as a guest. 
+
+The project asks the developer to design a functionally effective, sensible, and aesthetically pleasing UX/UI hotel management tool. The user can log in as a manager or as a guest. 
 
 The manager can: </br>
 View percentage and number of rooms available, today's total revenue. </br>
@@ -25,6 +27,7 @@ View any room bookings (past or present) </br>
 The total amount they have spent on rooms </br>
 
 ## Technologies / Systems
+
 - Javascript
 - TDD with Mocha/Chai & Spies
 - VSCode 
@@ -49,8 +52,31 @@ The total amount they have spent on rooms </br>
 
 ## Gif Showcase
 
+![gif of viewing manager dashboard](/images/overlook-mgr-dash.gif)</br>
+*Viewing manager login and dashboard, including daily metrics and search functionality*
+
+![gif of manager view all guests info](/images/overlook-mgr-view-guests.gif)</br>
+*Viewing manager dashboard, reviewing guest information*
+
+![gif of logging in and viewing as guest](/images/overlook-guestview.gif)</br>
+*Logging in and viewing as guest*
+
+![gif of searching, adding, deleting reservations](/images/overlook-add-delete-reserv.gif)</br>
+*Searching, adding, and deleting reservations*
+
+![gif of error message search results not found](/images/overlook-error.gif)</br>
+*Viewing error message when rooms are unavailable*
+
+![gif of viewing alert when username is incorrect](/images/overlook-wrong-login.gif)</br>
+*Alert when username is incorrect*
+
+![gif of accessibility score](/images/overlook-accessibility.gif)</br>
+*Tabbing through elements on page, 100% Lighthouse score*
+
+![gif of mobile view login](/images/overlook-mobile.gif)</br>
+*Mobile view*
+
 ## Reflections
-I am excited that I was able to accomplish so much with this project. From the beautiful and sensible design using SCSS, to the 100% Accessibility score, to fetching, posting, and deleting data to the API, to the utilization of spies/testing, I am proud of this project. I used friends to test my app for changes and recommendations. This project felt good most of the way, with tiny speed bumps at the start. 
-I would have liked to dove deeper into fetch. I loaded all my data when the log in button was clicked, but did not update bookings throughout the interaction on a user's login. I had to refresh to fetch more data, thus logging me out. 
-I would have liked to dove deeper into spies testing for fetch and DOM Updates.
-I also did not use inheritance and would have liked to have done so.
+I am excited that I was able to accomplish so much with this project. From the beautiful, responsive, and sensible design using SCSS, to the 100% Accessibility score, to fetching, posting, and deleting data to the API, fetching data throughout the use of the app for UX friendliness, to the utilization of spies/testing, I am proud of this project. I used friends to test my app for changes and recommendations. This project felt good most of the way, with tiny speed bumps at the start. 
+I would have liked to dove deeper into spies testing for fetch and DOM Updates. Additionally, I left the HTML / CSS code logic in for the tags, but I left them in for styling purposes. The tags do not actually filter any rooms (non-functional). 
+Inheritance clicked with me the night before, and while I was able to implement it with my Guest class from the User class, I would have had to change significant code to make it work for Manager class, and that was too close to the finish line for me to do so. I left a commented out file with notes in Manager to demonstrate my understanding and how I would do it moving forward. 

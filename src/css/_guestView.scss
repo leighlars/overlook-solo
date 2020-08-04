@@ -22,6 +22,8 @@
     .return-btn {
       @include buttons();
       text-align: center;
+      padding: 1%;
+      width: 75px;
     }
     .guest-bookings-btns {
       @include buttons();
@@ -33,6 +35,7 @@
 .booking-list {
   @include generalDisplay();
   @include listDisplay();
+  margin: 5px;
   height: 80%;
     .booking {
       @include generalDisplay();

@@ -1,9 +1,7 @@
-// import User from '../src/user';
-class Guest {
-  constructor(guestDetails, todaysDate) {
-    // super(id, name)
-    this.id = guestDetails.id;
-    this.name = guestDetails.name;
+import User from '../src/user';
+class Guest extends User {
+  constructor(guestDetails) {
+    super(guestDetails);
     this.allBookings;
     this.pastBookings;
     this.futureBookings;
@@ -49,10 +47,10 @@ class Guest {
   getUpcomingBookings(todaysDate) {
     let futureBookings = this.allBookings.filter(booking => booking.date > todaysDate);
     return futureBookings.sort((a, b) => {
-      if (a.date < b.date) {
+      if (a.date > b.date) {
         return 1;
       }
-      if (a.date > b.date) {
+      if (a.date < b.date) {
         return -1;
       }
       return 0;

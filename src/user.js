@@ -1,9 +1,8 @@
 class User {
-  constructor(id) {
-    this.userName =  "manager" || 'customer${id}';
-    this.password = 'overlook2020';
+  constructor(guestDetails) {
+    this.id = guestDetails.id;
+    this.name = guestDetails.name
   }
-
 }
 
 export default User;
