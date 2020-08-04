@@ -5,7 +5,7 @@ Mod 2 Final Solo Project
 - [Repo](https://github.com/leighlars/overlook-solo)
 - [Project Board](https://github.com/leighlars/overlook-solo/projects)
 - [Project Spec](https://frontend.turing.io/projects/overlook.html)
-- [Deployed Pages]()
+- [Deployed Pages](https://leighlars.github.io/overlook-solo/)
 
 ## Abstract 
 
