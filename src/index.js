@@ -23,7 +23,6 @@ function getData() {
       if (overlook.isAuthenticated && overlook.isManager) {
         domUpdates.defineData(currentUser, todaysDate, overlook);
         domUpdates.displayManagerDashboard();
-
       }
       if (overlook.isAuthenticated && overlook.isManager === false) {
         currentUser = overlook.users[Number(overlook.getUserID(userName.value))]; 

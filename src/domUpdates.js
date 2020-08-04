@@ -23,7 +23,7 @@ let domUpdates = {
   
   addManagerButtons() {
     this.overlook.isManager ? document.querySelector("#exit-btn-style").insertAdjacentHTML('beforeend', `<button class="exit-btn">X</button>`) : null;
-    this.overlook.isManager ? document.querySelector('.return-btn').innerText = 'Guest Menu' : null;
+    this.overlook.isManager ? document.querySelector('.return-btn').innerText = 'Guest Menu' : document.querySelector('.return-btn').innerText = 'Main Menu';
   },
 
   /// MANAGER DASH
@@ -96,7 +96,7 @@ let domUpdates = {
   displayNewBookingForm(guest) {
     document.querySelector(".guest-modal").innerHTML = '';
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Main Menu</button></span> 
+        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>Make New Reservation</h4>`);
     this.addManagerButtons();
     let formHTML = `<form class='booking-form'>
@@ -170,7 +170,7 @@ let domUpdates = {
     let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
-      <span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Guest Menu</button></span> 
+      <span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Search Results</h4>
       <section class='available-rooms'></section>`);
     this.addManagerButtons();  
@@ -197,7 +197,7 @@ let domUpdates = {
     let guest = this.overlook.users.find((user) => user.id === Number(bookingInfo[0]));
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
-      `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'>Main Menu</button></span> 
+      `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'></button></span> 
       <h4>Thank You!</h4>
       <section class='confirm-msg-box'></section>`);
     this.addManagerButtons();  
@@ -213,7 +213,7 @@ let domUpdates = {
     let guest = this.overlook.users.find((user) => user.id === Number(idNum));
     document.querySelector(".guest-modal").innerHTML = "";
     document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
-      `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}>Guest Menu</button></span> 
+      `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Cancellation Confirmed</h4>
       <section class='delete-msg-box'></section>`);
     this.addManagerButtons();  
@@ -226,16 +226,16 @@ let domUpdates = {
     document.querySelector('.delete-msg-box').insertAdjacentHTML('beforeend', deleteHTML);
   },
 
-
   ///// DISPLAYING RESERVATIONS
   
   displayBookingInfo(guest, type) {
     document.querySelector('.manager-view').style.opacity = 0.8;
     document.querySelector('.guest-modal').innerHTML = "";
     document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
-        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'>Main Menu</button></span> 
+        <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>${type} Reservations</h4>
         <section class='booking-list'></section>`);
+    this.addManagerButtons();    
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
     this.checkDataTypeForDisplay(bookingInfo);
     if (type === 'Upcoming') {
