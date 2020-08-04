@@ -63,7 +63,7 @@ To interact with the app without cloning / downloading the file, click [here](ht
 ![gif of logging in and viewing as guest](./src/images/overlook-guestview.gif)</br>
 *Logging in and viewing as guest*
 
-![gif of filtering rooms](/images/overlook-filter-rms.gif)</br>
+![gif of filtering rooms](./src/images/overlook-filter-rms.gif)</br>
 *Default date, cost, and all rooms returned, unless otherwise selected*
 
 ![gif of searching, adding, deleting reservations](./src/images/overlook-add-delete-reserv.gif)</br>
