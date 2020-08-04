@@ -108,6 +108,7 @@ let domUpdates = {
                       </form>`;
     const price = document.querySelector("#price");
     const output = document.querySelector(".price-output");
+    // document.querySelector(".date-input").defaultValue = '2020-01-01';
     price.addEventListener("input", () => output.textContent = `$${price.value}`);
     this.createTagHTML();
   },
@@ -145,12 +146,20 @@ let domUpdates = {
     }
   },
   
-  displayAvailableRooms(guest) {
+
+  getDateFromForm() {
+    const datePicker = document.querySelector('.date-input');
     let date;
-    if (document.querySelector('.date-input').value !== null) {
-      date = document.querySelector(".date-input").value;
-      date = moment(date).format("YYYY/MM/DD");
+    if (datePicker.value) {
+      date = moment(datePicker.value).format('YYYY/MM/DD');
+    } else {
+      date = moment().format('YYYY/MM/DD');
     }
+    return date;
+  },
+
+  displayAvailableRooms(guest) {
+    let date = this.getDateFromForm();
     let maxCost = document.querySelector('#price').value;
     let foundRooms = this.overlook.filterRoomsByTags(date, maxCost);
     document.querySelector(".guest-modal").innerHTML = `
