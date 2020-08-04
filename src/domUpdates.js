@@ -66,18 +66,15 @@ let domUpdates = {
   },
 
   viewGuestModal(guest) {
-    document.querySelector('.guest-view').innerHTML = '';
     document.querySelector('.guest-view').style.display = 'flex';
     document.querySelector('.manager-view').style.opacity = .8;
-    document.querySelector(".guest-view").insertAdjacentHTML('beforeend', `<section class='guest-modal'></section>`);
+    document.querySelector(".guest-view").innerHTML = `<section class='guest-modal'></section>`;
     this.createGuestHomeHTML(guest);
   },
 
   createGuestHomeHTML(guest) {
-    document.querySelector('.guest-modal').innerHTML = '';
     if (this.overlook.isManager) {
-      document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
-          <span id='exit-btn-style'><button class="exit-btn">Exit</button></span>`); 
+      document.querySelector(".guest-modal").innerHTML = `<span id='exit-btn-style'><button class="exit-btn">Exit</button></span>`; 
     }
     let guestHome = `
           <h4 class='guest-name'>${guest.name}</h4>
@@ -87,17 +84,16 @@ let domUpdates = {
           <button class='guest-bookings-btns future-bookings' id='${guest.id}'>Upcoming Reservations</button>
           <button class='guest-bookings-btns past-bookings' id='${guest.id}'>Past Reservations</button>
         `;
-    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', guestHome);
+    document.querySelector('.guest-modal').innerHTML = guestHome;
   },
 
   
   // ADD NEW BOOKING FORM
 
   displayNewBookingForm(guest) {
-    document.querySelector(".guest-modal").innerHTML = '';
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', `
+    document.querySelector(".guest-modal").innerHTML = `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
-        <h4>Make New Reservation</h4>`);
+        <h4>Make New Reservation</h4>`;
     this.displayUserHeaderButtons();
     let formHTML = `<form class='booking-form'>
                         <input type='date' class='date-input' min='2020/08/05' max="2021/08/30" required></input>
@@ -148,17 +144,17 @@ let domUpdates = {
     }
   },
 
-  // organizeTags(tag) {
-  //   if (tag === 'single' || tag === 'junior' || tag === 'suite' || tag === 'residential') {
-  //     this.tagsSelected[0].type.push(tag);
-  //   }
-  //   if (tag === '1' || tag === '2') {
-  //     this.tagsSelected[1].numBeds.push(tag);
-  //   }
-  //   if (tag === 'king' || tag === 'queen' || tag === 'full' || tag === 'twin') {
-  //     this.tagsSelected[2].bedSize.push(tag);
-  //   }
-  // },
+  organizeTags(tag) {
+    if (tag === 'single' || tag === 'junior' || tag === 'suite' || tag === 'residential') {
+      this.tagsSelected[0].type.push(tag);
+    }
+    if (tag === '1' || tag === '2') {
+      this.tagsSelected[1].numBeds.push(tag);
+    }
+    if (tag === 'king' || tag === 'queen' || tag === 'full' || tag === 'twin') {
+      this.tagsSelected[2].bedSize.push(tag);
+    }
+  },
   
   displayAvailableRooms(guest) {
     let date; 
@@ -168,15 +164,22 @@ let domUpdates = {
     }
     let maxCost = document.querySelector('#price').value;
     let foundRooms = this.overlook.filterRoomsByTags(date, maxCost, this.tagsSelected);
-    document.querySelector(".guest-modal").innerHTML = "";
-    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
+    document.querySelector(".guest-modal").innerHTML = `
       <span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Search Results</h4>
-      <section class='available-rooms'></section>`);
+      <section class='available-rooms'></section>`;
     this.displayUserHeaderButtons();  
     if (foundRooms.length > 0) {
       foundRooms.forEach(room => {
-        let roomHTML = 
+        this.createRoomsHTML(guest, date, room);
+      });
+    } else {
+      document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p>`);
+    }
+  },
+
+  createRoomsHTML(guest, date, room) {
+    let roomHTML = 
         `<div class='found-room'>
           <h4 class='found-room-date'>${date}</h4>
           <p class='found-room-room-num'>Room number: ${room.number}</p>
@@ -186,20 +189,16 @@ let domUpdates = {
           <p class='found-room-room-cost'>Cost: $${room.costPerNight}</p>
           <button type='submit' class='book-room-btn' id='${guest.id} ${date} ${room.number}'>Book</button>
         </div>`;
-        document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
-      });
-    } else {
-      document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', `<p class='unavailable-msg'>Sorry, no rooms match your search. </br> Please go back and try again.</p>`);
-    }
+    document.querySelector('.available-rooms').insertAdjacentHTML('beforeend', roomHTML);
+
   },
 
   displayConfirmationMessage(bookingInfo) {
     let guest = this.overlook.users.find((user) => user.id === Number(bookingInfo[0]));
-    document.querySelector(".guest-modal").innerHTML = "";
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
+    document.querySelector(".guest-modal").innerHTML =
       `<span id='exit-btn-style'><button class='return-btn' id='${guest.id}'></button></span> 
       <h4>Thank You!</h4>
-      <section class='confirm-msg-box'></section>`);
+      <section class='confirm-msg-box'></section>`;
     this.displayUserHeaderButtons();  
     let confirmHTML = `
       <p class='confirm-msg'>Thank you for booking with The Overlook.</br>
@@ -211,11 +210,10 @@ let domUpdates = {
 
   displayDeleteMessage(idNum) {
     let guest = this.overlook.users.find((user) => user.id === Number(idNum));
-    document.querySelector(".guest-modal").innerHTML = "";
-    document.querySelector(".guest-modal").insertAdjacentHTML('beforeend', 
+    document.querySelector(".guest-modal").innerHTML =
       `<span id='exit-btn-style'><button class='return-btn' id=${guest.id}></button></span> 
       <h4>Cancellation Confirmed</h4>
-      <section class='delete-msg-box'></section>`);
+      <section class='delete-msg-box'></section>`;
     this.displayUserHeaderButtons();  
     let deleteHTML = `
     <p class='confirm-msg'>Your booking has been canceled.</br>
@@ -230,11 +228,10 @@ let domUpdates = {
   
   displayBookingInfo(guest, type) {
     document.querySelector('.manager-view').style.opacity = 0.8;
-    document.querySelector('.guest-modal').innerHTML = "";
-    document.querySelector('.guest-modal').insertAdjacentHTML('beforeend', `
+    document.querySelector('.guest-modal').innerHTML = `
         <span id='exit-btn-style'><button class="return-btn" id='${guest.id}'></button></span> 
         <h4>${type} Reservations</h4>
-        <section class='booking-list'></section>`);
+        <section class='booking-list'></section>`;
     this.displayUserHeaderButtons();    
     let bookingInfo = guest.getBookingInfo(this.todaysDate, type);
     this.checkDataTypeForDisplay(bookingInfo);

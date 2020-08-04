@@ -35,6 +35,7 @@
 .booking-list {
   @include generalDisplay();
   @include listDisplay();
+  margin: 5px;
   height: 80%;
     .booking {
       @include generalDisplay();

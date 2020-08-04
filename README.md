@@ -7,7 +7,7 @@ Mod 2 Final Solo Project
 - [Project Spec](https://frontend.turing.io/projects/overlook.html)
 
 ## Abstract 
-The project asks the developer to design a functionally effective and sensible and aesthetically pleasing UX/UI hotel management tool. The user can log in as a manager or as a guest. 
+The project asks the developer to design a functionally effective, sensible, and aesthetically pleasing UX/UI hotel management tool. The user can log in as a manager or as a guest. 
 
 The manager can: </br>
 View percentage and number of rooms available, today's total revenue. </br>

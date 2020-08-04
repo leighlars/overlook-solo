@@ -3,7 +3,6 @@ class User {
     this.id = guestDetails.id;
     this.name = guestDetails.name
   }
-
 }
 
 export default User;
