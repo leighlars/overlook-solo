@@ -41,11 +41,12 @@ class Hotel {
       obj.userID = booking.userID;
       obj.date = booking.date;
       obj.roomNumber = booking.roomNumber;
-      obj.roomType = rawData.roomsData.find(room => room.number === booking.roomNumber).roomType;
-      obj.bidet = rawData.roomsData.find(room => room.number === booking.roomNumber).bidet;
-      obj.bedSize = rawData.roomsData.find(room => room.number === booking.roomNumber).bedSize;
-      obj.numBeds = rawData.roomsData.find(room => room.number === booking.roomNumber).numBeds;
-      obj.cost = rawData.roomsData.find(room => room.number === booking.roomNumber).costPerNight;
+      let noNulls = rawData.roomsData.filter(room => room.number !== null);
+      obj.roomType = noNulls.find(room => room.number === booking.roomNumber).roomType;
+      obj.bidet = noNulls.find(room => room.number === booking.roomNumber).bidet;
+      obj.bedSize = noNulls.find(room => room.number === booking.roomNumber).bedSize;
+      obj.numBeds = noNulls.find(room => room.number === booking.roomNumber).numBeds;
+      obj.cost = noNulls.find(room => room.number === booking.roomNumber).costPerNight;
       obj.roomServiceCharges = booking.roomServiceCharges;
       bookingCost.push(obj);
       return bookingCost;
