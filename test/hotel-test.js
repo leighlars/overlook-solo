@@ -43,6 +43,13 @@ describe('Hotel', () => {
           roomNumber: 4,
           roomServiceCharges: [],
         },
+        {
+          id: "5fwrgu4i7k55hl6sz",
+          userID: 1,
+          date: "2020/04/22",
+          roomNumber: null,
+          roomServiceCharges: [],
+        }
       ],
       roomsData: [
         {
@@ -85,6 +92,10 @@ describe('Hotel', () => {
   it('should be a function', () => {
     expect(Hotel).to.be.a('function');
   });
+
+  it('should not include null room number bookings', () => {
+    expect(hotel.bookings.length).to.deep.equal(4);
+  })
   
   it('should be an instance of Hotel', () => {
     expect(hotel).to.be.an.instanceOf(Hotel);

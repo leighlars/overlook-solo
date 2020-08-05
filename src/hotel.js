@@ -1,4 +1,5 @@
 import Guest from './guest';
+// import { raw } from 'file-loader';
 // import User from './user';
 
 class Hotel {
@@ -35,7 +36,8 @@ class Hotel {
   }
   
   matchBookingsInfoFromRooms(rawData) {
-    return rawData.bookingsData.reduce((bookingCost, booking) => {
+    let noNulls = rawData.bookingsData.filter(booking => booking.roomNumber !== null);
+    return noNulls.reduce((bookingCost, booking) => {
       let obj = {};
       obj.id = booking.id;
       obj.userID = booking.userID;
